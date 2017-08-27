@@ -1,0 +1,6 @@
+# Netscape HTTP Cookie File
+# http://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file!  Do not edit.
+
+121.250.173.149	FALSE	/	FALSE		ASP.NET_SessionId	xbr30gvrulek3sjparffmlns
+121.250.173.149	FALSE	/	FALSE	1503835499	User	id=d38a388d-4d85-47d3-ab7f-57158a7849ad&userName=201512180119&fullName=...&roles=role-user&largeAvatar=user/d38a388d-4d85-47d3-ab7f-57158a7849ad/l_1488164341.PNG&isCompleted=True&uguid=b667ca22-01be-4d18-ab99-4f482fdcadfa
