@@ -1,0 +1,1119 @@
+var courseInfo = {};
+
+var coursestring = {};
+coursestring.rootControllerFunc = function ($scope, $http) {
+
+    $http.post("/CourseInfo/CourseViewData", { courseId: courseId }).success(function (data) {
+        $scope.courseList = data.courseList;
+        $scope.favorite = data.favorite;
+        $scope.userId = data.userId;
+        $scope.parameters = { courseId: courseId, userId: data.userId };
+        if (data.roles != null && data.roles.indexOf("role-admin") >= 0)
+            $scope.roles = "super-admin";
+        else
+            $scope.roles = "";
+        $scope.topTitle = "课程";
+        $scope.examModel = data.examModel;
+        if ($scope.examModel != null && $scope.examModel == 'exam')
+            $scope.topTitle = "考试";
+
+        $scope.videoAbout = data.courseList[0].videoAbout;
+        if ($scope.videoAbout == null || $scope.videoAbout == undefined || $scope.videoAbout == "") {
+            $scope.hasVideoAbout = false;
+        } else if (!data.courseList[0].isVideoAbout) {
+            $scope.hasVideoAbout = false;
+        } else {
+            $scope.hasVideoAbout = true;
+        }
+    });
+
+    //课程收藏
+    $scope.EditFavorite = function (param, obj) {
+        if (param.userId != null && param.userId != "") {   //判断是否登录
+            param.type = obj;
+            $http.post("/Course/EditFavorite", param).success(function (data1) {
+                $scope.favorite = data1.has;
+            });
+        }
+        else//未登录给提示
+        {
+            common.showLoginLayer();
+        }
+
+    };
+
+
+    $scope.OnFriend = function (stunum) {
+        layer.msg(stunum, 1, 9);
+        var heigth = 180;
+        if (stunum > 0 && stunum < 5)
+            heigth = 80 + stunum * 80;
+        else if (stunum >= 5)
+            heigth = 550;
+
+        $.layer({
+            type: 2,
+            maxmin: false,
+            title: $scope.topTitle + "学生",
+            area: ["600px", heigth + "px"],
+            shadeClose: true,
+            bgcolor: '',
+            iframe: {
+                src: "/Message/CourseMessage/" + courseId
+            }
+
+        });
+
+    };
+
+    window.CourseMessageConterollerDataList = function (obj) {
+        $scope.CreateMessage(obj);
+    };
+
+    //写私信
+    $scope.CreateMessage = function (obj) {
+
+        $.layer({
+            type: 2,
+            maxmin: false,
+            title: "写私信",
+            area: ["550px", "385px"],
+            shadeClose: true,
+            bgcolor: '#FFFFFF',
+            iframe: {
+                src: "/Message/CreateMessage/" + obj
+            }
+
+        });
+
+    };
+
+    $scope.OnReview = function () { //点击课程评价
+        $.layer({
+            type: 2,
+            maxmin: false,
+            title: $scope.topTitle + "评价",
+            area: ["600px", "400px"],
+            shadeClose: true,
+            bgcolor: '#FFFFFF',
+            iframe: {
+                src: "/CourseReview/ReviewContent/" + param.courseId
+            }
+
+        });
+
+    };
+
+
+};
+
+coursestring.rightController = function ($scope, $http, $sce) {
+    var param = { courseId: courseId, mentId: "" };
+    $scope.playVideo = false;
+    $scope.root = courseId;
+
+    function flushRightView() {
+        $http.post("/CourseInfo/CourseRightView", param).success(function (data) {
+            $scope.AnnouncementView = data.AnnouncementView;
+            $scope.threadList = data.threadList;
+
+            $scope.roles = "";
+            $scope.examModel = data.examModel;
+            $scope.RigthTitle = "课程";
+            $scope.StuTitle = "学习";
+            $scope.StuIng = "已学完";
+            if ($scope.examModel == "exam") {
+                $scope.RigthTitle = "考试";
+                $scope.StuTitle = "考试";
+                $scope.StuIng = "已考";
+            }
+
+            $scope.expiry = data.expiry;
+            if (data.userObj != null && data.userObj.roles == "role-admin") {
+                $scope.roles = "super-admin";
+            }
+
+            $scope.courseId = param.courseId;
+        });
+    }
+
+    flushRightView();
+
+    common.GlobalEvent.addEvent("flushRightView", function () {
+        flushRightView();
+    });
+
+    //获取计时方式
+    var courseLearnTime = 0, courseLen;
+    $http.post("/Course/GetBaseInfo", {
+        id: courseId
+    }).success(function (data) {
+        if (data.success == false) {
+            alert(data.msg);
+            return;
+        }
+        var timingMode = data.course.timingMode;
+        $scope.showLesson = data.course.timingMode == "course" ? false : true;
+        courseLen = data.course.length; //课程时长
+        if (timingMode == "course") { //课程
+            $http.post("/Course/GetCourseLernTime", {
+                courseId: courseId,
+                batchId: batchId
+            }).success(function (d) {
+                $scope.count = d.count;
+                $.each(d.learn, function (i, v) {
+                    courseLearnTime += v.learnTime;
+                });
+
+                if (courseLen == 0) {
+                    $scope.learnCount = "0%";
+                    $scope.progress = $sce.trustAsHtml("<div class=\"progress-bar\" style=\"width: 0%;\"></div>");
+                } else {
+                    $scope.learnCount = Math.floor(courseLearnTime * 100 / courseLen);
+                    if ($scope.learnCount > 100) {
+                        $scope.learnCount = 100;
+                    }
+                    $scope.learnCount = $scope.learnCount + "%";
+                    $scope.progress = $sce.trustAsHtml("<div class=\"progress-bar\" style=\"width: " + $scope.learnCount + ";\"></div>");
+                }
+            });
+        } else {    //课时
+            //学习进度
+            $http.post("/CourseLessonLearn/GetProgress", {
+                courseId: courseId, batchId: batchId
+            }).success(function (data) {
+                $scope.learnCount = data.learnCount;
+                $scope.count = data.count;
+                if (data.count == 0 || data.learnCount == 0) {
+                    $scope.progress = $sce.trustAsHtml("<div class=\"progress-bar\" style=\"width: 0;\"></div>");
+                } else {
+                    $scope.progress = $sce.trustAsHtml("<div class=\"progress-bar\" style=\"width: " + Math.floor(data.learnCount * 100 / data.count) + "%;\"></div>");
+                }
+            })
+                .error(function () {
+                    layer.msg("获取学习进度失败!请重试!", 2);
+                });
+        }
+    });
+
+    $scope.ckplayerPlay = function () {
+        $scope.playVideo = true;
+        var flashvars = {
+            f: "/Assets/lib/ckplayer-6.6/plugin/plugin.swf",
+            c: 0,
+            s: 4,
+            a: "/files/" + $scope.videoAbout,
+            p: 1
+        };
+        var params = { wmode: "opaque" };
+        CKobject.embedSWF(
+            '/Assets/lib/ckplayer-6.6/ckplayer.swf',
+            'ckplayer',
+            'playerNo1',
+            '328', '184',
+            flashvars,
+            params);
+    };
+
+    $scope.AddAnnouce = function () { //点击课程公告
+        $.layer({
+            type: 2,
+            maxmin: false,
+            title: "添加公告",
+            area: ["800px", "420px"],
+            shadeClose: true,
+            bgcolor: '#FFFFFF',
+            iframe: {
+                src: "/CourseInfo/AnnouncementCreate/" + param.courseId + "?mentId=" + param.mentId
+            }
+
+        });
+    };
+
+    //删除
+    $scope.delComment = function (review) {
+        layer.confirm("确定要进行删除操作吗?", function () {
+            var url = "/CourseReview/DeleteComment";
+            $http.post(url, { id: review.id }).success(function (data) {
+                if (data.success) {
+                    layer.msg("删除成功", 2, 9, function () {
+                        window.location.reload();
+                    });
+                } else {
+                    layer.alert(data.msg);
+                }
+            });
+        });
+    };
+
+
+
+    //评价列表
+    function getReviewList() {
+        $http.post("/CourseReview/GetReviewList", {
+            currentPage: 1,
+            courseId: courseId
+        }).success(function (data) {
+            $scope.ReviewObj = data.ReviewObj;
+            angular.forEach($scope.ReviewObj, function (v) {
+                if (!stringIsEnpty(v.fullName)) {
+                    v.userName = v.fullName;
+                }
+            });
+            if (data.ReviewObj != null && data.ReviewObj.length > 0) {
+                $("#ReviewListId").css("display", "");
+            } else {
+                $scope.ReviewObj = [];
+            }
+
+        });
+    }
+
+    getReviewList();
+
+    var ratyDom = $('#my-course-rate');
+    ratyDom.raty({
+        hints: ['很差', '较差', '还行', '推荐', '力荐'],
+        score: 0,
+        path: "/assets/img/raty/",
+        starOff: 'star-off.png',
+        starOn: 'star-on.png',
+        click: function () {
+            $scope.$apply(function () {
+                $scope.isShowReviewBtn = true;
+            });
+        }
+    });
+
+    $scope.selfReview = { rating: 0, content: "" };
+    $scope.showReviewEditBtn = false;
+    $scope.showReviewTextarea = false;
+    $scope.hasReview = false;
+    //获取自己对该门课的评价
+    function getSelfReview() {
+        $http.post("/CourseReview/GetSelfReview", {
+            courseId: courseId
+        }).success(function (data) {
+            $scope.selfReview.rating = data.rating;
+            $scope.selfReview.content = data.content;
+            $scope.review = data;
+            $scope.hasReview = (data.rating != 0 && !stringIsEnpty(data.content));
+            if ($scope.hasReview) {
+                $scope.showReviewEditBtn = true;
+                $scope.showReviewTextarea = false;
+            } else {
+                $scope.showReviewEditBtn = false;
+                $scope.showReviewTextarea = true;
+            }
+            ratyDom.raty('score', data.rating);
+        });
+    }
+    getSelfReview();
+
+    $scope.onClickReviewEditBtn = function () {
+        $scope.showReviewEditBtn = false;
+        $scope.showReviewTextarea = true;
+        $scope.isShowReviewBtn = true;
+    };
+
+    $scope.isShowReviewBtn = false;
+    $scope.cancelReview = function () {
+        $scope.isShowReviewBtn = false;
+        if ($scope.hasReview) {
+            $scope.showReviewEditBtn = true;
+            $scope.showReviewTextarea = false;
+        }
+        $scope.review.rating = $scope.selfReview.rating;
+        $scope.review.content = $scope.selfReview.content;
+        ratyDom.raty('score', $scope.review.rating);
+    };
+    //添加或修改自己对课程的评价
+    $scope.saveReview = function () {
+        var score = ratyDom.raty("score");
+        if (score == undefined) {
+            score = 0;
+        }
+        var content = $scope.review.content;
+
+        if (score == 0)
+            layer.alert("请进行评价打分", 3);
+        else if (content == null || content == "")
+            layer.alert("评价内容不能为空", 3);
+        else {
+            $scope.review.rating = score;
+            $http.post("/CourseReview/SaveReview", $scope.review).success(function () {
+                $scope.isShowReviewBtn = false;
+                getSelfReview();
+                getReviewList();
+                layer.msg("评价成功！", 2, 9);
+            });
+        }
+    };
+    //显示所有评价
+    $scope.showAllReview = function () {
+        $.layer({
+            type: 2,
+            maxmin: false,
+            title: $scope.topTitle + "评价",
+            area: ["600px", "400px"],
+            shadeClose: true,
+            bgcolor: '#FFFFFF',
+            iframe: {
+                src: "/CourseReview/ReviewList/" + courseId
+            }
+        });
+    };
+
+    //获取该课程
+    $http.post("/Course/GetCourseStudentsAndAllNum", {
+        courseId: courseId, count: 12
+    }).success(function (data) {
+        $scope.students = data.students;
+        $scope.studentNum = data.studentNum;
+    });
+
+    //取当前课时
+    $scope.doLesson = function () {
+        $http.get("/CourseInfo/GetCurrentLesson/" + courseId)
+        .success(function (lesson) {
+            if (lesson.type == "assesswork") {
+                if (lesson.status == "finished") {//如果有，直接进入
+                    var index = layer.confirm("是否要开始进行考核作业？", function () {
+                        openwin("/Assesswork/Index?courseId=" + lesson.courseId + "&lessonId=" + lesson.lessonId + '&batchId=' + batchId);
+                        layer.close(index);
+                    });
+                } else {
+                    $.layer({
+                        type: 2,
+                        maxmin: true,
+                        title: "选择考核作业",
+                        area: ["550px", "400px"],
+                        iframe: {
+                            src: "/Assesswork/AssessworkSelectLayer?courseId=" + lesson.courseId + "&lessonId=" + lesson.lessonId + '&batchId=' + batchId
+                        },
+                        close: function () {
+                            var params = {};
+                            params.courseId = courseId;
+                            params.lessonId = lesson.id;
+                            $http.post("/UserAssesswork/SaveExam", params)
+                            .success(function (data) {
+                                parent.location.reload();
+                            })
+                            .error(function () {
+                            });
+                        }
+                    });
+                }
+            }
+            else if (lesson.type == "web" || lesson.type == "scorm") {
+                layer.load(2);
+                $.ajax({
+                    url: localServiceUrl + "/LOCALSERVICECHECK.NEWV",
+                    timeout: 2000,
+                    data: "rnd=" + RndNum(6),
+                    dataType: "jsonp",
+                    jsonp: "callback=?",
+                    jsonpCallback: "callback",
+                    success: function (data) {
+                        var requstArgs = [];
+                        var requstArg = {};
+                        requstArg.userUid = lesson.userId;
+                        requstArg.domainUrl = escape(lesson.mobileDomain + "/Learn/Scorm/" + lesson.lessonId + "?courseId=" + lesson.courseId + "&userId=" + lesson.userId);
+                        requstArgs.push(requstArg);
+                        $.ajax({
+                            url: localServiceUrl + "/COURSEMANAGERREQUEST.NEWV",
+                            data: "MethodName=StartLearning&RequstArgs=" + JSON.stringify(requstArgs) + "&rnd=" + RndNum(6),
+                            dataType: "jsonp",
+                            jsonp: "callback=?",
+                            jsonpCallback: "callback",
+                            success: function (data) {
+                            },
+                            error: function () {
+                                layer.msg('调用SmartGate失败!请重试!', 2);
+                            }
+                        });
+                    },
+                    error: function () {
+                        $.layer({
+                            shade: [0],
+                            area: ['358px', '152px'],
+                            dialog: {
+                                msg: '检测到您未安装智慧门工具！是否安装？<br>(如无法正常下载，请<a href="/files/smartGate/SmartGate_Setup.exe" target=\"_blank\">点击这里</a>下载安装程序)',
+                                btns: 2,
+                                type: 4,
+                                btn: ['现在安装', '暂不安装'],
+                                yes: function () {
+                                    layer.msg('安装完成后，请重新点击！', 10, 1);
+                                    window.open("/files/smartGate/SmartGate_Setup.exe");
+                                },
+                                no: function () {
+                                    layer.msg('抱歉您无法学习该内容！', 2);
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+            else if (lesson.type == "testpaper") {
+                layer.load(2);
+                $.ajax({
+                    url: localServiceUrl + "/LOCALSERVICECHECK.NEWV",
+                    timeout: 2000,
+                    data: "rnd=" + RndNum(6),
+                    dataType: "jsonp",
+                    jsonp: "callback=?",
+                    jsonpCallback: "callback",
+                    success: function (data) {
+                        $.layer({
+                            type: 2,
+                            maxmin: true,
+                            title: lesson.title,
+                            area: ["500px", "420px"],
+                            iframe: {
+                                src: "/Learn/Exam/" + lesson.lessonId
+                            },
+                            close: function () {
+                                var params = {};
+                                params.userId = lesson.userId;
+                                params.courseId = lesson.courseId;
+                                params.lessonId = lesson.lessonId;
+                                params.learnTime = 0;
+                                params.batchId = batchId;
+                                $http.post("/CourseLessonLearn/Save", params)
+                                .success(function (data) {
+                                    if (data.err) {
+                                        layer.msg(data.err, 2);
+                                        return;
+                                    }
+                                    parent.location.reload();
+                                })
+                                .error(function () {
+                                });
+                            }
+                        });
+                    },
+                    error: function () {
+                        $.layer({
+                            shade: [0],
+                            area: ['358px', '152px'],
+                            dialog: {
+                                msg: '检测到您未安装智慧门工具！是否安装？<br>(如无法正常下载，请<a href="/files/smartGate/SmartGate_Setup.exe" target=\"_blank\">点击这里</a>下载安装程序)',
+                                btns: 2,
+                                type: 4,
+                                btn: ['现在安装', '暂不安装'],
+                                yes: function () {
+                                    layer.msg('安装完成后，请点击「开始考试」按钮！', 10, 1);
+                                    window.open("/files/smartGate/SmartGate_Setup.exe");
+                                },
+                                no: function () {
+                                    layer.msg('抱歉您无法参与该考试！', 2);
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+            else {
+                var index = layer.confirm("是否要开始学习课程？", function () {
+                    openwin("/Learn/Index/" + lesson.lessonId + "?courseId=" + courseId);
+                    layer.close(index);
+                });
+
+            }
+        })
+        .error(function () {
+            layer.msg("获取当前课时失败!请重试!", 2);
+        });
+    }
+};
+
+function initBootpagFunc(elementId, dataCount, maxItemNum, maxVisiblePageNum) {
+    if (!maxItemNum) {
+        maxItemNum = 5;
+    }
+    if (!maxVisiblePageNum) {
+        maxVisiblePageNum = 10;
+    }
+    return $("#" + elementId).bootpag({
+        page: 1,
+        total: Math.ceil(dataCount / maxItemNum),
+        maxVisible: maxVisiblePageNum
+    });
+}
+
+//课程中心-课时信息
+var mycourselessonApp = {};
+mycourselessonApp.module = angular.module("courselessonApp", []);
+mycourselessonApp.module.controller("TopRootControl", coursestring.rootControllerFunc);
+mycourselessonApp.module.controller("RighInfoControl", coursestring.rightController);
+mycourselessonApp.module.controller("CourselessonControl", function ($scope, $http) {
+
+    //课时列表
+    $http.post("/CourseInfo/GetLessonList", {
+        courseId: courseId,
+        batchId: batchId
+    }).success(function (data) {
+        $scope.items = data;
+    }).error(function () {
+        layer.msg("获取课时列表失败!请按F5重试!", 2);
+    });
+    //计时方式
+    $http.post("/Course/GetBaseInfo", {
+        id: courseId
+    }).success(function (data) {
+        if (data.success == false) {
+            alert(data.msg);
+            return;
+        }
+        $scope.showPer = data.course.timingMode != "course";
+    }).error(function () {
+        layer.msg("获取课时列表失败!请按F5重试!", 2);
+    });
+
+    //章节字体样式
+    $scope.chapterTitleStyle = function (item) {
+        if (item.type=="chapter") {
+            return {"font-size":"16px"};
+        } else if (item.type == "subChapter") {
+            return {"font-size":"14px","margin-left":"15px"};
+        }
+    }
+
+    $scope.clickLesson = function (lesson, userId, mobileDomain) {
+        if (validityType == 'batch' && !batchId && role == 'role-user') {
+            layer.msg('无效的分期!', 2);
+            return;
+        }
+        var url = "/Learn/Index/" + lesson.id + "?courseId=" + lesson.courseId + '&batchId=' + batchId;
+        if (lesson.type == "assesswork") {
+            if (lesson.status == "finished") {//如果有，直接进入
+                openwin("/Assesswork/Index?courseId=" + courseId + "&lessonId=" + lesson.id + '&batchId=' + batchId);
+            } else {
+                $.layer({
+                    type: 2,
+                    maxmin: true,
+                    title: "选择考核作业",
+                    area: ["550px", "400px"],
+                    iframe: {
+                        src: "/Assesswork/AssessworkSelectLayer?courseId=" + courseId + "&lessonId=" + lesson.id + '&batchId=' + batchId
+                    },
+                    close: function () {
+                        var params = {};
+                        params.courseId = courseId;
+                        params.lessonId = lesson.id;
+                        $http.post("/UserAssesswork/SaveExam", params)
+                        .success(function (data) {
+                            parent.location.reload();
+                        })
+                        .error(function () {
+                        });
+                    }
+                });
+            }
+        }
+        else if (lesson.type == "web" || lesson.type == "scorm") {
+            layer.load(2);
+            $.ajax({
+                url: localServiceUrl + "/LOCALSERVICECHECK.NEWV",
+                timeout: 2000,
+                data: "rnd=" + RndNum(6),
+                dataType: "jsonp",
+                jsonp: "callback=?",
+                jsonpCallback: "callback",
+                success: function (data) {
+                    var requstArgs = [];
+                    var requstArg = {};
+                    requstArg.userUid = userId;
+                    requstArg.domainUrl = escape(mobileDomain + "/Learn/Scorm/" + lesson.id + "?courseId=" + courseId + "&userId=" + userId);
+                    requstArgs.push(requstArg);
+                    $.ajax({
+                        url: localServiceUrl + "/COURSEMANAGERREQUEST.NEWV",
+                        data: "MethodName=StartLearning&RequstArgs=" + JSON.stringify(requstArgs) + "&rnd=" + RndNum(6),
+                        dataType: "jsonp",
+                        jsonp: "callback=?",
+                        jsonpCallback: "callback",
+                        success: function (data) {
+                        },
+                        error: function () {
+                            layer.msg('调用SmartGate失败！请重试！', 2);
+                        }
+                    });
+                },
+                error: function () {
+                    $.layer({
+                        shade: [0],
+                        area: ['358px', '152px'],
+                        dialog: {
+                            msg: '检测到您未安装智慧门工具！是否安装？<br>(如无法正常下载，请<a href="/files/smartGate/SmartGate_Setup.exe" target=\"_blank\">点击这里</a>下载安装程序)',
+                            btns: 2,
+                            type: 4,
+                            btn: ['现在安装', '暂不安装'],
+                            yes: function () {
+                                layer.msg('安装完成后，请重新点击！', 10, 1);
+                                window.open("/files/smartGate/SmartGate_Setup.exe");
+                            },
+                            no: function () {
+                                layer.msg('抱歉您无法学习该内容！', 2);
+                            }
+                        }
+                    });
+                }
+            });
+        }
+        else if (lesson.type == "testpaper") {
+            layer.load(2);
+            $.ajax({
+                url: localServiceUrl + "/LOCALSERVICECHECK.NEWV",
+                timeout: 2000,
+                data: "rnd=" + RndNum(6),
+                dataType: "jsonp",
+                jsonp: "callback=?",
+                jsonpCallback: "callback",
+                success: function (data) {
+                    $.layer({
+                        type: 2,
+                        maxmin: true,
+                        title: lesson.title,
+                        area: ["1024px", "420px"],
+                        iframe: {
+                            src: "/Learn/Exam/" + lesson.id + '?batchId=' + batchId
+                        },
+                        close: function () {
+                            parent.location.reload();
+                        }
+                    });
+                },
+                error: function () {
+                    $.layer({
+                        shade: [0],
+                        area: ['358px', '152px'],
+                        dialog: {
+                            msg: '检测到您未安装智慧门工具！是否安装？<br>(如无法正常下载，请<a href="/files/smartGate/SmartGate_Setup.exe" target=\"_blank\">点击这里</a>下载安装程序)',
+                            btns: 2,
+                            type: 4,
+                            btn: ['现在安装', '暂不安装'],
+                            yes: function () {
+                                layer.msg('安装完成后，请点击「开始考试」按钮！', 10, 1);
+                                window.open("/files/smartGate/SmartGate_Setup.exe");
+                            },
+                            no: function () {
+                                layer.msg('抱歉您无法参与该考试！', 2);
+                            }
+                        }
+                    });
+                }
+            });
+        }
+        else {
+            openwin(url);
+        }
+    };
+
+    window.learnAssesswork = function (assessworkId, courseId, lessonId, batchId) {
+        location.reload();
+        openwin("/Assesswork/Index/" + assessworkId + "?courseId=" + courseId + "&lessonId=" + lessonId + "&batchId=" + batchId);
+    };
+
+    window.showLoginLayer = function () {
+        common.showLoginLayer();
+    }
+
+    //获取课时类型名称
+    $scope.getLessonTypeName = function (type, typeMark) {
+        var typeName = "";
+        if (type == "video") {
+            typeName = "视频";
+        }
+        else if (type == "audio") {
+            typeName = "音频";
+        }
+        else if (type == "text") {
+            typeName = "图文";
+        }
+        else if (type == "web") {
+            typeName = "网页";
+        }
+        else if (type == "scorm") {
+            typeName = "Scorm";
+        }
+        else if (type == "document") {
+            typeName = "文档";
+        }
+        else if (type == "testpaper") {
+            typeName = "考试";
+            if (typeMark == "midterm-testpaper") {
+                typeName = "期中考试";
+            }
+            else if (typeMark == "final-testpaper") {
+                typeName = "期末考试";
+            }
+            else if (typeMark == "stage-testpaper") {
+                typeName = "阶段测验";
+            }
+            else if (typeMark == "synthesize-testpaper") {
+                typeName = "综合测验";
+            }
+        }
+        else if (type == "assesswork") {
+            typeName = "考核作业";
+        }
+        return typeName;
+    };
+
+    $scope.lessonMouseOver = function (id) {
+        //$("#" + id).tooltip("show");
+        $("#" + id).addClass("ext-over");
+        $("#btn-" + id).show();
+        $("#sp-" + id).hide();
+    };
+
+    $scope.lessonMouseLeave = function (id) {
+        //$("#" + id).tooltip("hide");
+        $("#" + id).removeClass("ext-over");
+        $("#btn-" + id).hide();
+        $("#sp-" + id).show();
+    };
+
+    $scope.cutTitle = function (str) {
+        if (str != null && str != undefined && str != "") {
+            if (str.length > 30) {
+                str = str.substring(0, 30);
+                str = str + "...";
+            }
+        }
+        return str;
+    };
+});
+
+//课程中心--课程公告
+courseInfo.CourseAnnouncementListModule = (function () {
+    var _scope, _http;
+    function CourseAnnouncementListModule(moduleName, controllerName) {
+        var module = angular.module(moduleName, []);
+        module.controller("TopRootControl", coursestring.rootControllerFunc);
+        module.controller("RighInfoControl", coursestring.rightController);
+        module.controller(controllerName, controllerFunc);
+    }
+
+    function controllerFunc($scope, $http) {
+        _scope = $scope;
+        _http = $http;
+
+        _scope.announceList = [];
+        getListFunc(1, true);
+
+        _scope.addAnnounce = addAnnounceFunc;
+        _scope.updateAnnounce = updateAnnounceFunc;
+        _scope.deleteAnnounce = deleteAnnounceFunc;
+
+        window.flushRightView = function () {
+            common.GlobalEvent.dispatch("flushRightView");
+        };
+    }
+
+    function getListFunc(pageIndex, reBindBootPag) {
+        _http.post("/CourseInfo/GetPageOfCourseAnnouncement", {
+            courseId: courseId,
+            pageIndex: pageIndex,
+            pageSize: 10
+        }).success(function (data) {
+            _scope.announceList = data.list;
+            angular.forEach(_scope.announceList, function (v) {
+                if (!stringIsEnpty(v.fullName)) {
+                    v.userName = v.fullName;
+                }
+            });
+            if (reBindBootPag) {
+                if (_scope.bootPag) {
+                    _scope.bootPag.off("page");
+                }
+                if (data.list.length !== 0) {
+                    _scope.bootPag = initBootpagFunc("page-announce-selection", data.total);
+                    _scope.bootPag.on("page", function (evt, num) {
+                        getListFunc(num, false);
+                    });
+                }
+            }
+        });
+    }
+
+    function addAnnounceFunc() { //点击课程公告
+        $.layer({
+            type: 2,
+            maxmin: false,
+            title: "添加公告",
+            area: ["800px", "420px"],
+            shadeClose: true,
+            bgcolor: '#FFFFFF',
+            iframe: {
+                src: "/CourseInfo/AnnouncementCreate/" + courseId
+            }
+        });
+    }
+
+    function updateAnnounceFunc(mentId) { //修改课程公告
+        $.layer({
+            type: 2,
+            maxmin: false,
+            title: "修改公告",
+            area: ["800px", "420px"],
+            shadeClose: true,
+            bgcolor: '#FFFFFF',
+            iframe: {
+                src: "/CourseInfo/AnnouncementCreate/" + courseId + "?mentId=" + mentId
+            }
+
+        });
+    }
+
+    function deleteAnnounceFunc(mentId) {
+        $.layer({
+            shade: [0],
+            area: ['auto', 'auto'],
+            dialog: {
+                msg: '真的要删除该公告吗？',
+                btns: 2,
+                type: 4,
+                btn: ['确定', '取消'],
+                yes: function () {
+                    _http.post("/CourseInfo/AnnouncementDelete", { id: mentId }).success(function () {
+                        layer.msg("该公告删除成功", 1, 9);
+                        location.reload(true);
+                        //                        getListFunc(1, true);
+                        //                        common.GlobalEvent.dispatch("flushRightView");
+                    });
+
+                }
+            }
+        });
+    }
+
+    return CourseAnnouncementListModule;
+})();
+
+//课程中心--课程公告--公告详细
+courseInfo.CourseAnnouncementViewModule = (function () {
+    var _scope, _http;
+    function CourseAnnouncementViewModule(moduleName, controllerName) {
+        var module = angular.module(moduleName, []);
+        module.controller("TopRootControl", coursestring.rootControllerFunc);
+        module.controller("RighInfoControl", coursestring.rightController);
+        module.controller(controllerName, controllerFunc);
+    }
+
+    function controllerFunc($scope, $http, $sce) {
+        _scope = $scope;
+        _http = $http;
+
+        _http.post("/CourseInfo/GetCourseAnnouncement", {
+            id: announceId
+        }).success(function (data) {
+            data.announce.content = $sce.trustAsHtml(data.announce.content);
+            _scope.announce = data.announce;
+            _scope.user = {
+                id: data.userId,
+                userName: !stringIsEnpty(data.fullName) ? data.fullName : data.userName
+            };
+        });
+
+    }
+
+    return CourseAnnouncementViewModule;
+})();
+
+//课程中心--讨论区
+var mycoursetheadApp = {};
+mycoursetheadApp.module = angular.module("coursethreadApp", []);
+mycoursetheadApp.module.controller("TopRootControl", coursestring.rootControllerFunc);
+mycoursetheadApp.module.controller("RighInfoControl", coursestring.rightController);
+mycoursetheadApp.module.controller("CoursethreadControl", function ($scope, $http) {
+
+    $scope.list = function (params) {
+        params.currentPage = 1;
+        layer.load(2);
+
+        $http.post("/CourseInfo/CoursetheadList", params).success(function (data) {
+            $scope.threadList = data.rows.coursethread;
+            $scope.courseId = params.courseId;
+            $scope.objtype = params.type;
+            $scope.objsort = params.sort;
+            $scope.currentPage = params.currentPage;
+            //console.log(data);
+            $("#page-selection").bootpag({
+                total: Math.ceil(data.total / 10),
+                maxVisible: 10
+            }).on("page", function (event, num) {
+                params.currentPage = num;
+                $http.post("/CourseInfo/CoursetheadList", params).success(function (data1) {
+                    $scope.threadList = data1.rows.coursethread;
+                });
+            });
+            $scope.initCurrentPage();
+            if ($scope.threadList.length > 0)
+                $("#coursethreadId").css("display", "");
+        });
+    };
+
+    $scope.$watch("condition", function () {
+        $scope.list($scope.condition);
+    });
+
+    $scope.EditValue = function (params, type) {
+        params.type = type;
+        $scope.list(params);
+    };
+    $scope.EditSort = function (params, sort) {
+        params.sort = sort;
+        $scope.list(params);
+    };
+
+    $scope.initCurrentPage = function () {
+        $(".disabled.active").removeClass();
+        $(".pagination li").eq(1).addClass("disabled active");
+    }
+
+});
+
+//课程中心--课程资料
+var mycoursematerialApp = {};
+mycoursematerialApp.module = angular.module("courseMaterialApp", []);
+mycoursematerialApp.module.controller("TopRootControl", coursestring.rootControllerFunc);
+mycoursematerialApp.module.controller("RighInfoControl", coursestring.rightController);
+mycoursematerialApp.module.controller("CoursematerialControl", function ($scope, $http) {
+
+    $scope.$watch("condition", function () {
+        var params = {};
+        params.currentPage = 1;
+        params.courseId = $scope.condition.courseId;
+        $scope.courseId = params.courseId;
+        layer.load(2);
+
+        $http.post("/CourseInfo/MaterialList", params).success(function (data) {
+
+            //console.log(data);
+            $scope.MaterList = data.rows;
+            $("#page-selection").bootpag({
+                total: Math.ceil(data.total / 10),
+                maxVisible: 10
+            }).on("page", function (event, num) {
+                params.currentPage = num;
+                $http.post("/CourseInfo/MaterialList", params).success(function (data1) {
+                    $scope.MaterList = data1.rows;
+                });
+            });
+
+        });
+    }
+    );
+
+});
+
+
+//课程中心--课程信息
+var mycourseinfoApp = {};
+mycourseinfoApp.module = angular.module("CourseInfoApp", ["ngSanitize"]);
+mycourseinfoApp.module.controller("TopRootControl", coursestring.rootControllerFunc);
+mycourseinfoApp.module.controller("RighInfoControl", coursestring.rightController);
+mycourseinfoApp.module.controller("CourseinfoControl", function ($scope, $http, $sce) {
+
+    $scope.$watch("condition", function () {
+        var params = {};
+        params.currentPage = 1;
+        params.courseId = courseId;
+
+        layer.load(2);
+        $http.post("/CourseInfo/CourseInfoList", params).success(function (data) {
+
+            $scope.about = $sce.trustAsHtml(data.rows[0].about); //课程简介 //转码HTML
+            $scope.categoryname = data.rows[0].categoryname; //分类名称
+            $scope.categorycode = data.rows[0].categorycode; //分类编码
+
+            if (!stringIsEnpty(data.rows[0].goals)) {
+                data.rows[0].goals = data.rows[0].goals.replace(/\n/g, "<br/>");
+                var goals = data.rows[0].goals.split('|'); //课程目标
+                //处理首尾空白
+                if (goals[0] == '') {
+                    goals = goals.slice(1, goals.length - 1);
+                };
+                if (goals[goals.length - 1] == '') {
+                    goals = goals.slice(0, goals.length - 1);
+                }
+                $scope.goalsList = goals;
+            }
+
+            if (!stringIsEnpty(data.rows[0].audiences)) {
+                data.rows[0].audiences = data.rows[0].audiences.replace(/\n/g, "<br/>");
+                //课程适合人群
+                var audiences = data.rows[0].audiences.split('|'); //课程目标
+                if (audiences[0] == '') {
+                    audiences = audiences.slice(1, audiences.length - 1);
+                };
+                if (audiences[audiences.length - 1] == '') {
+                    audiences = audiences.slice(0, audiences.length - 1);
+                }
+                $scope.audiencesList = audiences;
+            }
+        });
+    }
+    );
+
+
+
+});
+
+//课程中心--学习成绩
+courseInfo.GradeModule = (function () {
+    var _scope, _http, _sce;
+    function GradeModule(moduleName, controllerName) {
+        var module = angular.module(moduleName, []);
+        module.controller("TopRootControl", coursestring.rootControllerFunc);
+        module.controller("RighInfoControl", coursestring.rightController);
+        module.controller(controllerName, controllerFunc);
+    }
+
+    function controllerFunc($scope, $http, $sce) {
+        _scope = $scope; _http = $http; _sce = $sce;
+        _scope.courseRuleList = [];
+        _scope.ucgDic = {};
+        getGradeDataFunc();
+
+        _scope.scoreFilter = function (ucg, ruleGroupId) {
+            if (ruleGroupId == _scope.reportGradeId && !ucg) {
+                return 1;
+            } else if (ucg) {
+                if ($.isNumeric(ucg.score)) {
+                    return Math.round(parseFloat(ucg.score) * 100) / 100;
+                }
+                return ucg.score;
+            } else {
+                return "-";
+            }
+        }
+    }
+
+    function getGradeDataFunc() {
+        var index = layer.load(10);
+        _http.post("/CourseGrade/GetUserCourseGrade", {
+            courseId: courseId,
+            userId: userId
+        }).success(function (data) {
+            layer.close(index);
+            _scope.courseRuleList = data.courseRuleList;
+            _scope.courseRuleList.sort(function (a, b) { return a.seq - b.seq; });
+            angular.forEach(data.ucgList, function (v) {
+                _scope.ucgDic[v.ruleId] = v;
+            });
+        });
+
+        _http.post("/Course/GetDetailInfo", { id: courseId }).success(function (data) {
+            _scope.scoringCriteria = _sce.trustAsHtml(data.scoringCriteria);
+        });
+    }
+
+    return GradeModule;
+})();
+
+
+function refreshPage() {
+    window.location.href = window.location.href;
+}

@@ -1,0 +1,37 @@
+$(function() {
+	$("#ZyBottom .TiMu .before").click(function() {
+			$(this).parents("ul").find("input").each(function(){ 
+				var temp=$(this).attr("checked");
+				if(temp=="checked"){
+					$(this).parent().parent().addClass("Hover");
+				}else{
+					$(this).parent().parent().removeClass("Hover");
+				}
+				});
+				
+	});
+	
+	$("#ZyBottom .TiMu .after").click(function() {
+		//input 操作
+		 var input=$(this).prev().find("input");
+			var checked=$(input).attr("checked");
+			if(!checked){
+				$(input).attr("checked",true);
+			}else{
+				if($(input).attr("type")=="checkbox"){
+					$(input).attr("checked",false);
+				}
+			}
+			
+			//样式操作
+			$(this).parents("ul").find("input").each(function(){ 
+				var temp=$(this).attr("checked");
+				if(temp=="checked"){
+					$(this).parent().parent().addClass("Hover");
+				}else{
+					$(this).parent().parent().removeClass("Hover");
+				}
+				});
+	});
+	
+});

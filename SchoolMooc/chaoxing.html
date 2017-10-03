@@ -1,0 +1,1722 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0169)http://mooc1.chaoxing.com/work/doHomeWorkNew?courseId=97808415&classId=1980718&workId=1223149&workAnswerId=0&isdisplaytable=2&mooc=1&enc=104e3abf47270363fd1e199eb4f502fd -->
+<html xmlns="http://www.w3.org/1999/xhtml" class="cye-disabled cye-nm"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>计算机组成原理-作业</title><link rel="stylesheet" type="text/css" href="./chaoxing_files/teacherHeader.css">
+<link href="./chaoxing_files/moocLeft.css" type="text/css" rel="stylesheet"><link href="./chaoxing_files/ZuoYe.css" type="text/css" rel="stylesheet">
+<link href="./chaoxing_files/teacherclass.css" rel="stylesheet" type="text/css">
+<link href="./chaoxing_files/connLine.css" rel="stylesheet" type="text/css">
+<script src="./chaoxing_files/domain.js.下载"></script><style id="dark-reader-style" type="text/css"></style><style id="nightModeStyle">
+html.cye-enabled.cye-nm:not(*:-webkit-full-screen) body,
+ html.cye-enabled.cye-nm:not(*:-webkit-full-screen) #cye-workaround-body {-webkit-filter:contrast(91%) brightness(84%) invert(1);}</style><style id="cyebody">html.cye-enabled.cye-lm body{background-color:#cfebd2 !important;border-color:rgb(51, 58, 52) !important;background-image:none !important;color:#000000  !important}</style><style id="cyediv">html.cye-enabled.cye-lm div{background-color:#cfebd2 !important;border-color:rgb(51, 58, 52) !important;background-image:none !important;color:#000000  !important}</style><style id="cyetable">html.cye-enabled.cye-lm th{background-color:#cfebd2 !important;border-color:rgb(51, 58, 52) !important;background-image:none !important;color:#000000  !important}html.cye-enabled.cye-lm td{background-color:#cfebd2 !important;border-color:rgb(51, 58, 52) !important;background-image:none !important;color:#000000  !important}</style><style id="cyetextInput">html.cye-enabled.cye-lm input[type=text]{background-color:#cfebd2 !important;border-color:rgb(51, 58, 52) !important;background-image:none !important;color:#000000  !important}html.cye-enabled.cye-lm textarea{background-color:#cfebd2 !important;border-color:rgb(51, 58, 52) !important;background-image:none !important;color:#000000  !important}</style><style id="cyeselect">html.cye-enabled.cye-lm select{background-color:#cfebd2 !important;border-color:rgb(51, 58, 52) !important;background-image:none !important;color:#000000  !important}</style><style id="cyeul">html.cye-enabled.cye-lm ul{background-color:#cfebd2 !important;border-color:rgb(51, 58, 52) !important;background-image:none !important;color:#000000  !important}</style><style id="cyeChangeByClick">html.cye-enabled.cye-lm .cye-lm-tag,html.cye-enabled.cye-lm.cye-lm-tag{background-color:#cfebd2 !important;border-color:rgb(51, 58, 52) !important;background-image:none !important;color:#000000  !important}</style>
+<script>var isIpad=0;var downpath="";</script>
+<script src="./chaoxing_files/jquery-1.7.2.min.js.下载"></script>
+<script src="./chaoxing_files/right2.js.下载"></script>
+<script src="./chaoxing_files/wayer_v1.2.mini.js.下载"></script>
+<script src="./chaoxing_files/check_vercode.js.下载" type="text/javascript"></script>
+
+
+<script>
+function myEditor_paste(o, html) {
+        html.html = "";
+        alert("只能录入不能粘贴");
+}
+
+function pasteText(){
+	alert("只能录入不能粘贴");
+}
+
+//编辑器显示 
+function showMore(_this,questionId,item) {
+
+	var simVal = $("input[name=answer"+questionId+item+"]").val();
+	window.UEDITOR_CONFIG.initialFrameWidth = "100%";
+	window.UEDITOR_CONFIG.initialFrameHeight = 150;
+	var vs = UE.getEditor("answerEditor"+questionId+item);
+	vs.ready(function() {
+    	vs.setContent(simVal);
+    });
+	
+	var allowPaste = "0";
+	if(parseInt(allowPaste) == 1) {
+		vs.addListener('beforepaste', myEditor_paste); 
+	}
+	
+	var answerType = $(_this).parent().find(".flagInp").val();
+	$(_this).parent().hide();
+	var answer = "answerEditor"+answerType;
+	$("#"+answer).parent().slideDown("slow");
+	window.UEDITOR_CONFIG.initialFrameWidth = "100%";
+	window.UEDITOR_CONFIG.initialFrameHeight = 150;
+	var editor = UE.getEditor(answer);
+	editor.addListener("blur",function(){
+		$("input[name=answer"+questionId+item+"]").val(vs.getPlainTxt());
+    });
+}
+
+// 隐藏编辑器
+function hideXhover(_this,eq) {
+
+	var vs = UE.getEditor("answerEditor"+eq);
+	$("input[name=answer"+eq+"]").val(vs.getPlainTxt());
+
+	$(_this).parent().parent().slideUp("slow",function () {
+		$(".Zy_ulTk li input[name=flag"+eq+"]").parent().show();
+	});
+	UE.getEditor("answerEditor" + eq).setContent("");
+}
+</script>
+<style>
+	.Zy_ulTop{border-bottom:none}
+	.w-top{width:940px;}
+	.Zy_ulTop li:hover{background:#e9f3f7;}
+	.thirdUlList{border-bottom:none;}
+	
+	.Zy_TItle p { display: block;}
+	#autoHeight{height:220px;overflow:auto;}
+	@media screen and (min-height: 800px) and (max-height:900px){
+		#autoHeight{height:260px;overflow:auto;}
+	}
+	@media screen and (min-height: 900px) and (max-height:1000px){
+		#autoHeight{height:300px;overflow:auto;}
+	}
+</style>
+
+	<script type="text/javascript" charset="utf-8" src="./chaoxing_files/ueditor.config.js.下载"></script>
+<script type="text/javascript" charset="utf-8" src="./chaoxing_files/ueditor.all.min.js.下载"></script>
+<script>
+    function getcookie(objname){
+    	var arrstr = document.cookie.split("; ");
+    	for(var i = 0;i < arrstr.length;i ++){
+    		var temp = arrstr[i].split("=");
+    		if(temp[0] == objname){ 
+    			return unescape(temp[1]);
+    		}
+    	}
+    }
+	window.UEDITOR_CONFIG.scaleEnabled = true;
+	window.UEDITOR_CONFIG.imageUrl = "/ueditorupload";
+	window.UEDITOR_CONFIG.fileUrl = "/ueditorupload/attachment?uid="+getcookie("_uid");
+</script></head><div id="cyeBlackMaskLayer" style="background-color: rgb(19, 19, 19); position: fixed; width: 1980px; height: 1080px; z-index: -2147483648;"></div>
+<body class="bg" style="">
+		
+
+<style type="text/css">
+	 .workTip{display:none;width:8px;height:8px;background:red;border-radius:8px;position:absolute;top:-2px;right:0px}
+	 .testTip{display:none;width:8px;height:8px;background:red;border-radius:8px;position:absolute;top:-2px;right:0px}
+	 .cdataTip{display:none;width:8px;height:8px;background:red;border-radius:8px;position:absolute;top:-2px;right:0px}
+	 .workTipPd{display:none;width:8px;height:8px;background:red;border-radius:8px;position:absolute;top:10px;right:0px}
+</style>
+
+
+
+<div class="c-header">
+<div class="headerwrap">
+<div class="c-menu">
+<div class="navhide"><span></span>功能导航</div>
+
+<div class="navshow">
+<ul>
+	<li><a href="http://mooc1.chaoxing.com/mycourse/studentcourse?courseId=97808415&amp;clazzid=1980718&amp;ut=s&amp;enc=cf253421edadd414711c3049ecf9cd46">首页</a><label id="mytaskcount"></label></li>
+
+			<li><a href="http://mooc1.chaoxing.com/moocAnalysis/statistics-std?courseId=97808415&amp;classId=1980718&amp;ut=s&amp;enc=cf253421edadd414711c3049ecf9cd46">统计</a></li>
+	
+	    <li><a onclick="rmWorkDot(&#39;1980718&#39;,&#39;cdata&#39;,this);" href="http://mooc1.chaoxing.com/coursedata?classId=1980718&amp;courseId=97808415&amp;type=1&amp;ut=s&amp;enc=cf253421edadd414711c3049ecf9cd46">资料</a><i class="cdataTip"></i></li>
+    	
+	    <li><a href="http://mooc1.chaoxing.com/schoolCourseInfo/getNotifyList?courseId=97808415&amp;classId=1980718&amp;ut=s&amp;enc=cf253421edadd414711c3049ecf9cd46">通知</a></li>
+    
+
+						<li><a onclick="rmWorkDot(&#39;1980718&#39;,&#39;work&#39;,this);" class="current" href="javascript:;" data="/work/getAllWork?classId=1980718&amp;courseId=97808415&amp;isdisplaytable=2&amp;mooc=1&amp;ut=s&amp;enc=cf253421edadd414711c3049ecf9cd46">作业  </a><i class="workTip"></i></li>
+			
+
+
+
+        	<li><a onclick="rmWorkDot(&#39;1980718&#39;,&#39;exam&#39;,this);" href="javascript:;" data="/exam/test?classId=1980718&amp;courseId=97808415&amp;ut=s&amp;enc=cf253421edadd414711c3049ecf9cd46">考试 </a><i class="testTip"> </i></li>
+    
+
+
+	    	        <li><a href="http://mooc1.chaoxing.com/bbscircle/grouptopic?courseId=97808415&amp;clazzid=1980718&amp;ut=s&amp;enc=cf253421edadd414711c3049ecf9cd46">讨论</a></li>
+            	    
+					
+</ul>
+</div>
+</div>
+
+<h1>
+	<span title="计算机组成原理">
+	<a href="javascript:;" onclick="$(&#39;#tpsubmit&#39;).submit();">
+				计算机组成原理
+	</a></span>
+<span class="articleschool" style="text-decoration: none;">
+
+<span title="计算机组成原理">
+<font color="#333"><span title=""></span></font>&nbsp;
+<a href="http://mooc1.chaoxing.com/coursestar?courseId=97808415&amp;edit=false">课程评价</a>
+</span>
+</span>
+
+</h1>
+<form id="tpsubmit" action="http://mooc1.chaoxing.com/course/97808415.html" target="_blank" method="post">
+  <input type="hidden" name="edit" value="false">
+ </form>
+
+</div>
+</div>
+<input type="hidden" id="cid" value="1980718">
+
+<script>
+$('.navhide span').click(function(){
+
+		$(this).parent().hide(0,function(){
+		$('.navshow').show();
+		$('.navshow').animate({'margin-right':0 + 'px'},400);
+		});
+		});
+		$('.navshow span').click(function(){
+		$('.navhide').show();
+		$(this).parent().animate({'margin-right':-980 + 'px'},400,function(){
+		});
+		}); 
+	var hasWorkDot=false;
+	var hasExamDot=false;
+    var hasCourseDataDot=false;
+   //待批作业、待批考试红点数据加载
+      var redDot = function(){
+        jQuery.ajax({ 
+        	type: "get", 
+        	url : "/api/workTestPendingNew", 
+        	data: {
+            		classIds:$("#cid").val()
+        		}, 
+        	success: function(data){
+        	  var json= jQuery.parseJSON(data)[0];
+    			if('s'=='s') {
+    				if(json.hasWorkMsg){
+    				  $(".workTip").css("display","inline-block");
+					  hasWorkDot=true;
+    				}
+    				if(json.hasExamMsg){
+    					$(".testTip").css("display","inline-block");
+						hasExamDot=true;
+    				}
+                    if(json.hasCourseDataMsg){
+                        $(".cdataTip").css("display","inline-block");
+                        hasCourseDataDot=true;
+                    }
+    			}
+    		}
+        	
+        }); 
+      }
+  $(function(){
+    if('s'=='s'){
+		setTimeout('redDot()',1000);
+	}
+	if($(".navshow ul li").length==1){
+		$(".navshow").css("display","none");
+	}
+  	
+  });
+  var rmWorkDot = function(classid,type,me){
+     if('work'==type && !hasWorkDot ){
+	 	location.href=$(me).attr("data");
+		return;
+	 }
+	 if('exam'==type && !hasExamDot){
+	 	location.href=$(me).attr("data");
+		return;
+	 }
+     if('cdata'==type && !hasCourseDataDot){
+        location.href=$(me).attr("data");
+        return;
+     }
+     
+     jQuery.ajax({ 
+        	type: "get",
+            dataType: "json", 
+        	url : "/api/removeRedDot", 
+        	data: {
+            		classId:classid,
+					type:type
+        		}, 
+        	success: function(data){
+                if(data && data.status){
+            		//success
+                    location.href=$(me).attr("data");
+                }
+    		}
+        	
+        });
+        
+    //location.href=$(me).attr("data");
+  }
+  
+</script>	<div class="wrap1000 clearfix con">
+			  
+<div class="width1100_smile">
+	<script type="text/javascript" charset="utf-8" src="./chaoxing_files/ueditor.config.js.下载"></script>
+<script type="text/javascript" charset="utf-8" src="./chaoxing_files/ueditor.all.min.js.下载"></script>
+<script>
+    function getcookie(objname){
+    	var arrstr = document.cookie.split("; ");
+    	for(var i = 0;i < arrstr.length;i ++){
+    		var temp = arrstr[i].split("=");
+    		if(temp[0] == objname){ 
+    			return unescape(temp[1]);
+    		}
+    	}
+    }
+	window.UEDITOR_CONFIG.scaleEnabled = true;
+	window.UEDITOR_CONFIG.imageUrl = "/ueditorupload";
+	window.UEDITOR_CONFIG.fileUrl = "/ueditorupload/attachment?uid="+getcookie("_uid");
+</script>	<div class="RightCon" id="RightCon">
+        <div class="radiusBG">
+        <div class="CeYan">
+        	<div class="CyTop">
+				<p class="Reback fr">
+                   <i></i> <a href="javascript:void(0)" class="RebackA " onclick="location.href=&#39;/work/getAllWork?classId=1980718&amp;courseId=97808415&amp;isdisplaytable=2&amp;mooc=1&amp;ut=s&#39;;" title="">返回</a>
+                </p>
+                <ul class="ul01">
+                    <li><a href="javascript:void(0)" title="" style="cursor:default;font-size:18px;font-weight:blod;color:#333;">新建作业20170906225520</a><b></b></li>
+                </ul>
+            </div>
+            
+                                     
+                            <div style="margin-top:10px;margin-left:10px;">
+												<span>题量： 20 </span>
+							<span>满分：<i class="red"> 100  分 </i></span>
+																				    					<span>创建者：侯艳艳   </span>
+    					<span>截止时间：2017-09-16 11:37</span>
+				</div>
+    			<form action="http://mooc1.chaoxing.com/work/addStudentWorkNewWeb?_classId=1980718&amp;courseid=97808415&amp;token=441cde69c62d9e6d8dcfe577c300718a&amp;totalQuestionNum=c1faa5200f84e4199ee67bdf9a971a4e" method="post" name="form1" id="form1">
+    				<!--是否提交还是暂不提交-->				
+    				<input type="hidden" name="pyFlag" id="pyFlag" value="1">
+    				<input type="hidden" name="isdisplaytable" id="isdisplaytable" value="2">
+    				<input type="hidden" name="mooc" id="mooc" value="1">
+					<input type="hidden" name="enc" id="enc" value="">
+					<input type="hidden" name="enc_work" id="enc_work" value="441cde69c62d9e6d8dcfe577c300718a">
+    			
+    				<!--需要传递的参数-->
+    				<input type="hidden" name="courseId" id="courseId" value="97808415">
+    				<input type="hidden" name="classId" id="classId" value="1980718">
+    				<input type="hidden" name="workAnswerId" id="workAnswerId" value="">
+				      					<input type="hidden" name="totalQuestionNum" id="totalQuestionNum" value="c1faa5200f84e4199ee67bdf9a971a4e"><!--总题数-->
+        				<input type="hidden" name="fullScore" id="fullScore" value="100.0"><!--满分-->
+				  														      				<input type="hidden" name="knowledgeid" id="knowledgeid" value="0"><!--章节id-->
+    				<input type="hidden" name="oldWorkId" id="oldWorkId" value=""><!--最原始原始作业id-->
+					<input type="hidden" name="jobid" id="jobid" value="">
+					<input type="hidden" name="workRelationId" id="workRelationId" value="1223149">
+					<input type="hidden" name="blankobj" id="blankobj" value="1">
+              		<div class="ZyBottom" id="ZyBottom">
+		
+						                    								                    		                    			<div class="TiMu">
+                                    <div class="Zy_TItle clearfix ">
+                                        <i class="fl">1</i>
+        								<div class="clearfix" style="line-height: 35px; font-size: 14px;padding-right:15px;">【单选题】<p>冯•诺依曼（Von Neumann）机工作方式的基本特点是什么。</p></div>
+                                    </div>
+            						            							        								<div class="clearfix">
+                                            <ul class="Zy_ulTop w-top fl" style="padding-left:10px;">
+                								                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682156" type="radio" value="A">&nbsp;&nbsp;A
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>多指令流单数据流</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li class="Hover">
+                										<label class="fl before">
+                											<input name="answer32682156" type="radio" value="B" checked="checked">&nbsp;&nbsp;B
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>按地址访问并顺序执行指令</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682156" type="radio" value="C">&nbsp;&nbsp;C
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>堆栈操作</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682156" type="radio" value="D">&nbsp;&nbsp;D
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>存储器按内容选择地址</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                                            </ul>
+            								<input type="hidden" name="answertype32682156" value="0" id="answertype32682156">
+        								</div>
+            						                                </div>
+							                    			<div class="TiMu">
+                                    <div class="Zy_TItle clearfix ">
+                                        <i class="fl">2</i>
+        								<div class="clearfix" style="line-height: 35px; font-size: 14px;padding-right:15px;">【单选题】<p>下列描述中正确的是哪个？</p></div>
+                                    </div>
+            						            							        								<div class="clearfix">
+                                            <ul class="Zy_ulTop w-top fl" style="padding-left:10px;">
+                								                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682157" type="radio" value="A">&nbsp;&nbsp;A
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>控制器能够识别、解释和执行所有的指令及存储结果</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li class="Hover">
+                										<label class="fl before">
+                											<input name="answer32682157" type="radio" value="B" checked="checked">&nbsp;&nbsp;B
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>计算机主要由输入输出单元、控制器、存储器和算术逻辑单元构成</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682157" type="radio" value="C">&nbsp;&nbsp;C
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>所有的数据运算都在控制器中完成</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682157" type="radio" value="D">&nbsp;&nbsp;D
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>以上三者都正确</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                                            </ul>
+            								<input type="hidden" name="answertype32682157" value="0" id="answertype32682157">
+        								</div>
+            						                                </div>
+							                    			<div class="TiMu">
+                                    <div class="Zy_TItle clearfix ">
+                                        <i class="fl">3</i>
+        								<div class="clearfix" style="line-height: 35px; font-size: 14px;padding-right:15px;">【单选题】<p>计算机系统中的存储器系统是指什么？</p></div>
+                                    </div>
+            						            							        								<div class="clearfix">
+                                            <ul class="Zy_ulTop w-top fl" style="padding-left:10px;">
+                								                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682158" type="radio" value="A">&nbsp;&nbsp;A
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>RAM存储器</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682158" type="radio" value="B">&nbsp;&nbsp;B
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>ROM存储器</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682158" type="radio" value="C">&nbsp;&nbsp;C
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>主存储器</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li class="Hover">
+                										<label class="fl before">
+                											<input name="answer32682158" type="radio" value="D" checked="checked">&nbsp;&nbsp;D
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>主存储器和外存储器。</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                                            </ul>
+            								<input type="hidden" name="answertype32682158" value="0" id="answertype32682158">
+        								</div>
+            						                                </div>
+							                    			<div class="TiMu">
+                                    <div class="Zy_TItle clearfix ">
+                                        <i class="fl">4</i>
+        								<div class="clearfix" style="line-height: 35px; font-size: 14px;padding-right:15px;">【单选题】<p>能够被计算机硬件直接识别的语言是什么？。</p></div>
+                                    </div>
+            						            							        								<div class="clearfix">
+                                            <ul class="Zy_ulTop w-top fl" style="padding-left:10px;">
+                								                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682160" type="radio" value="A">&nbsp;&nbsp;A
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>汇编语言</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682160" type="radio" value="B">&nbsp;&nbsp;B
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>高级语言</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li class="Hover">
+                										<label class="fl before">
+                											<input name="answer32682160" type="radio" value="C" checked="checked">&nbsp;&nbsp;C
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>机器语言</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682160" type="radio" value="D">&nbsp;&nbsp;D
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>应用语言</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                                            </ul>
+            								<input type="hidden" name="answertype32682160" value="0" id="answertype32682160">
+        								</div>
+            						                                </div>
+							                    			<div class="TiMu">
+                                    <div class="Zy_TItle clearfix ">
+                                        <i class="fl">5</i>
+        								<div class="clearfix" style="line-height: 35px; font-size: 14px;padding-right:15px;">【单选题】<p>计算机软件分为两大类，他们是什么？</p></div>
+                                    </div>
+            						            							        								<div class="clearfix">
+                                            <ul class="Zy_ulTop w-top fl" style="padding-left:10px;">
+                								                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682161" type="radio" value="A">&nbsp;&nbsp;A
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>操作系统与应用软件</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682161" type="radio" value="B">&nbsp;&nbsp;B
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>操作系统与系统软件</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682161" type="radio" value="C">&nbsp;&nbsp;C
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>操作系统与CAD软件</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li class="Hover">
+                										<label class="fl before">
+                											<input name="answer32682161" type="radio" value="D" checked="checked">&nbsp;&nbsp;D
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>系统软件与应用软件</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                                            </ul>
+            								<input type="hidden" name="answertype32682161" value="0" id="answertype32682161">
+        								</div>
+            						                                </div>
+							                    			<div class="TiMu">
+                                    <div class="Zy_TItle clearfix ">
+                                        <i class="fl">6</i>
+        								<div class="clearfix" style="line-height: 35px; font-size: 14px;padding-right:15px;">【单选题】<p>完整的计算机系统是由什么组成的。</p></div>
+                                    </div>
+            						            							        								<div class="clearfix">
+                                            <ul class="Zy_ulTop w-top fl" style="padding-left:10px;">
+                								                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682162" type="radio" value="A">&nbsp;&nbsp;A
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>主机与外设</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682162" type="radio" value="B">&nbsp;&nbsp;B
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>CPU与存储器</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682162" type="radio" value="C">&nbsp;&nbsp;C
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>ALU与控制器</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li class="Hover">
+                										<label class="fl before">
+                											<input name="answer32682162" type="radio" value="D" checked="checked">&nbsp;&nbsp;D
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>硬件系统与软件系统</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                                            </ul>
+            								<input type="hidden" name="answertype32682162" value="0" id="answertype32682162">
+        								</div>
+            						                                </div>
+							                    			<div class="TiMu">
+                                    <div class="Zy_TItle clearfix ">
+                                        <i class="fl">7</i>
+        								<div class="clearfix" style="line-height: 35px; font-size: 14px;padding-right:15px;">【单选题】<p>高级语言源程序不能直接在计算机上运行，需要有相应的语言处理程序翻译成什么程序后才能运行。</p></div>
+                                    </div>
+            						            							        								<div class="clearfix">
+                                            <ul class="Zy_ulTop w-top fl" style="padding-left:10px;">
+                								                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682163" type="radio" value="A">&nbsp;&nbsp;A
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>C语言</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li class="">
+                										<label class="fl before">
+                											<input name="answer32682163" type="radio" value="B" checked="checked">&nbsp;&nbsp;B
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>汇编语言</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li class="Hover">
+                										<label class="fl before">
+                											<input name="answer32682163" type="radio" value="C" checked="checked">&nbsp;&nbsp;C
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>机器语言</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682163" type="radio" value="D">&nbsp;&nbsp;D
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>宏汇编语言</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                                            </ul>
+            								<input type="hidden" name="answertype32682163" value="0" id="answertype32682163">
+        								</div>
+            						                                </div>
+							                    			<div class="TiMu">
+                                    <div class="Zy_TItle clearfix ">
+                                        <i class="fl">8</i>
+        								<div class="clearfix" style="line-height: 35px; font-size: 14px;padding-right:15px;">【单选题】<p>一个完整的计算机系统包括硬件和软件。软件又分为什么？</p></div>
+                                    </div>
+            						            							        								<div class="clearfix">
+                                            <ul class="Zy_ulTop w-top fl" style="padding-left:10px;">
+                								                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682164" type="radio" value="A">&nbsp;&nbsp;A
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>操作系统和语言处理程序</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li class="Hover">
+                										<label class="fl before">
+                											<input name="answer32682164" type="radio" value="B" checked="checked">&nbsp;&nbsp;B
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>系统软件和应用软件</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682164" type="radio" value="C">&nbsp;&nbsp;C
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>操作系统和高级语言</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682164" type="radio" value="D">&nbsp;&nbsp;D
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>低级语言程序和高级语言程序</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                                            </ul>
+            								<input type="hidden" name="answertype32682164" value="0" id="answertype32682164">
+        								</div>
+            						                                </div>
+							                    			<div class="TiMu">
+                                    <div class="Zy_TItle clearfix ">
+                                        <i class="fl">9</i>
+        								<div class="clearfix" style="line-height: 35px; font-size: 14px;padding-right:15px;">【单选题】<p>以下 给出的软件中，属于应用软件的是什么？</p></div>
+                                    </div>
+            						            							        								<div class="clearfix">
+                                            <ul class="Zy_ulTop w-top fl" style="padding-left:10px;">
+                								                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682165" type="radio" value="A">&nbsp;&nbsp;A
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>汇编程序</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682165" type="radio" value="B">&nbsp;&nbsp;B
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>编译程序</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682165" type="radio" value="C">&nbsp;&nbsp;C
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>操作系统</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li class="Hover">
+                										<label class="fl before">
+                											<input name="answer32682165" type="radio" value="D" checked="checked">&nbsp;&nbsp;D
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"><p>文字处理程序</p></a>
+                										<div class="clear"></div>
+                									</li>
+            									                                            </ul>
+            								<input type="hidden" name="answertype32682165" value="0" id="answertype32682165">
+        								</div>
+            						                                </div>
+							                    			<div class="TiMu">
+                                    <div class="Zy_TItle clearfix ">
+                                        <i class="fl">10</i>
+        								<div class="clearfix" style="line-height: 35px; font-size: 14px;padding-right:15px;">【单选题】以下 给出的软件中，属于系统软件的是什么？</div>
+                                    </div>
+            						            							        								<div class="clearfix">
+                                            <ul class="Zy_ulTop w-top fl" style="padding-left:10px;">
+                								                									                									<li class="Hover">
+                										<label class="fl before">
+                											<input name="answer32682166" type="radio" value="A" checked="checked">&nbsp;&nbsp;A
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">Windows XP</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682166" type="radio" value="B">&nbsp;&nbsp;B
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"> MS Word</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682166" type="radio" value="C">&nbsp;&nbsp;C
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">金山词霸</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682166" type="radio" value="D">&nbsp;&nbsp;D
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"> RealPlay</a>
+                										<div class="clear"></div>
+                									</li>
+            									                                            </ul>
+            								<input type="hidden" name="answertype32682166" value="0" id="answertype32682166">
+        								</div>
+            						                                </div>
+							                    			<div class="TiMu">
+                                    <div class="Zy_TItle clearfix ">
+                                        <i class="fl">11</i>
+        								<div class="clearfix" style="line-height: 35px; font-size: 14px;padding-right:15px;">【单选题】冯•诺依曼计算机中，CPU区分从存储器取出的是指令还是数据的依据是什么？</div>
+                                    </div>
+            						            							        								<div class="clearfix">
+                                            <ul class="Zy_ulTop w-top fl" style="padding-left:10px;">
+                								                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682168" type="radio" value="A">&nbsp;&nbsp;A
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">指令译码结果的不同</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682168" type="radio" value="B">&nbsp;&nbsp;B
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">访问指令和访问数据时寻址方式不同</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li class="Hover">
+                										<label class="fl before">
+                											<input name="answer32682168" type="radio" value="C" checked="checked">&nbsp;&nbsp;C
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">访问指令和访问数据时所处的指令执行阶段不同</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682168" type="radio" value="D">&nbsp;&nbsp;D
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">指令和数据所在的存储单元地址范围不同</a>
+                										<div class="clear"></div>
+                									</li>
+            									                                            </ul>
+            								<input type="hidden" name="answertype32682168" value="0" id="answertype32682168">
+        								</div>
+            						                                </div>
+							                    			<div class="TiMu">
+                                    <div class="Zy_TItle clearfix ">
+                                        <i class="fl">12</i>
+        								<div class="clearfix" style="line-height: 35px; font-size: 14px;padding-right:15px;">【单选题】以下有关冯•诺依曼结构计算机指令和数据表示的叙述中，正确的是什么？</div>
+                                    </div>
+            						            							        								<div class="clearfix">
+                                            <ul class="Zy_ulTop w-top fl" style="padding-left:10px;">
+                								                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682169" type="radio" value="A">&nbsp;&nbsp;A
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">指令和数据可以 从形式上加以区分</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682169" type="radio" value="B">&nbsp;&nbsp;B
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">指令以二进制形式存放，数据以十进制形式存放</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li class="Hover">
+                										<label class="fl before">
+                											<input name="answer32682169" type="radio" value="C" checked="checked">&nbsp;&nbsp;C
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">指令和数据都以二进制形式存放</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682169" type="radio" value="D">&nbsp;&nbsp;D
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">指令和数据都以十进制形式存放</a>
+                										<div class="clear"></div>
+                									</li>
+            									                                            </ul>
+            								<input type="hidden" name="answertype32682169" value="0" id="answertype32682169">
+        								</div>
+            						                                </div>
+							                    			<div class="TiMu">
+                                    <div class="Zy_TItle clearfix ">
+                                        <i class="fl">13</i>
+        								<div class="clearfix" style="line-height: 35px; font-size: 14px;padding-right:15px;">【单选题】以下是有关计算机中指令和数据存放位置的叙述，其中正确的是什么？</div>
+                                    </div>
+            						            							        								<div class="clearfix">
+                                            <ul class="Zy_ulTop w-top fl" style="padding-left:10px;">
+                								                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682170" type="radio" value="A">&nbsp;&nbsp;A
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">指令存放在内存，数据存放在外存</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li class="Hover">
+                										<label class="fl before">
+                											<input name="answer32682170" type="radio" value="B" checked="checked">&nbsp;&nbsp;B
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">指令和数据任何时候都存放在内存</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682170" type="radio" value="C">&nbsp;&nbsp;C
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">指令和数据任何时候都 存放在外存</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682170" type="radio" value="D">&nbsp;&nbsp;D
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">程序被启动后，其指令和数据才被装入内存</a>
+                										<div class="clear"></div>
+                									</li>
+            									                                            </ul>
+            								<input type="hidden" name="answertype32682170" value="0" id="answertype32682170">
+        								</div>
+            						                                </div>
+							                    			<div class="TiMu">
+                                    <div class="Zy_TItle clearfix ">
+                                        <i class="fl">14</i>
+        								<div class="clearfix" style="line-height: 35px; font-size: 14px;padding-right:15px;">【单选题】下列选项中，能缩短程序执行时间的措施是什么？ 1.提高CPU时钟频率 2.优化通过数据结构 3.优化通过程序</div>
+                                    </div>
+            						            							        								<div class="clearfix">
+                                            <ul class="Zy_ulTop w-top fl" style="padding-left:10px;">
+                								                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682174" type="radio" value="A">&nbsp;&nbsp;A
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">仅1和2</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682174" type="radio" value="B">&nbsp;&nbsp;B
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">仅1和3</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682174" type="radio" value="C">&nbsp;&nbsp;C
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">仅2和3</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li class="Hover">
+                										<label class="fl before">
+                											<input name="answer32682174" type="radio" value="D" checked="checked">&nbsp;&nbsp;D
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">1,2,3</a>
+                										<div class="clear"></div>
+                									</li>
+            									                                            </ul>
+            								<input type="hidden" name="answertype32682174" value="0" id="answertype32682174">
+        								</div>
+            						                                </div>
+							                    			<div class="TiMu">
+                                    <div class="Zy_TItle clearfix ">
+                                        <i class="fl">15</i>
+        								<div class="clearfix" style="line-height: 35px; font-size: 14px;padding-right:15px;">【单选题】下列选项中，描述浮点数操作速度指标的是什么？</div>
+                                    </div>
+            						            							        								<div class="clearfix">
+                                            <ul class="Zy_ulTop w-top fl" style="padding-left:10px;">
+                								                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682175" type="radio" value="A">&nbsp;&nbsp;A
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"> MIPS</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682175" type="radio" value="B">&nbsp;&nbsp;B
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"> CPI</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682175" type="radio" value="C">&nbsp;&nbsp;C
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"> IPC</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li class="Hover">
+                										<label class="fl before">
+                											<input name="answer32682175" type="radio" value="D" checked="checked">&nbsp;&nbsp;D
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;"> MFLOPS</a>
+                										<div class="clear"></div>
+                									</li>
+            									                                            </ul>
+            								<input type="hidden" name="answertype32682175" value="0" id="answertype32682175">
+        								</div>
+            						                                </div>
+							                    			<div class="TiMu">
+                                    <div class="Zy_TItle clearfix ">
+                                        <i class="fl">16</i>
+        								<div class="clearfix" style="line-height: 35px; font-size: 14px;padding-right:15px;">【单选题】程序P在装置M执行时间为20秒，编译优化后，P执行的指令数是以前的70%，但CPI为以前的1.2倍，则现在P在M上的执行时间为什么？</div>
+                                    </div>
+            						            							        								<div class="clearfix">
+                                            <ul class="Zy_ulTop w-top fl" style="padding-left:10px;">
+                								                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682177" type="radio" value="A">&nbsp;&nbsp;A
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">8.4秒</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682177" type="radio" value="B">&nbsp;&nbsp;B
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">11.7秒</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682177" type="radio" value="C">&nbsp;&nbsp;C
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">14.0秒</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li class="Hover">
+                										<label class="fl before">
+                											<input name="answer32682177" type="radio" value="D" checked="checked">&nbsp;&nbsp;D
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">16.8秒</a>
+                										<div class="clear"></div>
+                									</li>
+            									                                            </ul>
+            								<input type="hidden" name="answertype32682177" value="0" id="answertype32682177">
+        								</div>
+            						                                </div>
+							                    			<div class="TiMu">
+                                    <div class="Zy_TItle clearfix ">
+                                        <i class="fl">17</i>
+        								<div class="clearfix" style="line-height: 35px; font-size: 14px;padding-right:15px;">【单选题】硬件资源进行管理，是什么的功能。</div>
+                                    </div>
+            						            							        								<div class="clearfix">
+                                            <ul class="Zy_ulTop w-top fl" style="padding-left:10px;">
+                								                									                									<li class="Hover">
+                										<label class="fl before">
+                											<input name="answer32682179" type="radio" value="A" checked="checked">&nbsp;&nbsp;A
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">操作系统</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682179" type="radio" value="B">&nbsp;&nbsp;B
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">数据库管理系统</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682179" type="radio" value="C">&nbsp;&nbsp;C
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">语言处理程序</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682179" type="radio" value="D">&nbsp;&nbsp;D
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">用户程序</a>
+                										<div class="clear"></div>
+                									</li>
+            									                                            </ul>
+            								<input type="hidden" name="answertype32682179" value="0" id="answertype32682179">
+        								</div>
+            						                                </div>
+							                    			<div class="TiMu">
+                                    <div class="Zy_TItle clearfix ">
+                                        <i class="fl">18</i>
+        								<div class="clearfix" style="line-height: 35px; font-size: 14px;padding-right:15px;">【单选题】运算器的核心部件是什么。</div>
+                                    </div>
+            						            							        								<div class="clearfix">
+                                            <ul class="Zy_ulTop w-top fl" style="padding-left:10px;">
+                								                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682180" type="radio" value="A">&nbsp;&nbsp;A
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">数据总线</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682180" type="radio" value="B">&nbsp;&nbsp;B
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">数据选择器</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682180" type="radio" value="C">&nbsp;&nbsp;C
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">累加寄存器</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li class="Hover">
+                										<label class="fl before">
+                											<input name="answer32682180" type="radio" value="D" checked="checked">&nbsp;&nbsp;D
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">算术逻辑运算部件</a>
+                										<div class="clear"></div>
+                									</li>
+            									                                            </ul>
+            								<input type="hidden" name="answertype32682180" value="0" id="answertype32682180">
+        								</div>
+            						                                </div>
+							                    			<div class="TiMu">
+                                    <div class="Zy_TItle clearfix ">
+                                        <i class="fl">19</i>
+        								<div class="clearfix" style="line-height: 35px; font-size: 14px;padding-right:15px;">【单选题】指令和数据关系的描述，其中错误的是什么 。</div>
+                                    </div>
+            						            							        								<div class="clearfix">
+                                            <ul class="Zy_ulTop w-top fl" style="padding-left:10px;">
+                								                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682181" type="radio" value="A">&nbsp;&nbsp;A
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">一个程序由若干条指令和所处理的数据组成</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682181" type="radio" value="B">&nbsp;&nbsp;B
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">指令和数据形式上没有差别，都是一串0、1 序列</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li class="Hover">
+                										<label class="fl before">
+                											<input name="answer32682181" type="radio" value="C" checked="checked">&nbsp;&nbsp;C
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">指令和数据不能都放在同一个存储器中，必须分别存放在指令存储器和数据存储器中</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682181" type="radio" value="D">&nbsp;&nbsp;D
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">启动程序前指令和数据都存放在外存中，启动后才能装入内存</a>
+                										<div class="clear"></div>
+                									</li>
+            									                                            </ul>
+            								<input type="hidden" name="answertype32682181" value="0" id="answertype32682181">
+        								</div>
+            						                                </div>
+							                    			<div class="TiMu">
+                                    <div class="Zy_TItle clearfix ">
+                                        <i class="fl">20</i>
+        								<div class="clearfix" style="line-height: 35px; font-size: 14px;padding-right:15px;">【单选题】下面是有关反映计算机中存储器容量的计量单位的描述，其中错误的是什么。</div>
+                                    </div>
+            						            							        								<div class="clearfix">
+                                            <ul class="Zy_ulTop w-top fl" style="padding-left:10px;">
+                								                									                									<li>
+                										<label class="fl before">
+                											<input name="answer32682183" type="radio" value="A">&nbsp;&nbsp;A
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">最小的计量单位是位，表示 1位“0”或“1”，1字节为8位</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li class="">
+                										<label class="fl before">
+                											<input name="answer32682183" type="radio" value="B" checked="checked">&nbsp;&nbsp;B
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">最基本的计量单位是字节，因而指令、数据和地址的长度都是 8的倍数</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li class="">
+                										<label class="fl before">
+                											<input name="answer32682183" type="radio" value="C" checked="checked">&nbsp;&nbsp;C
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">主存储器的编址单位一般是字节的倍数</a>
+                										<div class="clear"></div>
+                									</li>
+            									                									                									<li class="Hover">
+                										<label class="fl before">
+                											<input name="answer32682183" type="radio" value="D" checked="checked">&nbsp;&nbsp;D
+                										</label>
+                										<a href="javascript:void(0);" class="fl after" style="padding-left:10px;word-break: break-all;">主存容量为1KB，其含义是主存储器中能存放1000字节的二进制信息</a>
+                										<div class="clear"></div>
+                									</li>
+            									                                            </ul>
+            								<input type="hidden" name="answertype32682183" value="0" id="answertype32682183">
+        								</div>
+            						                                </div>
+														                    	    					<input type="hidden" id="answerwqbid" name="answerwqbid" value="32682156,32682157,32682158,32682160,32682161,32682162,32682163,32682164,32682165,32682166,32682168,32682169,32682170,32682174,32682175,32682177,32682179,32682180,32682181,32682183,">
+                    </div>
+    			</form>
+			        </div>
+		<div class="ZY_sub clearfix">
+            						<a class="btnGray_1 " href="javascript:void(0);" onclick="noSubmit();" style="font-size:12px;margin-right:30px;"><span title="">暂时保存</span></a>
+            		<a class="Btn_blue_1 marleft10" href="javascript:void(0);" onclick="validateTime(1980718,97808415)" style="margin-left:30px;"><span title="">提交作业</span></a>
+            		
+					            		
+            	        </div>
+    </div>
+		</div>
+</div>
+<div class="AlertCon02" style="width:322px;height:139px;display:none;" id="confirmSubWin">
+	<h3 class="clearfix"><a href="javascript:void(0);" class="closed02 fr" onclick="WAY.box.hide();hideWindow();"></a></h3>
+	<div class="con03">
+    	<p id="tipContent">确认提交？</p>
+        <div class="marTop30">
+        	<a href="javascript:void(0);" class="bluebtn " onclick="form1submit();">确定</a>
+            <a href="javascript:void(0);" class="btnGray_1 marleft10" onclick="WAY.box.hide();hideWindow();">取消</a>
+        </div>
+    </div>
+</div> 
+<div class="AlertCon02" id="validate" style="width:368px;height:139px;display:none;" align="center">
+	<input type="hidden" id="clazzid" value="1980718">
+	<input type="hidden" id="nodeid" value="">
+    <table class="zc_table">
+	    <tbody><tr>
+           <td colspan="3">
+			<span class="sp_h2">请输入验证码：</span>
+			</td>
+      </tr>
+	  <tr>
+        <td colspan="2">
+			<input class="zc_input32" name="code" id="code" type="text" onkeydown="keydownSubmit(event)" onfocus="hiddenError(&#39;mod_error&#39;)">
+        </td>
+		<td class="zc_vercode_ac">
+				<span class="zc_verify" onclick="getVarCode();">
+				<img src="./chaoxing_files/code" width="124" height="28" id="imgVerCode"></span>
+				<a href="javascript:void(0);" onclick="getVarCode();" style="color:#02bffd">看不清</a>
+		</td>
+      </tr>
+      <tr>
+        <td colspan="2" style="text-align: left;">
+			<span class="zc_btn">
+				<a href="javascript:void(0);" id="sub" onclick="modSubmit2()">确定</a>
+			</span>
+		</td>
+        <td></td>
+      </tr>
+    </tbody></table>
+</div>
+ 
+<script type="text/javascript">
+
+	function hideWindow() {
+		$("#confirmSubWin").css("display","none");
+	}
+	function validateTime(classId,courseId,pyFlag){
+	    $("#pyFlag").val(pyFlag);
+		jQuery.ajax({
+		   type:"GET",
+		   url:"/work/validate",	
+		   data:{classId:classId,courseId:courseId},
+		   success: function(data){
+		   		if(data.status==1){
+					alert("账号发生异常，请重新登录！");
+					return;
+				}
+				if(data.status==2){
+					//弹出验证码
+					WAY.box.show({'divid':'validate'});
+				}  
+				if(data.status==3){
+				
+					toadd("");
+				}
+		   }
+		});
+	}
+	
+function toadd(pyFlag) {
+    //$("#pyFlag").val(pyFlag);
+    var a = "32682156,32682157,32682158,32682160,32682161,32682162,32682163,32682164,32682165,32682166,32682168,32682169,32682170,32682174,32682175,32682177,32682179,32682180,32682181,32682183,";
+    $("#answerwqbid").val(a);
+    var jiandaId = "";
+    var wordNum = "0";
+    var blankobj = "1";
+    var flagAnswer = true;
+    if (parseInt(wordNum) > 0) {
+        if (jiandaId != "") {
+            var jiandaIdArr = jiandaId.split(",");
+            for (var i = 0; i < jiandaIdArr.length; i++) {
+                var temp = $("#answer" + jiandaIdArr[i]).val();
+                if ((wordNum != "" && removeAllSpace(temp, i).length < parseInt(wordNum)) || (wordNum != "" && removeAllSpace(temp, i) == "")) {
+                    $("#saveSuccessContent").text("您最少输入" + wordNum + "个字！");
+                    WAY.box.show({
+                        'divid': 'saveSuccess'
+                    });
+                    flagAnswer = false;
+                    break;
+                }
+            }
+        }
+    }
+    if (!flagAnswer) {
+        return;
+    }
+	 setConnLineAnswer();
+	 setSortQuesAnswer();
+	 setCompoundQuesAnswer();
+    var questionIds = a.split(",");
+    var flag = false;
+    var tipStr = "";
+    for (var i = 0; i < questionIds.length - 1; i++) {
+        var id = questionIds[i];
+        var type = $("#answertype" + id).val();
+		if([4,5,6,7,8].indexOf(Number(type))==0){
+			var answer = $("#answer" + id).val();
+			var editorAnswer;
+            try {
+                var optEditor = UE.getEditor("answer" + id);
+                if (optEditor != null) {
+                   editorAnswer =optEditor.getContent();
+				   if(typeof(editorAnswer) != "undefined" && editorAnswer.length>65535){
+				   		alert("提交失败，简答题字数超出范围！");
+						return;
+				   }
+                }
+            } catch(exception) {}
+		}
+	}
+    for (var i = 0; i < questionIds.length - 1; i++) {
+        var id = questionIds[i];
+        var type = $("#answertype" + id).val();
+        if (type == "0") {
+            var answer = $("input:radio[name=answer" + id + "]:checked").val();
+            if (typeof(answer) == "undefined" || removeAllSpace(answer).length == 0) {
+                flag = true;
+                tipStr = "单选题";
+                break;
+            }
+        } else if (type == "1") {
+            //多选
+            var answer = $("#answer" + id).val();
+            if (typeof(answer) == "undefined" || removeAllSpace(answer).length == 0) {
+                flag = true;
+                tipStr = "多选题";
+                break;
+            }
+        } else if (type == "11") {
+            //连线题
+            var answer = $("#answer" + id).val();
+		    var answer_array= JSON.parse(answer);
+    		 for(var index in answer_array){
+        			 var content=answer_array[index].content;
+        			 if(content==""||content.length==0){
+        			   flag = true;
+                        tipStr = "连线题";
+                        break;
+    				  }
+    		 }	
+        }else if (type == "12") {
+            //投票题
+            var answer = $("input:radio[name=answer" + id + "]:checked").val()||$("#answer" + id).val();
+            if (typeof(answer) == "undefined" || removeAllSpace(answer).length == 0) {
+                flag = true;
+                tipStr = "投票题";
+                break;
+				}
+            }else if (type == "14" || type == "15" || type == "16") {  //新完型填空、新阅读理解
+    		     var typeTip="新完型填空";
+    			 if(type == "15"){
+    			   typeTip="新阅读理解";
+    			 }
+    			 if(type == "16"){
+    			   typeTip="综合题";
+    			 }
+                 var answer = $("#answer" + id).val();
+    			 //console.log(answer);
+    		     var answer_array= JSON.parse(answer);
+    			 var answerContent=answer_array[0];
+        		 for(var key in answerContent){
+            			 var content=answerContent[key];
+    					 var answerStr=content.answer;
+						 var innerType=content.type;
+						 if(innerType&&innerType==2){
+						     for(var index in answerStr){
+							     var item=answerStr[index];
+								 var content=item.content;
+								 if(content==""||content.length==0){
+								   flag=true;
+								   break;
+								 }
+							 }
+						 }
+						 if(innerType==3){
+						   answerStr=answerStr.toString();
+						 }
+            			 if(flag||answerStr==""||answerStr.length==0){
+            			    flag = true;
+                            break;
+        				  }
+    			  }
+    			 if(flag){
+				   tipStr = typeTip;
+    			   break;
+    			  }  
+            }else if (type == "2" || type == "9" || type == "10") {
+            //填空
+            var blankNum = $("input[name=tiankongsize" + id + "]").val();
+            var tem = false;
+            for (var j = 1; j <= parseInt(blankNum); j++) {
+                    var answer = $("input[name=answer" + id + j + "]").val();
+					var editorAnswer;
+					try{
+        				var optEditor = UE.getEditor("answerEditor"+id+j);
+        				if(optEditor != null){
+        					//answer = UE.getEditor("answerEditor"+ id + j).getContent();
+        					editorAnswer=optEditor.getContent();
+        				}
+        			}catch(exception){
+        			}
+              answer=(editorAnswer&&editorAnswer.length!=0?editorAnswer:answer);
+                if (typeof(answer) != "undefined" && removeAllSpace(answer).length != 0) {
+                    if (parseInt(wordNum) > 0 && removeAllSpace(answer).length < parseInt(wordNum) && blankobj == 0) {
+                        $("#saveSuccessContent").text("您最少输入" + wordNum + "个字！");
+                        WAY.box.show({
+                            'divid': 'saveSuccess'
+                        });
+                        flagAnswer = false;
+                        break;
+                    } else {
+                        tem = true;
+                        //break;
+                    }
+                }else{
+				 tem = false;
+                 break;
+				 }
+              }
+            if (!tem) {
+                if (type == "2") {
+                    tipStr = "填空题";
+                    flag = true;
+                    break;
+                }
+                if (type == "9") {
+                    tipStr = "完型填空题";
+                    flag = true;
+                    break;
+                }
+
+                if (type == "10") {
+                    tipStr = "阅读理解题";
+                    flag = true;
+                    break;
+                }
+            }
+        } else if (type == "3") {
+            //判断
+            var answer = $("input:radio[name=answer" + id + "]:checked").val();
+            if (typeof(answer) == "undefined" || removeAllSpace(answer).length == 0) {
+                flag = true;
+                tipStr = "判断题";
+                break;
+            }
+        } else if (type == "4") {
+            var answer = $("#answer" + id).val();
+			var editorAnswer;
+            try {
+                var optEditor = UE.getEditor("answer" + id);
+                if (optEditor != null) {
+                   // answer = UE.getEditor("answer" + id).getContent();
+                   editorAnswer =optEditor.getContent();
+                }
+            } catch(exception) {}
+			 answer=(editorAnswer&&editorAnswer.length!=0?editorAnswer:answer);
+            if (typeof(answer) == "undefined" || removeAllSpace(answer).length == 0) {
+                flag = true;
+                tipStr = "简答题";
+                break;
+            }
+        } else if (type == "5") {
+            var answer = $("#answer" + id).val();
+			var editorAnswer;
+            try {
+                var optEditor = UE.getEditor("answer" + id);
+                if (optEditor != null) {
+                    //answer = UE.getEditor("answer" + id).getContent();
+					editorAnswer =optEditor.getContent();
+                }
+            } catch(exception) {}
+			 answer=(editorAnswer&&editorAnswer.length!=0?editorAnswer:answer);
+            if (typeof(answer) == "undefined" || removeAllSpace(answer).length == 0) {
+                flag = true;
+                tipStr = "名词解释题";
+                break;
+            }
+        } else if (type == "6") {
+            var answer = $("#answer" + id).val();
+		    var editorAnswer;
+            try {
+                var optEditor = UE.getEditor("answer" + id);
+                if (optEditor != null) {
+                   // answer = UE.getEditor("answer" + id).getContent();
+				       editorAnswer =optEditor.getContent();
+                }
+            } catch(exception) {}
+		    answer=(editorAnswer&&editorAnswer.length!=0?editorAnswer:answer);
+            if (typeof(answer) == "undefined" || removeAllSpace(answer).length == 0) {
+                flag = true;
+                tipStr = "论述题";
+                break;
+            }
+        } else if (type == "7") {
+            var answer = $("#answer" + id).val();
+			var editorAnswer;
+            try {
+                var optEditor = UE.getEditor("answer" + id);
+                if (optEditor != null) {
+                    //answer = UE.getEditor("answer" + id).getContent();
+					editorAnswer =optEditor.getContent();
+                }
+            } catch(exception) {}
+		   answer=(editorAnswer&&editorAnswer.length!=0?editorAnswer:answer);
+            if (typeof(answer) == "undefined" || removeAllSpace(answer).length == 0) {
+                flag = true;
+                tipStr = "计算题";
+                break;
+            }
+        } else {
+            var answer = $("#answer" + id).val();
+			var editorAnswer;
+            try {
+                var optEditor = UE.getEditor("answer" + id);
+                if (optEditor != null) {
+                    //answer = UE.getEditor("answer" + id).getContent();
+					  editorAnswer =optEditor.getContent();
+                }
+            } catch(exception) {}
+			answer=(editorAnswer&&editorAnswer.length!=0?editorAnswer:answer);
+            if (typeof(answer) == "undefined" || removeAllSpace(answer).length == 0) {
+                flag = true;
+                tipStr = "其它";
+                break;
+            }
+        }
+    }
+
+    if (!flagAnswer) {
+        return;
+    }
+
+    if (flag) {
+        $("#tipContent").text("您还有未做完的" + tipStr + "，确认提交吗？");
+    } else {
+        $("#tipContent").text("确认提交？");
+    }
+    WAY.box.show({
+        'divid': 'confirmSubWin'
+    });
+}
+	
+	function removeAllSpace(str, value) {
+		//var tem = ""
+    	//if(value != 0) {
+    		//tem = value + "";
+    	//}
+		//var temp = "window.parent.UE.instants"+tem+"[&#39;ueditorInstant0&#39;]._setup(document);";
+  		//return str.replace(/<[^>]+>/g,"").replace(/&nbsp;/ig,"").replace(/\s+/g, "");
+		return str.replace(/<\s?img[^>]*>/gi, "图片").replace(/<[^>]+>/g,"").replace(/&nbsp;/ig,"").replace(/\s+/g, "");
+	}
+	
+	function escape2Html(str) {
+		var arrEntities={'lt':'<','gt':'>','nbsp':' ','amp':'&','quot':'"'};
+		return str.replace(/&(lt|gt|nbsp|amp|quot);/ig,function(all,t){return arrEntities[t];});
+    }
+
+	function noSubmit(){
+	    var a = "32682156,32682157,32682158,32682160,32682161,32682162,32682163,32682164,32682165,32682166,32682168,32682169,32682170,32682174,32682175,32682177,32682179,32682180,32682181,32682183,";
+    	$("#answerwqbid").val(a);
+    	$("#pyFlag").val("1");
+		setConnLineAnswer();
+		setSortQuesAnswer();
+		setCompoundQuesAnswer();
+		//临时保存或时间到系统自动提交试卷
+		var totalQuestionNum = $("#totalQuestionNum").val();
+		var ajax_url = "/work/addStudentWorkNew?_classId="+$("#classId").val()+"&courseid="+$("#courseId").val()+"&pyFlag="+$("#pyFlag").val()+"&token="+$("#enc_work").val()+"&totalQuestionNum="+totalQuestionNum; //表单目标
+		var ajax_type = $("#form1").attr('method'); //提交方法 
+		var ajax_data = $("#form1").serialize(); //表单数据
+		ajax_url += '&version=1';
+		ajax_url += '&ua='+clientType();
+        ajax_url += '&formType=' + getformType();
+		
+		$.ajax({
+		
+			type : ajax_type,
+			url : ajax_url,
+			data : ajax_data,
+			success : function(data){
+				//console.log(data);
+				$("#saveSuccessContent").text("保存成功！");
+				if(data=="false"){
+					$("#saveSuccessContent").text("保存失败！");
+				}
+				
+				WAY.box.show({'divid':'saveSuccess'});
+				$("#saveSucessConfirm").on('click',function(){
+					WAY.box.hide();
+					$('#saveSuccess').css('display','none');
+					//eval(data);
+				});
+			}
+		});
+	}
+	
+	function addcheck(id){
+		setTimeout(function() {
+    		var checkvalue = document.getElementsByName("answercheck"+id);
+    		var checkradiovalue = "";
+    		for(var i = 0; i < checkvalue.length; i++){
+    			if(checkvalue[i].checked){
+    				checkradiovalue += checkvalue[i].value;
+    			}
+    		}
+    		document.getElementById("answer"+id).value = checkradiovalue;
+		},200);
+	}
+	
+	function version(url){
+    	var re = /&version=(\d)/; 
+    	var version = 1;
+    	if(re.test(url)){
+    		var arr = re.exec(url); 
+    		version += parseInt(arr[1]) ;
+			url = url.replace(re,'&version='+version);
+    	}else{
+			url = url + '&version=1';
+		}
+		
+		url += '&ua=' + clientType();
+        url += '&formType=' + getformType();
+		
+		return url;
+	}
+	
+	function clientType(){
+		var userAgent = navigator.userAgent;
+		var ua = "pc";
+    	try{
+			if(userAgent.indexOf("ChaoXingStudy") > -1){
+				ua = "app";
+			}
+		}catch(e){}
+		
+		return ua;
+	}
+    
+    function getformType(){
+        var form_type = $("#form1").attr('method'); //提交方法 
+        if(form_type){
+            return form_type;
+        }
+        return "post";
+    }
+	
+	function form1submit(){
+		document.form1.action = version(document.form1.action);
+    	document.form1.submit();
+    }
+	
+	//连线题处理
+	function getOneConnLineAnswer(obj){
+		var answerPair=[];
+		$(obj).each(function(index){
+			var checked=$(this).val();
+			var obj={};
+			obj.name=(index+1);
+			obj.content=(checked);
+			answerPair.push(obj);
+		});
+		var answerStr=JSON.stringify(answerPair);
+        return answerStr;
+	}
+	
+	function setConnLineAnswer(){
+		var input_connLine=$("input[name^='answertype'][value='11']");
+		$(input_connLine).each(function(){
+		var selectEle=$(this).parent().find(".thirdUlList select");
+		var answer=getOneConnLineAnswer(selectEle);
+		$(this).prev().val(answer);
+		//console.log($(this).prev().val());
+		});
+	}
+	
+	//排序题处理
+	function setSortQuesAnswer(){
+	    var input_sortQues=$("input[name^='answertype'][value='13']");
+		$(input_sortQues).each(function(){
+    		 var selectEle=$(this).parent().find(".sortQuesSelect select");
+			 var answer="";
+    		 $(selectEle).each(function(){
+    		 answer=answer+$(this).val();
+    		 });
+    		$(this).prev().val(answer);
+	 });
+}
+
+	//复合题型设置答案【新完型填空、新阅读理解、综合题】
+	function setCompoundQuesAnswer(){
+	    var input_clozeTextQues=$("input[name^='answertype'][value='14']");
+		$(input_clozeTextQues).each(function(){
+    		 var answer=getClozeTextAnswer(this);
+			 //console.log("clozetext:"+answer);
+    		 $(this).prev().val(answer);
+	    });
+	    var input_readComprehensionQues=$("input[name^='answertype'][value='15']");
+		$(input_readComprehensionQues).each(function(){
+    		 var answer=getReadComprehensionAnswer(this);
+			 //console.log("readComprehension:"+answer);
+    		 $(this).prev().val(answer);
+	    }); 
+	    var input_complexQues=$("input[name^='answertype'][value='16']");
+		$(input_complexQues).each(function(){
+    		 var answer=getReadComprehensionAnswer(this);
+			 //console.log("readComprehension:"+answer);
+    		 $(this).prev().val(answer);
+	    }); 
+   }
+   
+   //获取新完型填空答案
+   function getClozeTextAnswer(obj){
+	    var answerObj={};
+		var choiceList=$(obj).parent().find(".Cy_ulTop li");
+		choiceList.each(function(index){
+			var itemId=$(this).find("input[name='itemId']").val();
+			var checked=$(this).find("input[type='radio']:checked").val();
+			if(checked==undefined){
+				checked="";
+			}
+			var info={};
+			info.answer=checked;
+			answerObj[itemId]=info;
+		});
+		var answer=[];
+		answer.push(answerObj);
+		var answerStr=JSON.stringify(answer);
+	    return answerStr;
+   }
+   
+   //获取新阅读理解答案、综合题答案
+   function getReadComprehensionAnswer(obj){
+	    var answerObj={};
+		var quesList=$(obj).parent().find("input[name='readCompreHension-childType']");
+		quesList.each(function(index){
+			var type=$(this).val();
+			var itemId=$(this).next().val();
+			var itemAnswer="";
+			switch(parseInt(type)){
+				case 0:
+				case 3:{
+					itemAnswer=$("input[type='radio'][name='answer"+itemId+"']:checked").val();
+					if(type==3){
+					  itemAnswer=itemAnswer?(itemAnswer=="true"?true:false):itemAnswer;
+					}
+					break;
+				}
+				case 1:{
+					$("input[type='checkbox'][name='answer"+itemId+"']:checked").each(function() {
+						itemAnswer +=$(this).val();
+					});
+					break;
+				}
+				case 2:{
+					  var answerItem=[];
+					  var blankNum=$("input[name='"+itemId+"blankNum']").val();
+					for(var i=1;i<=blankNum;i++){
+						var blankInputId="answer"+itemId;
+						var answerEditorId="answerEditor"+itemId;
+						blankInputId=blankInputId+i;
+						answerEditorId=answerEditorId+i;
+						var blankInput=$("input[name='"+blankInputId+"']");
+						var  answerItemStr=blankInput.val();
+						if(blankInput.parent().is(":hidden")){
+                         var answerEditorStr=UE.getEditor(answerEditorId).getContent();
+						 answerItemStr=answerEditorStr;
+						}
+						var item={};
+						item.content=answerItemStr;
+						item.name=i.toString();
+						answerItem.push(item);
+					}
+					itemAnswer=answerItem;
+					break;
+				}
+				case 4:{
+					var answerEditorId="answer"+itemId;
+					var answerEditorStr=UE.getEditor(answerEditorId).getContent();
+					itemAnswer=answerEditorStr;
+					break;
+				}
+				default: { }
+			}
+			
+			var info={};
+			info.type=parseInt(type);
+			
+			info.answer=(itemAnswer!=undefined?itemAnswer:"");
+			answerObj[itemId]=info;
+		});
+		var answer=[];
+		answer.push(answerObj);
+		var answerStr=JSON.stringify(answer);
+	    return answerStr;
+   }
+	
+</script>
+
+<div class="AlertCon02" style="width: 356px; height: 139px; position: static; margin-left: 0px; margin-right: 0px; margin-top: 0px; top: 0px; left: 0px; display: none;" id="saveSuccess">
+	<h3 class="clearfix"><a href="javascript:void(0);" class="closed02 fr" onclick="WAY.box.hide();$(&#39;#saveSuccess&#39;).css(&#39;display&#39;,&#39;none&#39;);"></a></h3>
+	<div class="con03">
+    	<p id="saveSuccessContent">保存成功！</p>
+        <div class="marTop30">
+        	<a href="javascript:void(0);" class="bluebtn " onclick="" id="saveSucessConfirm">确定</a>
+        </div>
+    </div>
+</div></div>
+
+
+<st-div id="__selection-translator__"> <st-div class="__st-box__" style="display: none; position: fixed; z-index: 99999; left: 0px; top: 0px; transform: translateX(1090px) translateY(370px);"> <st-header> <st-span class="st-icon-pin" title="固定"></st-span> <st-span class="st-icon-down-open" title="展开"></st-span> <st-span class="st-icon-cog" title="设置"></st-span> </st-header> <st-div class="__query-form__" style="display: none;"> <st-div> <textarea placeholder="输入要翻译的句子或单词"></textarea> </st-div> <st-div> <select> <option value="">自动判断</option> <option value="zh">中文</option><option value="zh-CN">中文(简体)</option><option value="zh-HK">中文(香港)</option><option value="zh-TW">中文(繁体)</option><option value="en">英语</option><option value="ja">日语</option><option value="ko">朝鲜语</option><option value="de">德语</option><option value="fr">法语</option><option value="ru">俄语</option><option value="th">泰语</option><option value="af">南非语</option><option value="ar">阿拉伯语</option><option value="az">阿塞拜疆语</option><option value="be">比利时语</option><option value="bg">保加利亚语</option><option value="ca">加泰隆语</option><option value="cs">捷克语</option><option value="cy">威尔士语</option><option value="da">丹麦语</option><option value="dv">第维埃语</option><option value="el">希腊语</option><option value="eo">世界语</option><option value="es">西班牙语</option><option value="et">爱沙尼亚语</option><option value="eu">巴士克语</option><option value="fa">法斯语</option><option value="fi">芬兰语</option><option value="fo">法罗语</option><option value="gl">加里西亚语</option><option value="gu">古吉拉特语</option><option value="he">希伯来语</option><option value="hi">印地语</option><option value="hr">克罗地亚语</option><option value="hu">匈牙利语</option><option value="hy">亚美尼亚语</option><option value="id">印度尼西亚语</option><option value="is">冰岛语</option><option value="it">意大利语</option><option value="ka">格鲁吉亚语</option><option value="kk">哈萨克语</option><option value="kn">卡纳拉语</option><option value="kok">孔卡尼语</option><option value="ky">吉尔吉斯语</option><option value="lt">立陶宛语</option><option value="lv">拉脱维亚语</option><option value="mi">毛利语</option><option value="mk">马其顿语</option><option value="mn">蒙古语</option><option value="mr">马拉地语</option><option value="ms">马来语</option><option value="mt">马耳他语</option><option value="nb">挪威语(伯克梅尔)</option><option value="nl">荷兰语</option><option value="ns">北梭托语</option><option value="pa">旁遮普语</option><option value="pl">波兰语</option><option value="pt">葡萄牙语</option><option value="qu">克丘亚语</option><option value="ro">罗马尼亚语</option><option value="sa">梵文</option><option value="se">北萨摩斯语</option><option value="sk">斯洛伐克语</option><option value="sl">斯洛文尼亚语</option><option value="sq">阿尔巴尼亚语</option><option value="sv">瑞典语</option><option value="sw">斯瓦希里语</option><option value="syr">叙利亚语</option><option value="ta">泰米尔语</option><option value="te">泰卢固语</option><option value="tl">塔加路语</option><option value="tn">茨瓦纳语</option><option value="tr">土耳其语</option><option value="ts">宗加语</option><option value="tt">鞑靼语</option><option value="uk">乌克兰语</option><option value="ur">乌都语</option><option value="uz">乌兹别克语</option><option value="vi">越南语</option><option value="xh">班图语</option><option value="zu">祖鲁语</option> </select> <st-div class="__exchange__"> <st-span class="st-icon-exchange"></st-span> </st-div> <select> <option value="">自动选择</option> <option value="zh">中文</option><option value="zh-CN">中文(简体)</option><option value="zh-HK">中文(香港)</option><option value="zh-TW">中文(繁体)</option><option value="en">英语</option><option value="ja">日语</option><option value="ko">朝鲜语</option><option value="de">德语</option><option value="fr">法语</option><option value="ru">俄语</option><option value="th">泰语</option><option value="af">南非语</option><option value="ar">阿拉伯语</option><option value="az">阿塞拜疆语</option><option value="be">比利时语</option><option value="bg">保加利亚语</option><option value="ca">加泰隆语</option><option value="cs">捷克语</option><option value="cy">威尔士语</option><option value="da">丹麦语</option><option value="dv">第维埃语</option><option value="el">希腊语</option><option value="eo">世界语</option><option value="es">西班牙语</option><option value="et">爱沙尼亚语</option><option value="eu">巴士克语</option><option value="fa">法斯语</option><option value="fi">芬兰语</option><option value="fo">法罗语</option><option value="gl">加里西亚语</option><option value="gu">古吉拉特语</option><option value="he">希伯来语</option><option value="hi">印地语</option><option value="hr">克罗地亚语</option><option value="hu">匈牙利语</option><option value="hy">亚美尼亚语</option><option value="id">印度尼西亚语</option><option value="is">冰岛语</option><option value="it">意大利语</option><option value="ka">格鲁吉亚语</option><option value="kk">哈萨克语</option><option value="kn">卡纳拉语</option><option value="kok">孔卡尼语</option><option value="ky">吉尔吉斯语</option><option value="lt">立陶宛语</option><option value="lv">拉脱维亚语</option><option value="mi">毛利语</option><option value="mk">马其顿语</option><option value="mn">蒙古语</option><option value="mr">马拉地语</option><option value="ms">马来语</option><option value="mt">马耳他语</option><option value="nb">挪威语(伯克梅尔)</option><option value="nl">荷兰语</option><option value="ns">北梭托语</option><option value="pa">旁遮普语</option><option value="pl">波兰语</option><option value="pt">葡萄牙语</option><option value="qu">克丘亚语</option><option value="ro">罗马尼亚语</option><option value="sa">梵文</option><option value="se">北萨摩斯语</option><option value="sk">斯洛伐克语</option><option value="sl">斯洛文尼亚语</option><option value="sq">阿尔巴尼亚语</option><option value="sv">瑞典语</option><option value="sw">斯瓦希里语</option><option value="syr">叙利亚语</option><option value="ta">泰米尔语</option><option value="te">泰卢固语</option><option value="tl">塔加路语</option><option value="tn">茨瓦纳语</option><option value="tr">土耳其语</option><option value="ts">宗加语</option><option value="tt">鞑靼语</option><option value="uk">乌克兰语</option><option value="ur">乌都语</option><option value="uz">乌兹别克语</option><option value="vi">越南语</option><option value="xh">班图语</option><option value="zu">祖鲁语</option> </select> </st-div> <st-div> <select> <option value="YouDao">有道翻译</option> <option value="BaiDu">百度翻译</option> <option value="Bing">必应翻译</option> <option value="Google">谷歌翻译</option> <option value="GoogleCN">谷歌翻译（国内）</option> </select> <st-div class="__action-list__"> <st-div class="__button__ __btn-translate__">翻译 <st-span class="st-icon-down-dir"></st-span> </st-div> <st-div class="__expand__"> <st-div class="__button__">朗读</st-div> <st-div class="__button__">复制</st-div> </st-div> </st-div> </st-div> </st-div> <st-div class="__translate-result__" style="display: none;">正在查询，请稍候……</st-div> <st-div class="__translate-result__"> <st-div style="display: none;"> <st-span></st-span> <st-span class="__retry__">重试</st-span> </st-div> <st-div> <st-div class="__phonetic__"> <st-span style="display: none;"></st-span> <st-span class="__copy-and-read__"> <st-span>朗读</st-span> <st-span style="display: none;">复制</st-span> </st-span> </st-div> <st-div style="display: none;"> <st-ul>  </st-ul> <st-div class="__copy-and-read__"> <st-span class="__copy-and-read__">复制</st-span> </st-div> </st-div> <st-div style="display: none;">  <st-div class="__copy-and-read__"> <st-span class="__copy-and-read__">朗读</st-span> <st-span class="__copy-and-read__">复制</st-span> </st-div> </st-div> </st-div> </st-div> <st-footer> <st-span style="display: none;">via <a target="_blank" href="http://mooc1.chaoxing.com/work/doHomeWorkNew?courseId=97808415&amp;classId=1980718&amp;workId=1223149&amp;workAnswerId=0&amp;isdisplaytable=2&amp;mooc=1&amp;enc=104e3abf47270363fd1e199eb4f502fd"></a></st-span> </st-footer> </st-div> <st-div class="__st-btn__" style="display: none; position: fixed; z-index: 99999; left: 0px; top: 0px; transform: translateX(1090px) translateY(370px);">译</st-div> </st-div><div class="wouter" style="z-index: 9999; border-radius: 7px 7px 0px 0px; position: fixed; top: 360.5px; left: 761px; display: none;"><div class="winner" style="height: 181px; width: 398px;"><div class="wtoolbar" style="height: 30px; cursor: move; border-radius: 5px 5px 0px 0px; display: none; background: rgb(153, 153, 153); width: 398px;"><a href="javascript:void(0);" style="cursor:pointer; color:#000; float:right; text-decoration:none; padding:2px 5px 0 0; font: 24px blod;" onclick="WAY.box.hide();">×</a></div><div class="wconter" style="padding: 10px;"></div></div></div><div class="wmask" style="z-index: 9998; position: absolute; left: 0px; top: 0px; opacity: 0.7; background: rgb(0, 0, 0); width: 1522px; height: 4969px; display: none;"></div></body><div id="cye-workaround-body" style="position: absolute; left: 0px; top: 0px; z-index: -2147483646; background: none 0% 0% / auto repeat scroll padding-box border-box white; height: 4969px; width: 1522px;"></div><div id="cye-workaround-body-image" style="position: absolute; left: 0px; top: 0px; z-index: -2147483645; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); height: 4969px; width: 1522px;"></div><div></div></html>

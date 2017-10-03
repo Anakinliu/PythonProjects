@@ -9,16 +9,16 @@ def print_form(row, col):
         if r % 5 == 0:
             for c in range(col):
                 if c % 5 == 0:
-                    print('+', end=' ')  # 结尾不用默认的end='\n' 而是end=' '
+                    print '+'  # 结尾不用默认的end='\n' 而是end=' '
                 else:
-                    print('-', end=' ')
+                    print '-'
             print()
         else:
             for c in range(col):
                 if c % 5 == 0:
-                    print('|', end=' ')
+                    print '|'
                 else:
-                    print(' ', end=' ')
+                    print ' '
             print()
 
 

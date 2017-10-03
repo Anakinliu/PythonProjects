@@ -1,0 +1,1215 @@
+
+.placeholder {
+    color: #999;
+}
+.text-sm {
+    font-size: 12px;
+}
+.text-xs {
+    font-size: 10px;
+}
+.text-lg {
+    font-size: 18px;
+}
+.money-text {
+    color: #f40;
+}
+.short-long-text .trigger {
+    visibility: hidden;
+}
+.short-long-text .short-text:hover .trigger, .short-long-text .long-text:hover .trigger {
+    color: #999;
+    font-size: 12px;
+    visibility: visible;
+}
+.short-long-text .short-text {
+    cursor: pointer;
+    word-break: break-all;
+}
+.short-long-text .long-text {
+    cursor: pointer;
+    display: none;
+    word-break: break-all;
+}
+.social-icon-weibo, .social-icon-qq, .social-icon-renren, .social-icon-douban {
+    background:url(../img/social/social-icons.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: inline-block;
+    height: 24px;
+    vertical-align: middle;
+    width: 24px;
+}
+.social-icon-weibo {
+    background-position: 0 0;
+}
+.social-icon-qq {
+    background-position: 0 -40px;
+}
+.social-icon-renren {
+    background-position: 0 -80px;
+}
+.social-icon-douban {
+    background-position: 0 -120px;
+}
+.stars-0, .stars-1, .stars-2, .stars-3, .stars-4, .stars-5 {
+    background-image:url("../img/common/stars.png");
+     width:85px;
+    height:16px;
+    overflow:hidden;
+    display:inline-block;
+    background-repeat:no-repeat;
+}
+.stars-5 {
+    background-position: 0 0;
+}
+.stars-4 {
+    background-position: 0 -16px;
+}
+.stars-3 {
+    background-position: 0 -32px;
+}
+.stars-2 {
+    background-position: 0 -48px;
+}
+.stars-1 {
+    background-position: 0 -64px;
+}
+.stars-0 {
+    background-position: 0 -80px;
+}
+.vjs-default-skin {
+    color: #cccccc;
+}
+@font-face {
+    font-family: "VideoJS";
+    font-style: normal;
+    font-weight: normal;
+    src: url("font/vjs.eot?#iefix") format("embedded-opentype"), url("font/vjs.woff") format("woff"), url("font/vjs.ttf") format("truetype");
+}
+.vjs-default-skin .vjs-slider {
+    background-color: rgba(51, 51, 51, 0.9);
+    cursor: pointer;
+    outline: 0 none;
+    padding: 0;
+    position: relative;
+}
+.vjs-default-skin .vjs-slider:focus {
+    box-shadow: 0 0 2em #ffffff;
+}
+.vjs-default-skin .vjs-slider-handle {
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+.vjs-default-skin .vjs-slider-handle:before {
+    content: "";
+    font-family: VideoJS;
+    font-size: 1em;
+    left: 0;
+    line-height: 1;
+    position: absolute;
+    text-align: center;
+    text-shadow: 0 0 1em #fff;
+    top: 0;
+    transform: rotate(-45deg);
+}
+.vjs-default-skin .vjs-control-bar {
+    background-color: rgba(7, 20, 30, 0.7);
+    bottom: 0;
+    display: none;
+    height: 3em;
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+.vjs-default-skin.vjs-has-started .vjs-control-bar {
+    display: block;
+    opacity: 1;
+    transition: visibility 0.1s ease 0s, opacity 0.1s ease 0s;
+    visibility: visible;
+}
+.vjs-default-skin.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar {
+    display: block;
+    opacity: 0;
+    transition: visibility 1s ease 0s, opacity 1s ease 0s;
+    visibility: hidden;
+}
+.vjs-default-skin.vjs-controls-disabled .vjs-control-bar {
+    display: none;
+}
+.vjs-default-skin.vjs-using-native-controls .vjs-control-bar {
+    display: none;
+}
+@media �screen {
+.vjs-default-skin.vjs-user-inactive.vjs-playing .vjs-control-bar *:before {
+    content: "";
+}
+}
+.vjs-default-skin .vjs-control {
+    float: left;
+    height: 3em;
+    margin: 0;
+    outline: medium none;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    width: 4em;
+}
+.vjs-default-skin .vjs-control:before {
+    font-family: VideoJS;
+    font-size: 1.5em;
+    height: 100%;
+    left: 0;
+    line-height: 2;
+    position: absolute;
+    text-align: center;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    top: 0;
+    width: 100%;
+}
+.vjs-default-skin .vjs-control:focus:before, .vjs-default-skin .vjs-control:hover:before {
+    text-shadow: 0 0 1em #ffffff;
+}
+.vjs-default-skin .vjs-control:focus {
+}
+.vjs-default-skin .vjs-control-text {
+    border: 0 none;
+    clip: rect(0px, 0px, 0px, 0px);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+.vjs-default-skin .vjs-play-control {
+    cursor: pointer;
+    width: 5em;
+}
+.vjs-default-skin .vjs-play-control:before {
+    content: "";
+}
+.vjs-default-skin.vjs-playing .vjs-play-control:before {
+    content: "";
+}
+.vjs-default-skin .vjs-mute-control, .vjs-default-skin .vjs-volume-menu-button {
+    cursor: pointer;
+    float: right;
+}
+.vjs-default-skin .vjs-mute-control:before, .vjs-default-skin .vjs-volume-menu-button:before {
+    content: "";
+}
+.vjs-default-skin .vjs-mute-control.vjs-vol-0:before, .vjs-default-skin .vjs-volume-menu-button.vjs-vol-0:before {
+    content: "";
+}
+.vjs-default-skin .vjs-mute-control.vjs-vol-1:before, .vjs-default-skin .vjs-volume-menu-button.vjs-vol-1:before {
+    content: "";
+}
+.vjs-default-skin .vjs-mute-control.vjs-vol-2:before, .vjs-default-skin .vjs-volume-menu-button.vjs-vol-2:before {
+    content: "";
+}
+.vjs-default-skin .vjs-volume-control {
+    float: right;
+    width: 5em;
+}
+.vjs-default-skin .vjs-volume-bar {
+    height: 0.6em;
+    margin: 1.1em auto 0;
+    width: 5em;
+}
+.vjs-default-skin .vjs-volume-menu-button .vjs-menu-content {
+    height: 2.9em;
+}
+.vjs-default-skin .vjs-volume-level {
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAP0lEQVQIHWWMAQoAIAgDR/QJ/Ub//04+w7ZICBwcOg5FZi5iBB82AGzixEglJrd4TVK5XUJpskSTEvpdFzX9AB2pGziSQcvAAAAAAElFTkSuQmCC") repeat scroll -50% 0 #66a8cc;
+    height: 0.5em;
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+.vjs-default-skin .vjs-volume-bar .vjs-volume-handle {
+    height: 0.5em;
+    width: 0.5em;
+}
+.vjs-default-skin .vjs-volume-handle:before {
+    font-size: 0.9em;
+    height: 1em;
+    left: -0.2em;
+    top: -0.2em;
+    width: 1em;
+}
+.vjs-default-skin .vjs-volume-menu-button .vjs-menu .vjs-menu-content {
+    left: -4em;
+    width: 6em;
+}
+.vjs-default-skin .vjs-progress-control {
+    font-size: 0.3em;
+    height: 1em;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: -1em;
+    transition: all 0.4s ease 0s;
+    width: auto;
+}
+.vjs-default-skin:hover .vjs-progress-control {
+    font-size: 0.9em;
+    transition: all 0.2s ease 0s;
+}
+.vjs-default-skin .vjs-progress-holder {
+    height: 100%;
+}
+.vjs-default-skin .vjs-progress-holder .vjs-play-progress, .vjs-default-skin .vjs-progress-holder .vjs-load-progress {
+    display: block;
+    height: 100%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+}
+.vjs-default-skin .vjs-play-progress {
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAP0lEQVQIHWWMAQoAIAgDR/QJ/Ub//04+w7ZICBwcOg5FZi5iBB82AGzixEglJrd4TVK5XUJpskSTEvpdFzX9AB2pGziSQcvAAAAAAElFTkSuQmCC") repeat scroll -50% 0 #66a8cc;
+}
+.vjs-default-skin .vjs-load-progress {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.4);
+}
+.vjs-default-skin .vjs-seek-handle {
+    height: 100%;
+    width: 1.5em;
+}
+.vjs-default-skin .vjs-seek-handle:before {
+    padding-top: 0.1em;
+}
+.vjs-default-skin .vjs-time-controls {
+    font-size: 1em;
+    line-height: 3em;
+}
+.vjs-default-skin .vjs-current-time {
+    float: left;
+}
+.vjs-default-skin .vjs-duration {
+    float: left;
+}
+.vjs-default-skin .vjs-remaining-time {
+    display: none;
+    float: left;
+}
+.vjs-time-divider {
+    float: left;
+    line-height: 3em;
+}
+.vjs-default-skin .vjs-fullscreen-control {
+    cursor: pointer;
+    float: right;
+    width: 3.8em;
+}
+.vjs-default-skin .vjs-fullscreen-control:before {
+    content: "";
+}
+.vjs-default-skin.vjs-fullscreen .vjs-fullscreen-control:before {
+    content: "";
+}
+.vjs-default-skin .vjs-big-play-button {
+    background-color: rgba(7, 20, 30, 0.7);
+    border: 0.1em solid #3b4249;
+    border-radius: 0.8em;
+    box-shadow: 0 0 1em rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    display: block;
+    font-size: 3em;
+    height: 2.6em;
+    left: 0.5em;
+    opacity: 1;
+    position: absolute;
+    text-align: center;
+    top: 0.5em;
+    transition: all 0.4s ease 0s;
+    vertical-align: middle;
+    width: 4em;
+    z-index: 2;
+}
+.vjs-default-skin.vjs-controls-disabled .vjs-big-play-button {
+    display: none;
+}
+.vjs-default-skin.vjs-has-started .vjs-big-play-button {
+    display: none;
+}
+.vjs-default-skin.vjs-using-native-controls .vjs-big-play-button {
+    display: none;
+}
+.vjs-default-skin:hover .vjs-big-play-button, .vjs-default-skin .vjs-big-play-button:focus {
+    background-color: rgba(50, 50, 50, 0.75);
+    border-color: #fff;
+    box-shadow: 0 0 3em #ffffff;
+    outline: 0 none;
+    transition: all 0s ease 0s;
+}
+.vjs-default-skin .vjs-big-play-button:before {
+    content: "";
+    font-family: VideoJS;
+    height: 100%;
+    left: 0;
+    line-height: 2.6em;
+    position: absolute;
+    text-align: center;
+    text-shadow: 0.05em 0.05em 0.1em #000;
+    width: 100%;
+}
+.vjs-loading-spinner {
+    animation: 1.5s linear 0s normal none infinite spin;
+    display: none;
+    font-size: 5em;
+    height: 1em;
+    left: 50%;
+    line-height: 1;
+    margin-left: -0.5em;
+    margin-top: -0.5em;
+    opacity: 0.75;
+    position: absolute;
+    top: 50%;
+    width: 1em;
+}
+.vjs-default-skin .vjs-loading-spinner:before {
+    content: "";
+    font-family: VideoJS;
+    height: 1em;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    text-shadow: 0 0 0.1em #000;
+    top: 0;
+    width: 1em;
+}
+@keyframes spin {
+0% {
+    transform: rotate(0deg);
+}
+100% {
+    transform: rotate(359deg);
+}
+}
+@keyframes spin {
+0% {
+    transform: rotate(0deg);
+}
+100% {
+    transform: rotate(359deg);
+}
+}
+.vjs-default-skin .vjs-menu-button {
+    cursor: pointer;
+    float: right;
+}
+.vjs-default-skin .vjs-menu {
+    border-left: 2em solid transparent;
+    border-right: 2em solid transparent;
+    border-top: 1.55em solid rgba(7, 40, 50, 0.5);
+    bottom: 0;
+    display: none;
+    height: 0;
+    left: 0;
+    margin-bottom: 3em;
+    position: absolute;
+    width: 0;
+}
+.vjs-default-skin .vjs-menu-button .vjs-menu .vjs-menu-content {
+    background-color: rgba(7, 20, 30, 0.7);
+    bottom: 1.5em;
+    box-shadow: -0.2em -0.2em 0.3em rgba(255, 255, 255, 0.2);
+    display: block;
+    left: -5em;
+    margin: 0;
+    max-height: 15em;
+    overflow: auto;
+    padding: 0;
+    position: absolute;
+    width: 10em;
+}
+.vjs-default-skin .vjs-menu-button:hover .vjs-menu {
+    display: block;
+}
+.vjs-default-skin .vjs-menu-button ul li {
+    font-size: 1.2em;
+    line-height: 1.4em;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0.3em 0;
+    text-align: center;
+    text-transform: lowercase;
+}
+.vjs-default-skin .vjs-menu-button ul li.vjs-selected {
+    background-color: #000;
+}
+.vjs-default-skin .vjs-menu-button ul li:focus, .vjs-default-skin .vjs-menu-button ul li:hover, .vjs-default-skin .vjs-menu-button ul li.vjs-selected:focus, .vjs-default-skin .vjs-menu-button ul li.vjs-selected:hover {
+    background-color: rgba(255, 255, 255, 0.75);
+    box-shadow: 0 0 1em #ffffff;
+    color: #111;
+    outline: 0 none;
+}
+.vjs-default-skin .vjs-menu-button ul li.vjs-menu-title {
+    cursor: default;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 2em;
+    margin: 0 0 0.3em;
+    padding: 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+.vjs-default-skin .vjs-subtitles-button:before {
+    content: "";
+}
+.vjs-default-skin .vjs-captions-button:before {
+    content: "";
+}
+.vjs-default-skin .vjs-captions-button:focus .vjs-control-content:before, .vjs-default-skin .vjs-captions-button:hover .vjs-control-content:before {
+    box-shadow: 0 0 1em #ffffff;
+}
+.video-js {
+    -moz-user-select: none;
+    background-color: #000;
+    font-family: Arial,sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: normal;
+    padding: 0;
+    position: relative;
+    vertical-align: middle;
+}
+.video-js .vjs-tech {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.video-js:-moz-full-screen {
+    position: absolute;
+}
+body.vjs-full-window {
+    height: 100%;
+    margin: 0;
+    overflow-y: auto;
+    padding: 0;
+}
+.video-js.vjs-fullscreen {
+    bottom: 0;
+    height: 100% !important;
+    left: 0;
+    overflow: hidden;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100% !important;
+    z-index: 1000;
+}
+.video-js.vjs-fullscreen.vjs-user-inactive {
+    cursor: none;
+}
+.vjs-poster {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+}
+.vjs-poster img {
+    display: block;
+    margin: 0 auto;
+    max-height: 100%;
+    padding: 0;
+    width: 100%;
+}
+.video-js.vjs-using-native-controls .vjs-poster {
+    display: none;
+}
+.video-js .vjs-text-track-display {
+    bottom: 4em;
+    left: 1em;
+    position: absolute;
+    right: 1em;
+    text-align: center;
+}
+.video-js .vjs-text-track {
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    font-size: 1.4em;
+    margin-bottom: 0.1em;
+    text-align: center;
+}
+.video-js .vjs-subtitles {
+    color: #ffffff;
+}
+.video-js .vjs-captions {
+    color: #ffcc66;
+}
+.vjs-tt-cue {
+    display: block;
+}
+.vjs-default-skin .vjs-hidden {
+    display: none;
+}
+.vjs-lock-showing {
+    display: block !important;
+    opacity: 1;
+    visibility: visible;
+}
+.mejs-container {
+    background: none repeat scroll 0 0 #000;
+    font-family: Helvetica,Arial;
+    position: relative;
+    text-align: left;
+    text-indent: 0;
+    vertical-align: top;
+}
+.me-plugin {
+    position: absolute;
+}
+.mejs-embed, .mejs-embed body {
+    background: none repeat scroll 0 0 #000;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    width: 100%;
+}
+.mejs-fullscreen {
+    overflow: hidden !important;
+}
+.mejs-container-fullscreen {
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+}
+.mejs-container-fullscreen .mejs-mediaelement, .mejs-container-fullscreen video {
+    height: 100%;
+    width: 100%;
+}
+.mejs-clear {
+    clear: both;
+}
+.mejs-background {
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+.mejs-mediaelement {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.mejs-poster {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+:root .mejs-poster img {
+    display: none;
+}
+.mejs-poster img {
+    border: 0 none;
+    padding: 0;
+}
+.mejs-overlay {
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+.mejs-overlay-play {
+    cursor: pointer;
+}
+.mejs-overlay-button {
+    background: url("mediaelement/bigplay.svg") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 100px;
+    left: 50%;
+    margin: -50px 0 0 -50px;
+    position: absolute;
+    top: 50%;
+    width: 100px;
+}
+.no-svg .mejs-overlay-button {
+    background-image: url("mediaelement/bigplay.png");
+}
+.mejs-overlay:hover .mejs-overlay-button {
+    background-position: 0 -100px;
+}
+.mejs-overlay-loading {
+    background: linear-gradient(rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9)) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 80px;
+    left: 50%;
+    margin: -40px 0 0 -40px;
+    position: absolute;
+    top: 50%;
+    width: 80px;
+}
+.mejs-overlay-loading span {
+    background: url("mediaelement/loading.gif") no-repeat scroll 50% 50% transparent;
+    display: block;
+    height: 80px;
+    width: 80px;
+}
+.mejs-container .mejs-controls {
+    background: linear-gradient(rgba(50, 50, 50, 0.7), rgba(0, 0, 0, 0.7)) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    bottom: 0;
+    height: 30px;
+    left: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+}
+.mejs-container .mejs-controls div {
+    background-image: none;
+    border: 0 none;
+    display: block;
+    float: left;
+    font-family: Helvetica,Arial;
+    font-size: 11px;
+    height: 26px;
+    line-height: 11px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 26px;
+}
+.mejs-controls .mejs-button button {
+    background: url("mediaelement/controls.svg") no-repeat scroll 0 0 transparent;
+    border: 0 none;
+    cursor: pointer;
+    display: block;
+    font-size: 0;
+    height: 16px;
+    line-height: 0;
+    margin: 7px 5px;
+    padding: 0;
+    position: absolute;
+    text-decoration: none;
+    width: 16px;
+}
+.no-svg .mejs-controls .mejs-button button {
+    background-image: url("mediaelement/controls.png");
+}
+.mejs-controls .mejs-button button:focus {
+    outline: 1px dotted #999;
+}
+.mejs-container .mejs-controls .mejs-time {
+    box-sizing: content-box;
+    color: #fff;
+    display: block;
+    height: 17px;
+    overflow: hidden;
+    padding: 8px 3px 0;
+    text-align: center;
+    width: auto;
+}
+.mejs-container .mejs-controls .mejs-time span {
+    color: #fff;
+    display: block;
+    float: left;
+    font-size: 11px;
+    line-height: 12px;
+    margin: 1px 2px 0 0;
+    width: auto;
+}
+.mejs-controls .mejs-play button {
+    background-position: 0 0;
+}
+.mejs-controls .mejs-pause button {
+    background-position: 0 -16px;
+}
+.mejs-controls .mejs-stop button {
+    background-position: -112px 0;
+}
+.mejs-controls div.mejs-time-rail {
+    direction: ltr;
+    padding-top: 5px;
+    width: 200px;
+}
+.mejs-controls .mejs-time-rail span {
+    border-radius: 2px;
+    cursor: pointer;
+    display: block;
+    height: 10px;
+    position: absolute;
+    width: 180px;
+}
+.mejs-controls .mejs-time-rail .mejs-time-total {
+    background: linear-gradient(rgba(30, 30, 30, 0.8), rgba(60, 60, 60, 0.8)) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    margin: 5px;
+}
+.mejs-controls .mejs-time-rail .mejs-time-buffering {
+    animation: 2s linear 0s normal none infinite buffering-stripes;
+    background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-size: 15px 15px;
+    width: 100%;
+}
+@keyframes buffering-stripes {
+0% {
+    background-position: 0 0;
+}
+100% {
+    background-position: 30px 0;
+}
+}
+@keyframes buffering-stripes {
+0% {
+    background-position: 0 0;
+}
+100% {
+    background-position: 30px 0;
+}
+}
+.mejs-controls .mejs-time-rail .mejs-time-loaded {
+    background: linear-gradient(rgba(44, 124, 145, 0.8), rgba(78, 183, 212, 0.8)) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    width: 0;
+}
+.mejs-controls .mejs-time-rail .mejs-time-current {
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(200, 200, 200, 0.8)) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    width: 0;
+}
+.mejs-controls .mejs-time-rail .mejs-time-handle {
+    background: none repeat scroll 0 0 #fff;
+    border: 2px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+    margin: 0;
+    position: absolute;
+    text-align: center;
+    top: -2px;
+    width: 10px;
+}
+.mejs-controls .mejs-time-rail .mejs-time-float {
+    background: none repeat scroll 0 0 #eee;
+    border: 1px solid #333;
+    color: #111;
+    display: none;
+    height: 17px;
+    margin-left: -18px;
+    position: absolute;
+    text-align: center;
+    top: -26px;
+    width: 36px;
+}
+.mejs-controls .mejs-time-rail .mejs-time-float-current {
+    display: block;
+    left: 0;
+    margin: 2px;
+    text-align: center;
+    width: 30px;
+}
+.mejs-controls .mejs-time-rail .mejs-time-float-corner {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #eee transparent transparent;
+    border-image: none;
+    border-radius: 0;
+    border-style: solid;
+    border-width: 5px;
+    display: block;
+    height: 0;
+    left: 13px;
+    line-height: 0;
+    position: absolute;
+    top: 15px;
+    width: 0;
+}
+.mejs-long-video .mejs-controls .mejs-time-rail .mejs-time-float {
+    width: 48px;
+}
+.mejs-long-video .mejs-controls .mejs-time-rail .mejs-time-float-current {
+    width: 44px;
+}
+.mejs-long-video .mejs-controls .mejs-time-rail .mejs-time-float-corner {
+    left: 18px;
+}
+.mejs-controls .mejs-fullscreen-button button {
+    background-position: -32px 0;
+}
+.mejs-controls .mejs-unfullscreen button {
+    background-position: -32px -16px;
+}
+.mejs-controls .mejs-volume-button {
+}
+.mejs-controls .mejs-mute button {
+    background-position: -16px -16px;
+}
+.mejs-controls .mejs-unmute button {
+    background-position: -16px 0;
+}
+.mejs-controls .mejs-volume-button {
+    position: relative;
+}
+.mejs-controls .mejs-volume-button .mejs-volume-slider {
+    background: none repeat scroll 0 0 rgba(50, 50, 50, 0.7);
+    border-radius: 0;
+    display: none;
+    height: 115px;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    top: -115px;
+    width: 25px;
+    z-index: 1;
+}
+.mejs-controls .mejs-volume-button:hover {
+    border-radius: 0 0 4px 4px;
+}
+.mejs-controls .mejs-volume-button .mejs-volume-slider .mejs-volume-total {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.5);
+    height: 100px;
+    left: 11px;
+    margin: 0;
+    position: absolute;
+    top: 8px;
+    width: 2px;
+}
+.mejs-controls .mejs-volume-button .mejs-volume-slider .mejs-volume-current {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.9);
+    height: 100px;
+    left: 11px;
+    margin: 0;
+    position: absolute;
+    top: 8px;
+    width: 2px;
+}
+.mejs-controls .mejs-volume-button .mejs-volume-slider .mejs-volume-handle {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.9);
+    border-radius: 1px;
+    cursor: n-resize;
+    height: 6px;
+    left: 4px;
+    margin: 0;
+    position: absolute;
+    top: -3px;
+    width: 16px;
+}
+.mejs-controls div.mejs-horizontal-volume-slider {
+    height: 26px;
+    position: relative;
+    width: 60px;
+}
+.mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-total {
+    background: linear-gradient(rgba(30, 30, 30, 0.8), rgba(60, 60, 60, 0.8)) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border-radius: 2px;
+    font-size: 1px;
+    height: 8px;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 11px;
+    width: 50px;
+}
+.mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current {
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(200, 200, 200, 0.8)) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border-radius: 2px;
+    font-size: 1px;
+    height: 8px;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 11px;
+    width: 50px;
+}
+.mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-handle {
+    display: none;
+}
+.mejs-controls .mejs-captions-button {
+    position: relative;
+}
+.mejs-controls .mejs-captions-button button {
+    background-position: -48px 0;
+}
+.mejs-controls .mejs-captions-button .mejs-captions-selector {
+    background: none repeat scroll 0 0 rgba(50, 50, 50, 0.7);
+    border: 1px solid transparent;
+    border-radius: 0;
+    bottom: 26px;
+    height: 100px;
+    overflow: hidden;
+    padding: 10px;
+    position: absolute;
+    right: -10px;
+    visibility: hidden;
+    width: 130px;
+}
+.mejs-controls .mejs-captions-button .mejs-captions-selector ul {
+    display: block;
+    list-style-type: none !important;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+.mejs-controls .mejs-captions-button .mejs-captions-selector ul li {
+    color: #fff;
+    display: block;
+    list-style-type: none !important;
+    margin: 0 0 6px;
+    overflow: hidden;
+    padding: 0;
+}
+.mejs-controls .mejs-captions-button .mejs-captions-selector ul li input {
+    clear: both;
+    float: left;
+    margin: 3px 3px 0 5px;
+}
+.mejs-controls .mejs-captions-button .mejs-captions-selector ul li label {
+    float: left;
+    font-family: helvetica,arial;
+    font-size: 10px;
+    line-height: 15px;
+    padding: 4px 0 0;
+    width: 100px;
+}
+.mejs-controls .mejs-captions-button .mejs-captions-translations {
+    font-size: 10px;
+    margin: 0 0 5px;
+}
+.mejs-chapters {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 10000px;
+    z-index: 1;
+}
+.mejs-chapters .mejs-chapter {
+    background: linear-gradient(rgba(50, 50, 50, 0.7), rgba(0, 0, 0, 0.7)) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 0 none;
+    float: left;
+    overflow: hidden;
+    position: absolute;
+}
+.mejs-chapters .mejs-chapter .mejs-chapter-block {
+    border-bottom: 1px solid #333;
+    border-right: 1px solid #333;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: 11px;
+    padding: 5px;
+}
+.mejs-chapters .mejs-chapter .mejs-chapter-block-last {
+    border-right: medium none;
+}
+.mejs-chapters .mejs-chapter .mejs-chapter-block:hover {
+    background: linear-gradient(rgba(102, 102, 102, 0.7), rgba(50, 50, 50, 0.6)) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.mejs-chapters .mejs-chapter .mejs-chapter-block .ch-title {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 12px;
+    margin: 0 0 3px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.mejs-chapters .mejs-chapter .mejs-chapter-block .ch-timespan {
+    display: block;
+    font-size: 12px;
+    line-height: 12px;
+    margin: 3px 0 4px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.mejs-captions-layer {
+    bottom: 0;
+    color: #fff;
+    font-size: 12px;
+    left: 0;
+    line-height: 22px;
+    position: absolute;
+    text-align: center;
+}
+.mejs-captions-layer a {
+    color: #fff;
+    text-decoration: underline;
+}
+.mejs-captions-layer[lang="ar"] {
+    font-size: 20px;
+    font-weight: normal;
+}
+.mejs-captions-position {
+    bottom: 15px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+.mejs-captions-position-hover {
+    bottom: 45px;
+}
+.mejs-captions-text {
+    background: none repeat scroll 0 0 rgba(20, 20, 20, 0.8);
+    padding: 3px 5px;
+}
+.me-cannotplay {
+}
+.me-cannotplay a {
+    color: #fff;
+    font-weight: bold;
+}
+.me-cannotplay span {
+    display: block;
+    padding: 15px;
+}
+.mejs-controls .mejs-loop-off button {
+    background-position: -64px -16px;
+}
+.mejs-controls .mejs-loop-on button {
+    background-position: -64px 0;
+}
+.mejs-controls .mejs-backlight-off button {
+    background-position: -80px -16px;
+}
+.mejs-controls .mejs-backlight-on button {
+    background-position: -80px 0;
+}
+.mejs-controls .mejs-picturecontrols-button {
+    background-position: -96px 0;
+}
+.mejs-contextmenu {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #999;
+    border-radius: 4px;
+    left: 0;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    width: 150px;
+    z-index: 1001;
+}
+.mejs-contextmenu .mejs-contextmenu-separator {
+    background: none repeat scroll 0 0 #333;
+    font-size: 0;
+    height: 1px;
+    margin: 5px 6px;
+}
+.mejs-contextmenu .mejs-contextmenu-item {
+    color: #333;
+    cursor: pointer;
+    font-family: Helvetica,Arial;
+    font-size: 12px;
+    padding: 4px 6px;
+}
+.mejs-contextmenu .mejs-contextmenu-item:hover {
+    background: none repeat scroll 0 0 #2c7c91;
+    color: #fff;
+}
+.mejs-controls .mejs-sourcechooser-button {
+    position: relative;
+}
+.mejs-controls .mejs-sourcechooser-button button {
+    background-position: -128px 0;
+}
+.mejs-controls .mejs-sourcechooser-button .mejs-sourcechooser-selector {
+    background: none repeat scroll 0 0 rgba(50, 50, 50, 0.7);
+    border: 1px solid transparent;
+    border-radius: 0;
+    bottom: 26px;
+    height: 100px;
+    overflow: hidden;
+    padding: 10px;
+    position: absolute;
+    right: -10px;
+    visibility: hidden;
+    width: 130px;
+}
+.mejs-controls .mejs-sourcechooser-button .mejs-sourcechooser-selector ul {
+    display: block;
+    list-style-type: none !important;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+.mejs-controls .mejs-sourcechooser-button .mejs-sourcechooser-selector ul li {
+    color: #fff;
+    display: block;
+    list-style-type: none !important;
+    margin: 0 0 6px;
+    overflow: hidden;
+    padding: 0;
+}
+.mejs-controls .mejs-sourcechooser-button .mejs-sourcechooser-selector ul li input {
+    clear: both;
+    float: left;
+    margin: 3px 3px 0 5px;
+}
+.mejs-controls .mejs-sourcechooser-button .mejs-sourcechooser-selector ul li label {
+    float: left;
+    font-family: helvetica,arial;
+    font-size: 10px;
+    line-height: 15px;
+    padding: 4px 0 0;
+    width: 100px;
+}
+.mejs-postroll-layer {
+    background: none repeat scroll 0 0 rgba(50, 50, 50, 0.7);
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+}
+.mejs-postroll-layer-content {
+    height: 100%;
+    width: 100%;
+}
+.mejs-postroll-close {
+    background: none repeat scroll 0 0 rgba(50, 50, 50, 0.7);
+    color: #fff;
+    cursor: pointer;
+    padding: 4px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 100;
+}
+.mejs-audio {
+    display: inline-block;
+}
+.webuploader-container {
+    padding: 0;
+    position: relative;
+}
+.webuploader-container label {
+    line-height: 1;
+    margin-bottom: 0;
+}
+.webuploader-container > .glyphicon {
+    padding: 8px 10px;
+    top: 0;
+}
+.webuploader-element-invisible {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+}
+.webuploader-pick {
+    overflow: hidden;
+    padding: 5px 10px;
+    position: relative;
+}
+.webuploader-pick-hover {
+}
+.webuploader-pick-disable {
+    opacity: 0.6;
+    pointer-events: none;
+}

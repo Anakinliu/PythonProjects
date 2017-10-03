@@ -1,0 +1,826 @@
+var common = {};
+window.openReg = function () {
+    $.layer({
+        type: 2,
+        maxmin: false,
+        title: "新用户注册",
+        area: ["680px", "510px"],
+        iframe: {
+            src: "/User/StudentRegister"
+        }
+    });
+};
+
+if (!Array.prototype.indexOf) {
+    Array.prototype.indexOf = function (elt /*, from*/) {
+        var len = this.length >>> 0;
+        var from = Number(arguments[1]) || 0;
+        from = (from < 0)
+	         ? Math.ceil(from)
+	         : Math.floor(from);
+        if (from < 0)
+            from += len;
+        for (; from < len; from++) {
+            if (from in this &&
+	          this[from] === elt)
+                return from;
+        }
+        return -1;
+    };
+}
+
+function getUrlParam(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+    if (r != null) { //返回参数值
+        return unescape(r[2]);
+    }
+    return null;
+}
+
+//刷新父窗口
+function RefreshParent() {
+    window.parent.location.reload();
+}
+
+function navListCtrl($scope, $http) {
+    $http.post("/Navigation/GetList")
+        .success(function (data) {
+            $scope.items = data;
+        });
+}
+
+function headerCtrl($scope, $http) {
+    $scope.login = { userName: "", password: "", verifCode: "" };
+    $scope.register = function () {
+        $.layer({
+            type: 2,
+            maxmin: false,
+            title: "学生注册",
+            area: ["680px", "510px"],
+            iframe: {
+                src: "/User/StudentRegister"
+            }
+        });
+    };
+
+    $scope.orderReg = function () {
+        $.layer({
+            type: 2,
+            maxmin: false,
+            title: "注册报名",
+            area: ["493px", "485px"],
+            iframe: {
+                src: "/User/OrderRegister"
+            }
+        });
+    };
+
+    $scope.login = function () {
+        $.layer({
+            type: 2,
+            maxmin: false,
+            title: "用户登录",
+            area: ["480px", "330px"],
+            iframe: {
+                src: "/User/Login"
+            }
+        });
+    };
+
+    $scope.logout = function () {
+        layer.load(2);
+        $http.post("/User/LoginOut").success(function (data) {
+            layer.msg("退出成功!", 2, 9, function () {
+                window.location.href = "/";
+            });
+        });
+    };
+
+    function login2() {
+        $.layer({
+            type: 2,
+            maxmin: false,
+            title: "用户登录",
+            area: ["480px", "330px"],
+            closeBtn: [0, false], //显示关闭按钮
+            iframe: {
+                src: "/User/ModifyPwd"
+            }
+        });
+    };
+
+    $scope.doLogin = function () {
+        if (stringIsEnpty($scope.login.userName)) {
+            layer.alert("请填写账号！", 3);
+            return;
+        } else if (stringIsEnpty($scope.login.password)) {
+            layer.alert("请填写密码！", 3);
+            return;
+        }
+        var index = layer.load(0);
+        $http.post("/User/DoLogin", {
+            userName: $scope.login.userName,
+            password: $scope.login.password,
+            loginKey: loginKey,
+            verifCode: $scope.login.verifCode
+        }).success(function (data) {
+            layer.close(index);
+            if (data.errorCode == 0) {
+                layer.alert("账号或密码不正确！", 3);
+                return;
+            } else if (data.errorCode == 1) {
+                if (location.href.indexOf("skipUrl") != -1) {
+                    location.href = getUrlParam("skipUrl");
+                } else {
+                    location.reload();
+                }
+            } else if (data.errorCode == 2) {
+                layer.alert("用户未注册！", 3);
+                return;
+            } else if (data.errorCode == 3) {
+                layer.alert("用户已登录！", 3);
+                return;
+            } else if (data.errorCode == "4") {
+                layer.msg("验证码错误");
+            } else if (data.errorCode == "5") {
+                layer.load("密码过于简单", 2);
+                setTimeout(function () {
+                    login2();
+                }, 2000);
+            } else if(data.errorCode == -1) {
+                layer.alert("用户被系统禁止登录！", 3);
+                return;
+            }
+        });
+    };
+
+    $("li[name=user_info]").mouseover(function () {
+        $("ul[name=dropdown_menu]").show();
+    }).mouseout(function () {
+        $("ul[name=dropdown_menu]").hide();
+    });
+}
+
+function onlyHrHeaderPartialController($scope, $http) {
+    if (dirName === 'kjTheme') {
+        if (isDropdown) {
+            $.each($('a[name=dropdown]'), function (i, v) {
+                var node = $.trim($(v).parent().parent().prev().text());
+                if (node === name) {
+                    $(v).parent().parent().prev().css({ color: '#333' });
+                    //                    v.style.color = '#333';
+                    $(v).parent().parent().prev().css({ background: '#F3F3F3' });
+                    return false;
+                }
+            });
+        }
+    }
+
+    $.each($('#example-navbar-collapse>ul>li>a'), function (i, v) {
+        if ($.trim(v.innerText) === name) {
+            v.style.color = "#333";
+            $(v).parent().css({ background: '#F3F3F3' });
+        }
+    });
+
+    $scope.user = {};
+    $scope.isLogin = false;
+    $scope.navigations = [];
+
+    $('ul.nav li a[data-toggle="tooltip"]').tooltip();
+
+    var dv = $("#nav_bar");
+    var container = $("#nav_bar_container");
+    container.height(dv.height());
+    $(window).bind("resize", function () {
+        container.height(dv.height());
+    });
+    var st;
+    dv.attr("otop", dv.offset().top); //存储原来的距离顶部的距离
+    $(window).scroll(function () {
+        st = Math.max(document.body.scrollTop || document.documentElement.scrollTop);
+        if (st >= parseInt(dv.attr("otop"))) {
+            if (dv.css("position") != "fixed") {
+                dv.css({ "position": "fixed", top: 0, "z-index": 9999 });
+            }
+        } else if (dv.css("position") != "static") {
+            dv.css({ "position": "static" });
+        }
+    });
+
+    $scope.register = function () {
+        $.layer({
+            type: 2,
+            maxmin: false,
+            title: "用户注册",
+            area: ["680px", "510px"],
+            iframe: {
+                src: "/User/StudentRegister"
+            }
+        });
+    };
+
+    $scope.login = function () {
+        $.layer({
+            type: 2,
+            maxmin: false,
+            title: "用户登录",
+            area: ["480px", "330px"],
+            iframe: {
+                src: "/User/Login"
+            }
+        });
+    };
+
+    $scope.orderReg = function () {
+        $.layer({
+            type: 2,
+            maxmin: false,
+            title: "意向订单注册",
+            area: ["493px", "485px"],
+            iframe: {
+                src: "/User/OrderRegister"
+            }
+        });
+    };
+
+    $scope.logout = function () {
+        layer.load(2);
+        $http.get("/User/LoginOut?timestamp=" + new Date().getTime()).success(function () {
+            layer.msg("退出成功!", 2, 9, function () {
+                window.location.href = "/";
+            });
+        });
+    };
+
+    //导航链接
+    $scope.navClick = function (url, isNewWin, name, isDropdown) {
+        if (url.substring(0, 1) == '/') {
+            url = url.substring(1, url.length)
+        }
+        //判断当前主题
+        $.post('/theme/getCurrTheme', function (data) {
+            var themeUrl = data.homeUrl.toLocaleLowerCase();
+            if (themeUrl === 'onlyhrtheme/home') {
+                url += '?page=home';
+            } else if (themeUrl === 'onlyhrtheme/homepage') {
+                url += '?page=homePage';
+            }
+            if (name) {
+                if (url.indexOf('?') != -1) {
+                    url += '&name=' + name;
+                } else {
+                    url += '?name=' + name;
+                }
+            }
+            if (isDropdown) {
+                url += '&isDropdown=' + isDropdown;
+            }
+            if (url.indexOf("http") == -1) {
+                url = "/" + url;
+            }
+            if (isNewWin) {
+                window.open(url);
+            } else {
+                window.location.href = url;
+            }
+        });
+    };
+    //登陆后，导航上的用户信息显示改为鼠标移动上去显示
+    $("#user_info").mouseover(function () {
+        $("#dropdown_menu").show();
+    }).mouseout(function () {
+        $("#dropdown_menu").hide();
+    });
+}
+
+function weiFangNavController($scope, $http) {
+    //导航链接 
+    $scope.navClick = function (url, isNewWin, name, isDropdown) {
+        if (url.substring(0, 1) == '/') {
+            url = url.substring(1, url.length)
+        }
+
+        //判断当前主题
+        $.post('/theme/getCurrTheme', function (data) {
+            var themeUrl = data.homeUrl.toLocaleLowerCase();
+            if (themeUrl === 'WeiFangPurplishRedTheme/home') {
+                url += '?page=home';
+            } else if (themeUrl === 'WeiFangPurplishRedTheme/homepage') {
+                url += '?page=homePage';
+            }
+            if (name) {
+                if (url.indexOf('?') != -1) {
+                    url += '&name=' + name;
+                } else {
+                    url += '?name=' + name;
+                }
+            }
+            if (isDropdown) {
+                url += '&isDropdown=' + isDropdown;
+            }
+            if (url.indexOf("http") == -1) {
+                url = "/" + url;
+            }
+            if (isNewWin) {
+                window.open(url);
+            } else {
+                window.location.href = url;
+            }
+        });
+    };
+
+}
+
+//浮动广告
+function adFloatCtrl($scope) {
+    $scope.orderReg = function () {
+        $.layer({
+            type: 2,
+            maxmin: false,
+            title: "用户注册",
+            area: ["680px", "510px"],
+            iframe: {
+                src: "/User/StudentRegister"
+            }
+        });
+    };
+}
+
+//判断头部搜地址是否为空
+function SearchCheckValue() {
+    var Search = document.getElementById("SearchText").value;
+    if (Search == null || Search == '') {
+        return false;
+    }
+    return true;
+}
+
+common.showValidatorError = function (elem, msg) {
+    var formGroup = $(elem).parents(".form-group");
+    if (formGroup.next().hasClass("error")) {
+        formGroup.next().remove();
+    }
+    formGroup.addClass("has-error");
+    formGroup.after('<div class="form-group has-error error">' +
+                '<div class="col-sm-2"></div>' +
+                '<div class="col-sm-9">' +
+                    '<span class="w5c-error">' + msg + '</span>' +
+                '</div>' +
+        '</div>');
+};
+
+common.removeValidatorError = function (elem) {
+    var formGroup = $(elem).parents(".form-group");
+    formGroup.removeClass("has-error");
+    formGroup.next(".error").remove();
+};
+
+common.changeTwoDecimal = function (x) {
+    var f_x = parseFloat(x);
+    if (!angular.isNumber(f_x)) {
+        alert('common.changeTwoDecimal接受到的不是有效参数');
+        return false;
+    }
+    return Math.round(x * 100) / 100;
+};
+
+common.showLoginLayer = function () {
+    $.layer({
+        type: 2,
+        maxmin: true,
+        title: "用户登录",
+        area: ["480px", "330px"],
+        shadeClose: true,
+        iframe: { src: "/User/Login" }
+    });
+};
+
+common.initBootpag = function (dataCount, maxItemNum, maxVisiblePageNum) {
+    if (!maxItemNum || !$.isNumeric(maxItemNum)) {
+        maxItemNum = 10;
+    }
+
+    if (!maxVisiblePageNum || !$.isNumeric(maxVisiblePageNum)) {
+        maxVisiblePageNum = 10;
+    }
+    return $("#page-selection").bootpag({
+        page: 1,
+        total: Math.ceil(dataCount / maxItemNum),
+        maxVisible: maxVisiblePageNum
+    });
+}
+
+common.GlobalEvent = (function () {
+    var dic = {};
+    return {
+        addEvent: function (evtName, callback) {
+            if (!$.isFunction(callback)) {
+                return;
+            }
+            if (!dic[evtName]) {
+                dic[evtName] = [];
+            }
+            dic[evtName].push(callback);
+        },
+        removeEvent: function (evtName, callback) {
+            if (!$.isFunction(callback)) {
+                return;
+            }
+            var arr = dic[evtName];
+            if (arr) {
+                var index = arr.indexOf(callback);
+                if (index != -1) {
+                    dic[evtName].splice(index, 1);
+                }
+            }
+        },
+        dispatch: function (evtName, data) {
+            if (!data) {
+                data = {};
+            }
+            var arr = dic[evtName];
+            if (!arr) {
+                return;
+            }
+
+            $.each(arr, function (index, item) {
+                item(data);
+            });
+        }
+    };
+})();
+
+function stringIsEnpty(str) {
+    if (str == null || str == undefined || str == "") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function stringTruncat(str, len, endStr) {
+    if (stringIsEnpty(str)) {
+        return "";
+    }
+    if (str.length <= len) {
+        return str;
+    }
+
+    str = str.substr(0, len);
+    if (endStr) {
+        str += endStr;
+    }
+
+    return str;
+}
+
+//获取url
+(function ($) {
+    $.getUrlParam = function (name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+})(jQuery);
+
+//新窗口打开
+function openWindow(url, target) {
+    var tt, w, left, top, width, height;
+    width = screen.width;
+    height = screen.height - 60;
+    left = 0;
+    if (left < 0) { left = 0; }
+
+    top = 0;
+    if (top < 0) { top = 0; }
+
+    tt = "toolbar=no, menubar=no, scrollbars=yes,resizable=no,location=no, status=no, fullscreen=no,";
+    tt = tt + "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top;
+    w = window.open(url, target, tt);
+    try {
+        w.focus();
+    } catch (e) { }
+}
+
+//时间对象转字符串
+function jsTimeToString(time) {
+    var year = time.getFullYear();
+    var month = time.getMonth() + 1;
+    var day = time.getDate();
+    var hour = time.getHours();
+    var minute = time.getMinutes();
+    var second = time.getSeconds();
+    if (month < 10) {
+        month = "" + month;
+    }
+    if (day < 10) {
+        day = "" + day;
+    }
+    if (hour < 10) {
+        hour = "0" + hour;
+    }
+    if (minute < 10) {
+        minute = "0" + minute;
+    }
+    if (second < 10) {
+        second = "0" + second;
+    }
+    var strTime = year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second;
+    return strTime;
+}
+
+//随机数
+function RndNum(n) {
+    var rnd = "";
+    for (var i = 0; i < n; i++)
+        rnd += Math.floor(Math.random() * 10);
+    return rnd;
+}
+
+function EncodeUrl(str) {
+    var str1 = str.split("/");
+    var str2 = "";
+    if (str1.length > 5) {
+        str1[5] = encodeURI(str1[5]);
+        for (var i = 0; i < str1.length; i++) {
+            str2 += "/" + str1[i];
+        }
+    } else {
+        str2 = str;
+    }
+    return str2.replace("//", "/");
+}
+
+//本地服务
+var localServiceUrl = "http://127.0.0.1:32889";
+
+//文件扩展名
+function getExtName(fileName) {
+    var str = fileName.split(".");
+    var extName = fileName;
+    if (str.length > 0) {
+        extName = str[str.length - 1];
+    }
+    return extName;
+}
+
+//时间差计算
+function getDateDiff(startTime, endTime) {
+    var DAY = 86400000; //24 * 60 * 60 * 1000
+    var HOUR = 3600000; //60 * 60 * 1000
+    var MINUTE = 60000; //60 * 1000
+    var SECOND = 1000;
+    startTime = startTime.replace(/-/g, "/");
+    endTime = endTime.replace(/-/g, "/");
+    var sTime = new Date(startTime);
+    var eTime = new Date(endTime);
+    var time = eTime.getTime() - sTime.getTime();
+    var dataDiff = "";
+    if (time >= DAY) {
+        dataDiff = Math.floor(time / DAY) + "天";
+    } else if (time < DAY && time >= HOUR) {
+        dataDiff = Math.floor(time / HOUR) + "小时";
+    } else if (time < HOUR && time >= MINUTE) {
+        dataDiff = Math.floor(time / MINUTE) + "分钟";
+    } else if (time < MINUTE && time > SECOND) {
+        dataDiff = Math.floor(time / SECOND) + "秒";
+    } else {
+        dataDiff = 0 + "秒";
+    }
+    return dataDiff;
+}
+
+function cseIndexCtrl($scope, $http) {
+    $scope.register = function () {
+        $.layer({
+            type: 2,
+            maxmin: false,
+            title: "用户注册",
+            area: ["680px", "510px"],
+            iframe: {
+                src: "/User/StudentRegister"
+            }
+        });
+    }
+
+    var themePath = "/Assets/theme/cse/";
+    $("#Image13").hover(
+      function () {
+          $(this).attr("src", themePath + "images/03-1h.png");
+      },
+      function () {
+          $(this).attr("src", themePath + "images/03-1.png");
+      }
+    );
+
+    $("#Image12").hover(
+      function () {
+          $(this).attr("src", themePath + "images/03-2h.png");
+      },
+      function () {
+          $(this).attr("src", themePath + "images/03-2.png");
+      }
+    );
+
+    $("#Image14").hover(
+      function () {
+          $(this).attr("src", themePath + "images/03-3h.png");
+      },
+      function () {
+          $(this).attr("src", themePath + "images/03-3.png");
+      }
+    );
+
+}
+
+//新窗口
+function openwin(url) {
+    var a = document.createElement("a");
+    a.setAttribute("href", url);
+    a.setAttribute("target", "_blank");
+    a.setAttribute("id", "camnpr");
+    document.body.appendChild(a);
+    a.click();
+}
+
+//关闭窗口
+function closeWindow() {
+    if (window.opener && window.opener.location) {
+        window.opener.location.reload();
+    } else {
+        window.location.href = "/";
+        return;
+    }
+    window.opener = null;
+    window.open("", "_self");
+    window.close();
+}/**
+* Created by Leente on 2014/10/16.
+*/
+common.filter = {};
+common.filter.courseStatus = function () {
+    return function (input) {
+        var dic = {
+            published: "已发布",
+            unpublished: "未发布",
+            closed: "已关闭",
+            trash: "废弃"
+        };
+        return dic[input];
+    };
+};
+
+common.filter.coursePicture = function () {
+    return function (input) {
+        if (input == "" || input == null || input == undefined) {
+            return "/files/course/480.jpg";
+            //return "../assets/img/default/course-large.png";
+        } else {
+            return "/files/" + input;
+        }
+    };
+};
+
+common.filter.courseSerializeMode = function () {
+    return function (input) {
+        var out = "";
+        switch (input) {
+            case "finished":
+                out = "已完结";
+                break;
+            case "serialize":
+                out = "更新中";
+                break;
+            default:
+                out = "非连载课程";
+                break;
+        }
+        return out;
+    };
+};
+
+common.filter.timeFormat = function () {
+    return function (input) {
+        var out = "";
+        var m = Math.floor(input / 60);
+        var s = input % 60;
+        out += m < 10 ? "0" + m : m;
+        out += ":";
+        out += s < 10 ? "0" + s : s;
+        return out;
+    };
+};
+
+common.filter.createdTimeFormat = function () {
+    return function (input) {
+        var timestamp = parseInt(input);
+        var out = new Date(parseInt(timestamp) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ');
+        return out;
+    };
+};
+
+common.filter.fileSizeFormat = function () {
+    return function (input) {
+        var out;
+        var G = Math.pow(1024, 3);
+        var M = Math.pow(1024, 2);
+        var K = 1024;
+        if (input > G) {
+            out = common.changeTwoDecimal(input / G) + "G";
+        } else if (input < G && input > M) {
+            out = common.changeTwoDecimal(input / M) + "M";
+        } else if (input < M && input > K) {
+            out = common.changeTwoDecimal(input / K) + "K";
+        } else {
+            out = input + "B";
+        }
+        return out;
+    };
+};
+
+common.filter.fileTypeFilter = function () {
+    return function (input) {
+        switch (input) {
+            case "video":
+                return "视频";
+            case "audio":
+                return "音频";
+            case "image":
+                return "图片";
+            case "document":
+                return "文档";
+            case "zip":
+                return "压缩文件";
+            case "scorm":
+                return "scorm课件";
+            case "other":
+                return "其他";
+        }
+    }
+};
+
+common.filter.priceFormat = function () {
+    return function (input) {
+        if (!$.isNumeric(input)) {
+            return "";
+        }
+        var reg = /^[0-9]+$/;
+        var price = "" + input;
+        if (reg.test(price)) {
+            return input + ".00";
+        } else {
+            var strArr = price.split(".");
+            price = strArr[0] + ".";
+            if (strArr[1].length == 1) {
+                price += strArr[1] + "0";
+            } else {
+                price += strArr[1];
+            }
+            return price;
+        }
+    };
+};
+
+common.filter.questionTypeFormat = function () {
+    return function (input) {
+        switch (input) {
+            case "multi":
+                return "多选题";
+            case "single":
+                return "单选题";
+            case "judge_correct":
+                return "判断改错题";
+            case "fill":
+                return "填空题";
+            case "typing":
+                return "打字题";
+            case "answer":
+                return "问答题";
+            case "operate":
+                return "操作题";
+            case "eva_multi":
+                return "测评多选题";
+            case "judge":
+                return "判断题";
+            case "eva_single":
+                return "测评单选题";
+            case "compose":
+                return "组合题";
+            case "voice":
+                return "语音题";
+           
+        }
+        return input;
+    }
+};
+
+common.filter.decodeUrlFilter = function () {
+    return function (input) {
+        if (stringIsEnpty(input)) {
+            return "";
+        }
+        return decodeURIComponent(input);
+    };
+};
