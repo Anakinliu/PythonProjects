@@ -12,18 +12,27 @@ def main_fun(source, target):
     """
     low = 0
     high = len(source) - 1
-
+    times = 0
+    print('比较次数: ', end="")
     while low <= high:
         mid = (low + high) // 2  # python3地板除取整
         if target == source[mid]:
+            times += 1
+            print(times)
             return mid
+        times += 1
         if target < source[mid]:
             high = mid - 1
         else:
             low = mid + 1
+    print(times)
     return None
 
 
-test_list = [1, 2, 4, 6, 22, 34, 55, 99, 192, 435, 999]
-result = main_fun(test_list, 435)
-print result
+# test_list = [1, 2, 4, 6, 22, 34, 55, 99, 192, 435, 999]
+big_test = []
+for item in range(10):
+    big_test.append(item)
+
+result = main_fun(big_test, 8)
+print('target index is : ' + str(result))
