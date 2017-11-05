@@ -15,7 +15,8 @@ def main_fun(source, target):
     times = 0
     print('比较次数: ', end="")
     while low <= high:
-        mid = (low + high) // 2  # python3地板除取整
+        # 为什么是相加再除2? 其实
+        mid = low + (high - low) // 2  # python3地板除取整
         if target == source[mid]:
             times += 1
             print(times)
@@ -31,8 +32,8 @@ def main_fun(source, target):
 
 # test_list = [1, 2, 4, 6, 22, 34, 55, 99, 192, 435, 999]
 big_test = []
-for item in range(10):
+for item in range(100):
     big_test.append(item)
 
-result = main_fun(big_test, 8)
+result = main_fun(big_test, 99)
 print('target index is : ' + str(result))
