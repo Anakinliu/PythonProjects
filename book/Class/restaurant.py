@@ -28,3 +28,8 @@ my_restaurant.set_number_served(100)
 print(my_restaurant.number_served)
 my_restaurant.increment_number_served(100)
 print(my_restaurant.number_served)
+print("==================")
+print(my_restaurant.__class__)
+print(Restaurant.__class__)  # 类定义就是type类的一个对象的类型声明, 基类为object
+x = Restaurant.__class__
+print(x.__bases__)
