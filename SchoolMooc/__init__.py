@@ -4,7 +4,6 @@ import urllib
 import urllib2
 import cookielib
 import threading
-import json
 import time
 import re
 
@@ -28,8 +27,8 @@ for i in range(len(contentlist)):
         continue
     else:
         content.append((contentlist[i])[4:40])
-userid = userid[0][10:46]
-courseid = courseid[0][12:48]
+userid = userid[0][10:46]  # 用户ID号
+courseid = courseid[0][12:48]  # 课程ID号
 for i in range(len(timelength)):
     if type(timelength[i][3]) == int:
         minute.append(timelength[i][1:4])
@@ -42,11 +41,12 @@ aboutUrl = 'http://121.250.173.149/user/GetUserInfo'
 checker = 'http://121.250.173.149/User/TimingCheckUser'
 saver = 'http://121.250.173.149/CourseLessonLearn/Save'
 lessonsid = content
-data = {
-    "loginKey": "userName",
-    "username": "201512150108",
-    "password": "201512150108"
-}
+# data = {  # 不需要了, source.html内有ID, 不需要密码
+#     "loginKey": "userName",
+#     "username": "201512150108",
+#     "password": "201512150108"
+# }
+
 
 def hh(username, password):
     dataarg = {"loginKey": "userName", "username": username, "password": "123456", 'password': password}
@@ -66,11 +66,11 @@ def hh(username, password):
 
 
 class myThread(threading.Thread):  # 继承父类threading.Thread
-    def __init__(self, threadlessonid, threadheader, threadminute):
+    def __init__(self, thread_lesson_id, thread_header, thread_minute):
         threading.Thread.__init__(self)
-        self.lessonid = threadlessonid
-        self.header = threadheader
-        self.minute = threadminute
+        self.lessonid = thread_lesson_id
+        self.header = thread_header
+        self.minute = thread_minute
 
     def run(self):  # 把要执行的代码写到run函数里面 线程在创建后会直接运行run函数
         alive = 0
@@ -138,7 +138,7 @@ class myThread(threading.Thread):  # 继承父类threading.Thread
                            "courseId": courseid,
                            "lessonId": self.lessonid,
                            "startTime": starttime,
-                           "learnTime": "300",
+                           "learnTime": "60",
                            "batchId": ""}  # learntime越大, 刷课跨度越快
 
             # 拼接url
@@ -147,7 +147,8 @@ class myThread(threading.Thread):  # 继承父类threading.Thread
             # opener.open(request, saverdata)
             urllib2.urlopen(saverrequest)  # 此语句代替opener.open
             # times = 0
-            alive += 5
+            alive += 1
+            time.sleep(1)
             # print '================'
             # print alive
             # print self.minute
@@ -177,8 +178,8 @@ header = {'Connection': connection,
 # 保存cookie到本地
 # cookie.save(ignore_discard=True, ignore_expires=True)
 # 制作请求
-postdata = urllib.urlencode(data)
-request = urllib2.Request(loginUrl, postdata, header)
+# postdata = urllib.urlencode(data)
+# request = urllib2.Request(loginUrl, postdata, header)
 # 执行正式请求
 # result = urllib2.urlopen(request)  # 需要验证码了...
 # print result.read()                # 需要验证码了...
@@ -187,19 +188,20 @@ request = urllib2.Request(loginUrl, postdata, header)
 # request = urllib2.Request(checker, postdata, headers)
 
 
-# 刷课, 太快, 每节课是一个线程, 线程之间最好间隔很长, 否则首页显示动态!
+# 刷课, 太快, 每节课是一个线程, 线程之间最好间隔很长
 
-for i in range(1, len(lessonsid)):
+for i in range(0, 10):
     lessonid = lessonsid[i]
     # print lessonid
-    print minute[i]
-    thread = myThread(lessonid, header, int(minute[i]))  # str转int
+    print float(minute[i])
+    my_thread = myThread(lessonid, header, int(minute[i]))  # str转int
     # 开启线程
-    thread.start()
-    if i % 5 == 0:
-        thread.join()
+    my_thread.start()
+    # my_thread.join(float(minute[i]))  # 不除5了
+    # if i % 5 == 0:
+    #     thread.join(float(minute[i]))
 
-print 'Main END'
+print 'Main thread END'
 # 创建新线程
 # for i in range(19, 20):
 #     if i < 10:

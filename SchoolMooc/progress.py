@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 
-#!/usr/bin/python
+#!/usr/bin/python_snake
 # -*- coding: UTF-8 -*-
 import urllib
 import urllib2

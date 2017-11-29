@@ -1,4 +1,4 @@
-file_path = 'text_files\s_pi_digits.txt'
+file_path = r'..\text_files\pi_digits.txt'
 try:
     with open(file_path) as file_obj:
         contents = file_obj.read()
