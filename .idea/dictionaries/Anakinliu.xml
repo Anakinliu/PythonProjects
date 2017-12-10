@@ -2,6 +2,9 @@
   <dictionary name="Anakinliu">
     <words>
       <w>anakinliu</w>
+      <w>centerx</w>
+      <w>centery</w>
+      <w>pygame</w>
     </words>
   </dictionary>
 </component>
