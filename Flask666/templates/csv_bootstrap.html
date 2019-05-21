@@ -1,0 +1,181 @@
+{% extends "base_bootstrap.html" %}
+{% block title %}
+DL-NLP
+{% endblock %}
+{% block styles %}
+    {{ super() }}
+    <style>
+
+
+a{
+  text-decoration: none;
+}
+
+.main-wrap h1 {
+        color: #fff;
+            margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+/* ALL LOADERS */
+
+.loader{
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
+/* LOADER 7 */
+
+#loader{
+  -webkit-perspective: 120px;
+  -moz-perspective: 120px;
+  -ms-perspective: 120px;
+  perspective: 120px;
+}
+
+#loader:before{
+  content: "";
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  width: 50px;
+  height: 50px;
+  background-color: #3498db;
+  animation: flip 1s infinite;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotate(0);
+  }
+
+  50% {
+    transform: rotateY(180deg);
+  }
+
+  100% {
+    transform: rotateY(180deg)  rotateX(180deg);
+  }
+}
+
+    </style>
+{% endblock %}
+{% block page_content %}
+
+    {#  继承bootstrap原有的脚本，避免被覆写  #}
+    {% block script %}
+        <script src="{{ url_for("static",filename="js/jquery-3.4.1.min.js") }}"></script>
+{#    <script src="{{ url_for("static",filename="js/crawler.js") }}"></script>#}
+        <script src="{{ url_for("static",filename="js/csv.js") }}">
+        </script>
+    {% endblock %}
+
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-2">
+                <button id="show_all" class="btn btn-success float-wrapper">显示目前爬取到的数据</button>
+            </div>
+            <div class="form-group col-md-1">
+                <label class="sr-only" for="jump">跳转页号</label>
+                <input id="jump_num" type="text" class="form-control" placeholder="跳转页号">
+            </div>
+            <div class="col-md-1">
+                <button id="jump_to" class="btn btn-success">跳转</button>
+            </div>
+            <div class="col-md-1">
+                <button id="show_good" class="btn btn-success">只显示好评</button>
+            </div>
+            <div class="col-md-1">
+                <button id="show_normal" class="btn btn-warning">只显示中评</button>
+            </div>
+            <div class="col-md-1">
+                <button id="show_bad" class="btn btn-danger">只显示差评</button>
+            </div>
+        </div>
+    </div>
+    <div id="loader_div" class="container hidden">
+        <div class="align-center">
+            <div class="loader" id="loader"></div>
+        </div>
+    </div>
+
+    <div>
+    <table class="table table-bordered table-condensed table-hover">
+        <caption><b id="page_count"></b></caption>
+      <thead>
+        <tr>
+          <th class="col-md-1">行</th>
+          <th scope="col" class="col-md-10">评论内容</th>
+          <th scope="col" class="col-md-1">用户评价</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="r1">
+            <td class="col-md-1">1</td>
+            <td id="11" class="col-md-10"></td>
+            <td id="12" class="col-md-1"></td>
+        </tr>
+        <tr id="r2">
+            <td class="col-md-1">2</td>
+            <td id="21" class="col-md-10"></td>
+            <td id="22" class="col-md-1"></td>
+        </tr>
+        <tr id="r3">
+            <td class="col-md-1">3</td>
+            <td id="31" class="col-md-10"></td>
+            <td id="32" class="col-md-1"></td>
+        </tr>
+        <tr id="r4" >
+            <td class="col-md-1">4</td>
+            <td id="41" class="col-md-10"></td>
+            <td id="42" class="col-md-1"></td>
+        </tr>
+        <tr id="r5">
+            <td class="col-md-1">5</td>
+            <td id="51" class="col-md-10"></td>
+            <td id="52" class="col-md-1"></td>
+        </tr>
+        <tr id="r6">
+            <td class="col-md-1">6</td>
+            <td id="61" class="col-md-10"></td>
+            <td id="62" class="col-md-1"></td>
+        </tr>
+        <tr id="r7">
+            <td class="col-md-1">7</td>
+            <td id="71" class="col-md-10"></td>
+            <td id="72" class="col-md-1"></td>
+        </tr>
+        <tr id="r8">
+            <td class="col-md-1">8</td>
+            <td id="81" class="col-md-10"></td>
+            <td id="82" class="col-md-1"></td>
+        </tr>
+        <tr id="r9">
+            <td class="col-md-1">9</td>
+            <td id="91" class="col-md-10"></td>
+            <td id="92" class="col-md-1"></td>
+        </tr>
+        <tr id="r10">
+            <td class="col-md-1">10</td>
+            <td id="101" class="col-md-10"></td>
+            <td id="102" class="col-md-1"></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="row" >
+            <div class="col-md-1">
+                <button id="pre_btn" class="btn btn-success">上一页</button>
+            </div>
+            <div class="col-md-2 col-md-offset-4">
+                <p>当前第 <b id="current_page_num"></b> 页</p>
+            </div>
+            <div class="col-md-1 col-md-offset-4">
+                <button id="next_btn" class="btn btn-success">下一页</button>
+            </div>
+    </div>
+{% endblock %}

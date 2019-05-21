@@ -9,13 +9,16 @@ app = Flask(__name__)
 bootstrap = Bootstrap(app)
 
 # 商品ID与回调函数
-# 按销量选了三个牌子的，1 小米 2 公牛 3 良品
+# 按销量选了三个牌子的，1 小米 2 公牛 3 良品 4 飞利浦
 param_list = [['4354506', 'fetchJSON_comment98vv3810'],
                 ['492036', 'fetchJSON_comment98vv203899'],
-                ['5342704', 'fetchJSON_comment98vv774'], ]
+                ['5342704', 'fetchJSON_comment98vv774'],
+              ['4130061', 'fetchJSON_comment98vv4666'],
+              ]
 
 # init
 csv_handler = CSVHandler()
+
 
 @app.route('/')
 def index():
@@ -59,20 +62,32 @@ def get_reviews():
 
 @app.route('/all_csv')
 def all_csv():
-    return render_template('all_bootstrap.html')
+    return render_template('csv_bootstrap.html')
 
 
 @app.route('/_get_first_csv')
 def get_first_csv():
-    res = csv_handler.get_first()
-    return jsonify(result=res)
+    cla = request.args.get('cla', 0, type=int)
+    count, res = csv_handler.get_first(cla)
+    return jsonify(count=count, result=res)
 
 
 @app.route('/_get_want_csv')
 def get_want_csv():
     want_index = request.args.get('want_index', 1, type=int)
     res = csv_handler.get_want(want_index)
-    return jsonify(res)
+    print(res)
+    return jsonify(result=res)
+
+
+@app.route('/do_data')
+def do_data():
+    return render_template('data_bootstrap.html')
+
+
+@app.route('/learn_data')
+def learn_data():
+    return render_template('learn_bootstrap.html')
 
 # @app.route('/_get_saved_reviews')
 # def get_saved_reviews():

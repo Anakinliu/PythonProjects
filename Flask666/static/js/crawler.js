@@ -7,7 +7,7 @@
          // console.log($('select#score').get(0).selectedIndex);
          console.log(p);
          // 显示第几页
-         $('caption#current_page').html('已爬取的第' + p + '页');
+         $('b#current_page').html('已爬取的第 ' + p + ' 页');
 
           $.getJSON('/_get_reviews', {
               // 发送的数据
@@ -25,7 +25,7 @@
                   window.clearInterval(cool_down);
                   // 禁用按钮
                   $("button#resume").attr('disabled',true);
-                  $("button#pause").attr('disabled',true);
+                  $("button#pause").attr('disabled',false);
               }
               for (let i = 0; i< data.result.length; i++){
                   for(let j=0; j<2; j++){
@@ -36,13 +36,16 @@
                       } else {
                            let s = data.result[i][1];
                             switch (s) {
-                              case 1: $(id).text('😒');$(id).addClass('danger');
+                              case 1: $(id).text('😒' + s + '星');
+                              //$(id).addClass('danger');
                                   break;
                               case 2:
-                              case 3: $(id).text('😐');$(id).addClass('warning');
+                              case 3: $(id).text('😐' + s + '星');
+                              //$(id).addClass('warning');
                                   break;
                               case 4:
-                              case 5: $(id).text('😊');$(id).addClass('success');
+                              case 5: $(id).text('😃' + s + '星');
+                              //$(id).addClass('success');
                                   break;
                             }
                       }
@@ -109,7 +112,7 @@
                  if (intDiff <= 0){
                      getReview();
                      if(p > e_p){
-                         console.log("e > e_p");
+                         console.log("p > e_p");
                          pause();
                          // 显示警告框
                          $('div#task_end').removeClass('hidden');
