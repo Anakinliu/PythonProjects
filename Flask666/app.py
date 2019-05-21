@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, url_for, jsonify
 from flask_bootstrap import Bootstrap
 from crawler import JDCommentsCrawler
 import urllib
+from csv_handler import CSVHandler
 
 app = Flask(__name__)
 # 扩展在创建应用实例时初始化,一种方式是将应用实例传入构造函数
@@ -13,10 +14,17 @@ param_list = [['4354506', 'fetchJSON_comment98vv3810'],
                 ['492036', 'fetchJSON_comment98vv203899'],
                 ['5342704', 'fetchJSON_comment98vv774'], ]
 
+# init
+csv_handler = CSVHandler()
 
 @app.route('/')
-def hello_world():
+def index():
     return render_template('index_bootstrap.html')
+
+
+@app.route('/crawler')
+def crawler():
+    return render_template('crawler_bootstrap.html')
 
 
 @app.route('/_get_reviews')
@@ -24,13 +32,6 @@ def get_reviews():
     # 参数名， 默认值，需要转换的类型
     # page = request.args.get('page', type=int)
     # print("得到的page为", page)
-    """
-    page: p++,
-    start_p: $('input#start_p').val(),
-    end_p: $('input#end_p').val(),
-    product_id: $('select#brand').val(),
-    score: $('select#score').val(),
-    """
     start_page = request.args.get('start_p', type=int)
     end_page = request.args.get('end_p', type=int)
     brand = request.args.get('brand', type=int)  # 1 小米
@@ -55,6 +56,23 @@ def get_reviews():
     # print(JDC.crawler())
     return jsonify(result=res)
 
+
+@app.route('/all_csv')
+def all_csv():
+    return render_template('all_bootstrap.html')
+
+
+@app.route('/_get_first_csv')
+def get_first_csv():
+    res = csv_handler.get_first()
+    return jsonify(result=res)
+
+
+@app.route('/_get_want_csv')
+def get_want_csv():
+    want_index = request.args.get('want_index', 1, type=int)
+    res = csv_handler.get_want(want_index)
+    return jsonify(res)
 
 # @app.route('/_get_saved_reviews')
 # def get_saved_reviews():

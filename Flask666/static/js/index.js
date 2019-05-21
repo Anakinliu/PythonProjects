@@ -90,9 +90,9 @@
          window.onbeforeunload = null;
      }
      //开始爬取按钮事件
-  $(function() {
-    $('button#start').bind('click', start);
-  });
+      $(function() {
+        $('button#start').bind('click', start);
+      });
      //倒计时
      let cool_down;
      let intDiff = 14;
