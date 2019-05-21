@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index_with_Jinja</title>
+</head>
+<body>
+<h1>welcome! {{agent}}</h1>
+<!--默认不会渲染转义，想转义需要加过滤器 | safe来转义-->
+<!--不要对任何用户输入使用转义-->
+{{filter | safe}}
+</body>
+</html>

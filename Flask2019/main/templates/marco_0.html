@@ -1,0 +1,10 @@
+{# marco<->宏 #}
+<!--为了重复使用宏，可以把宏保存在单独文件中，需要时导入-->
+{% marco render_comment(comment) %}
+    <li>{{comment}}</li>
+{% endmarco %}
+<ul>
+    {% for comment in comments %}}
+        {{render_comment(comment)}}
+    {% endfor %}
+</ul>

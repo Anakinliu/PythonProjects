@@ -1,0 +1,21 @@
+{% extends "base_bootstrap.html" %}
+{% block title %}
+index_with_Jinja&bootstrap
+{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>welcome! {{agent}}</h1>
+    <p>
+        The local date and time is {{ moment(current_time)
+            .format('LLL')}}.
+    </p>
+    <p>
+{#   fromNow渲染相对时间戳，随着时间推移刷新     #}
+        That was {{ moment(current_time).fromNow(refresh=True) }}
+    </p>
+    <!--默认不会渲染转义，想转义需要加过滤器 | safe来转义-->
+    <!--不要对任何用户输入使用转义-->
+    {{filter | safe}}
+</div>
+{% endblock %}

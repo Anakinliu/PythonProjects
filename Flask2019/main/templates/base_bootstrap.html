@@ -1,0 +1,57 @@
+{#继承bootstrap/base.html#}
+{% extends "bootstrap/base.html" %}
+{# title块也是Flask-Bootstrap基模板中定义的区块 #}
+{% block title %}
+    base template
+{% endblock %}
+{# 引入Moment.js库 #}
+{% block scripts %}
+{{ super() }}
+{#  Flask-Moment向模板开放moment对象  #}
+{{ moment.include_moment() }}
+    {{ moment.locale('zh') }}
+{% endblock %}
+{# navbar块也是Flask-Bootstrap基模板中定义的区块 #}
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button"
+                    class="navbar-toggle"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse">
+                <span class="sr-only">
+                    Toggle navigation
+                </span>
+                <span class="icon-bar">
+                </span>
+                <span class="icon-bar">
+                </span>
+                <span class="icon-bar">
+                </span>
+            </button>
+            <a class="navbar-brand"
+               href="/">
+                user with bootstrap
+            </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/">
+                        HOME
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+{# content块也是Flask-Bootstrap基模板中定义的区块 #}
+<div class="container">
+    {# 交给衍生模板 #}
+    {% block page_content %}
+    {% endblock %}
+</div>
+{% endblock %}

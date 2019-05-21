@@ -1,0 +1,34 @@
+{% extends "base_bootstrap.html" %}
+{% block title %}
+结果页
+{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>最大概率是{{ res }}, 具体概率如下👇：</h1>
+</div>
+    <div>
+    <table  class="table table-bordered table-hover">
+      <thead >
+        <tr>
+          <th scope="col">类别</th>
+          <th scope="col">概率</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="success">
+          <td>好评😊</td>
+          <td>{{ probs[2] }}</td>
+        </tr>
+        <tr class="warning">
+          <td>中评😐</td>
+          <td>{{ probs[1] }}</td>
+        </tr>
+        <tr class="danger">
+          <td>差评😒</td>
+          <td>{{ probs[0] }}</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+{% endblock %}

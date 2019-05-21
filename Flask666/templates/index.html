@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="{{ url_for("static",filename="js/jquery-3.4.1.min.js") }}"></script>
+    <title>CNM</title>
+</head>
+<body>
+
+<script type=text/javascript>
+     let p = 1;
+     function getReview() {
+      $.getJSON('/_get_reviews', {
+          // 发送的
+          page: p++
+          // 空
+      }, function(data) {
+          // data是从服务器接收的数据
+          console.log(data.result);
+          for (let i = 0; i< data.result.length; i++){
+              for(let j=0; j<2; j++){
+                  let id = String("#" + (i+1) + (j+1));
+                  $(id).text(data.result[i][j]);
+              }
+          }
+      });
+      return false;
+    }
+     let ding;
+     function start(){
+         console.log("start()");
+         getReview();
+         ding = self.setInterval("getReview()", 15000);
+     }
+     function restart(){
+         ding = self.setInterval("getReview()", 15000);
+     }
+     function stop(){
+         ding = window.clearInterval(ding);
+     }
+  $(function() {
+    $('a#calculate').bind('click', start);
+  });
+</script>
+
+<h1>jQuery Example</h1>
+<p>
+    <input type=text size=5 name=a> +
+    <input type=text size=5 name=b> =
+    <span id=result>?</span>
+</p>
+ <p><a href=# id=calculate>calculate server side</a></p>
+<div>
+    <table border="1">
+<tr>
+    <td id="11">row 1, cell 1</td>
+    <td id="12">row 1, cell 2</td>
+</tr>
+<tr>
+    <td id="21">row 2, cell 1</td>
+    <td id="22">row 2, cell 2</td>
+</tr>
+<tr>
+    <td id="31">row 1, cell 1</td>
+    <td id="32">row 1, cell 2</td>
+</tr>
+<tr>
+    <td id="41">row 2, cell 1</td>
+    <td id="42">row 2, cell 2</td>
+</tr>
+<tr>
+    <td id="51">row 1, cell 1</td>
+    <td id="52">row 1, cell 2</td>
+</tr>
+<tr>
+    <td id="61">row 2, cell 1</td>
+    <td id="62">row 2, cell 2</td>
+</tr>
+<tr>
+    <td id="71">row 1, cell 1</td>
+    <td id="72">row 1, cell 2</td>
+</tr>
+<tr>
+    <td id="81">row 2, cell 1</td>
+    <td id="82">row 2, cell 2</td>
+</tr>
+<tr>
+    <td id="91">row 1, cell 1</td>
+    <td id="92">row 1, cell 2</td>
+</tr>
+<tr>
+    <td id="101">row 2, cell 1</td>
+    <td id="102">row 2, cell 2</td>
+</tr>
+</table>
+</div>
+
+    <div>
+        <button onclick="stop()">停止爬取</button>
+    </div>
+    <div>
+        <button onclick="restart()">继续爬取</button>
+    </div>
+</body>
+</html>
