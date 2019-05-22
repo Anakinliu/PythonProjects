@@ -24,8 +24,8 @@
                   // 停止进度条
                   window.clearInterval(cool_down);
                   // 禁用按钮
-                  $("button#resume").attr('disabled',true);
-                  $("button#pause").attr('disabled',false);
+                  $("button#resume").attr('disabled',false);
+                  $("button#pause").attr('disabled',true);
               }
               for (let i = 0; i< data.result.length; i++){
                   for(let j=0; j<2; j++){

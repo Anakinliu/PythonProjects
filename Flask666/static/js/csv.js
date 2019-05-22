@@ -20,7 +20,7 @@ $(document).ready(function(){
         set_btn(true)
 });
 function set_btn(flag){
-    show_all_btn.attr('disabled', !flag);
+    //show_all_btn.attr('disabled', !flag);
     jump_to_btn.attr('disabled', flag);
     pre_btn.attr('disabled', flag);
     next_btn.attr('disabled', flag);

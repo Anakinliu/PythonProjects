@@ -1,8 +1,12 @@
-from flask import Flask, render_template, request, url_for, jsonify
+from flask import Flask, render_template, request, Response, url_for, jsonify
 from flask_bootstrap import Bootstrap
 from crawler import JDCommentsCrawler
-import urllib
 from csv_handler import CSVHandler
+from plot import create_figure
+import urllib
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+import io
+
 
 app = Flask(__name__)
 # 扩展在创建应用实例时初始化,一种方式是将应用实例传入构造函数
@@ -88,6 +92,14 @@ def do_data():
 @app.route('/learn_data')
 def learn_data():
     return render_template('learn_bootstrap.html')
+
+
+@app.route('/test.png')
+def plot_png():
+    fig = create_figure()
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype='image/png')
 
 # @app.route('/_get_saved_reviews')
 # def get_saved_reviews():
