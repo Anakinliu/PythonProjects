@@ -18,10 +18,11 @@ class Participle(Thread):
         self.csv_hand = csv_hand
         self.all_review = []
         self.all_score = []
-        self.pre = 'p/'
-        self.f_name = 'participle.csv'
+        self.pre = 'np/'
+        self.f_name = 'cut.npy'
         self.step = 10  # 每次反水的数量
         self.num = 0
+        self.tmp = None
         pass
 
     def read(self):
@@ -52,8 +53,6 @@ class Participle(Thread):
 
     def cut(self):
         # 让csv_hand的x得到初始化
-        if os.path.exists(self.csv_hand.pre + self.pre + self.f_name):
-            return
         self.read()  # 读取所有爬取到的数据
         self.mess()  # 打乱顺序
         done_cut = []
@@ -65,11 +64,15 @@ class Participle(Thread):
             # df.append(sen, ignore_index=True)
             # print(df)
             done_cut.append(sen)
-            pass
+        # print(done_cut)  #ok
+        # print(len(done_cut))  #ok
+        # print('<--')
         done_cut = np.asarray(done_cut)
-        df = pd.DataFrame(done_cut, columns=['participle'])
-        df.to_csv(self.csv_hand.pre + self.pre + self.f_name
-                  , index=False, encoding='gbk')
+        # 改用adarray形式保存
+        np.save(self.csv_hand.pre + self.pre + self.f_name, done_cut)
+        # df = pd.DataFrame(done_cut)
+        # df.to_csv(self.csv_hand.pre + self.pre + self.f_name
+        #           , index=False, encoding='gbk', quoting=0)
         print('已保存分词完的文件')
         # print('done_cut ', len(done_cut))
 
@@ -77,21 +80,28 @@ class Participle(Thread):
         self.cut()
 
     def get_want_participle(self, start_index):
-        ten = pd.read_csv(self.csv_hand.pre + self.pre + self.f_name,
-                          encoding='gbk')
+        self.tmp = np.load(self.csv_hand.pre + self.pre + self.f_name)
+        # tmp = list(tmp)
         start_index -= 1
         start_index *= 10
-        return list(ten['participle'][start_index: start_index + self.step])
+        return self.tmp[start_index: start_index + self.step]
 
     def get_num(self):
-        num = pd.read_csv(self.csv_hand.pre + self.pre + self.f_name,
-                          encoding='gbk')
-        return int(num.count(0))
+        print(type(self.tmp))
+        print(self.tmp.shape)
+        return self.tmp.shape[0] / 10
+    
+    def get_all(self):
+        return np.load(self.csv_hand.pre + self.pre + self.f_name)
 
 
 # hand = CSVHandler()
 # t = Participle(hand)
-
+# t.cut()
+# print(t.get_want_participle(2))
+# print(t.get_all()[1])
+# print(type(t.get_all()))
+# print(len(t.get_all()))
 # t.start()
 # t.join()
 # t.get_want_participle(10)

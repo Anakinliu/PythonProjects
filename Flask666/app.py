@@ -8,7 +8,8 @@ import io
 from crawler import JDCommentsCrawler
 from csv_handler import CSVHandler
 from participle import Participle
-
+from word_2_vec import W2V
+import os
 
 
 app = Flask(__name__)
@@ -43,8 +44,8 @@ def get_reviews():
     # 参数名， 默认值，需要转换的类型
     # page = request.args.get('page', type=int)
     # print("得到的page为", page)
-    start_page = request.args.get('start_p', type=int)
-    end_page = request.args.get('end_p', type=int)
+    start_page = request.args.get('start_p', 1, type=int)
+    end_page = request.args.get('end_p', 1, type=int)
     brand = request.args.get('brand', type=int)  # 1 小米
     score = request.args.get('score', type=int)
     print(str(start_page), ' ', str(end_page), ' ', str(brand), ' ', str(score))
@@ -100,11 +101,12 @@ def learn_data():
 
 @app.route('/_do_participle')
 def _do_participle():
-    # 弄个线程也没看出来有啥用
     global part
+    # 弄个线程也没看出来有啥用
     part = Participle(csv_handler)
-    part.start()
-    part.join()  # 阻塞主线程
+    if os.path.exists(part.csv_hand.pre + part.pre + part.f_name) is False:
+        part.start()
+        part.join()  # 阻塞主线程
     return jsonify(result=1)  # 返回1代表分词保存完了
 
 
@@ -114,7 +116,10 @@ def _get_participle():
     start_index = request.args.get('start_index', 1, type=int)
     print('start index: ', start_index)
     res = part.get_want_participle(start_index)
-    return jsonify(r=res, c=part.get_num() / 10) # 别忘了10
+    fin = []
+    for i in res:
+        fin.append(' | '.join(i))
+    return jsonify(r=fin, c=part.get_num())
 
 
 @app.route('/word_2_vec')
@@ -122,9 +127,20 @@ def word_2_vec():
     return render_template('word2vec_bootstrap.html')
 
 
+@app.route('/_do_convert')
+def _do_convert():
+
+    w2v = W2V(part)
+    w2v.convert()
+    return jsonify(result=1)
+
+
 @app.route('/test.png')
 def plot_png():
-    fig = create_figure()
+    w2v = W2V(part)
+    fig = w2v.get_fig()
+
+    # fig = create_figure()  # from plot import create_figure
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
     return Response(output.getvalue(), mimetype='image/png')

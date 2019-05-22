@@ -3,7 +3,54 @@
 2.2 文字转向量
 {% endblock %}
 {% block page_content %}
+{% block script %}
+    <script src="{{ url_for("static",filename="js/jquery-3.4.1.min.js") }}"></script>
+{#    <script src="{{ url_for("static",filename="js/crawler.js") }}"></script>#}
+{#        <script src="{{ url_for("static",filename="js/csv.js") }}">#}
+{#        </script>#}
+    <script>
+        let do_btn;
+        $(function () {
+           do_btn = $('button#do_convert');
+        });
+        function convert() {
+            $.getJSON('/_do_convert', {
+                // 空
+            },
+            function (data) {
+            let loaded = data.result;
+            // 后台执行完分词后隐藏动画,启用按钮
+            if (loaded === 1){
+                $('div#loader_div').addClass('hidden');
+                do_btn.attr('disabled', true);
+            }
+            // 警告框
+            $('<div>').appendTo('.page-header').addClass('alert alert-success').html('🎉转换已完成🎉').show().delay(1500).fadeOut();
+
+        });
+        }
+
+        $(function () {
+           do_btn.bind('click', convert);
+        });
+    </script>
+{% endblock %}
     <div class="page-header">
-        <h1 class="text-center">😊点击上方导航按钮😊</h1>
+        <div class="row">
+            <div class="col-md-2">
+                <button id="do_convert" class="btn btn-success">开始转换</button>
+            </div>
+
+            <div class="col-md-2">
+                <a href="/test.png" target="_blank"><button id="load_participle" class="btn btn-success">显示分词结果</button></a>
+            </div>
+        </div>
+    <!-- 加载动画 -->
+        <div id="loader_div" class="container hidden">
+            <div class="align-center">
+                <div class="loader" id="loader"></div>
+            </div>
+        </div>
     </div>
+
 {% endblock %}

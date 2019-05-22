@@ -27,8 +27,9 @@ def getFenCiHouDeList():
     # print(data_fenci[0])
     return data_fenci, label
 
-# data, labal = getFenCiHouDeList()
-# print(len(data))
+data, labal = getFenCiHouDeList()
+print(data)
+print(len(data))
 # print(data[0])
 # print(len(data[0]))
 
