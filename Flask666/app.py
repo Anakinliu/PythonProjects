@@ -1,11 +1,14 @@
 from flask import Flask, render_template, request, Response, url_for, jsonify
 from flask_bootstrap import Bootstrap
-from crawler import JDCommentsCrawler
-from csv_handler import CSVHandler
 from plot import create_figure
 import urllib
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import io
+# 项目内
+from crawler import JDCommentsCrawler
+from csv_handler import CSVHandler
+from participle import Participle
+
 
 
 app = Flask(__name__)
@@ -22,6 +25,7 @@ param_list = [['4354506', 'fetchJSON_comment98vv3810'],
 
 # init
 csv_handler = CSVHandler()
+part = Participle(csv_handler)
 
 
 @app.route('/')
@@ -84,14 +88,31 @@ def get_want_csv():
     return jsonify(result=res)
 
 
-@app.route('/do_data')
-def do_data():
-    return render_template('data_bootstrap.html')
+@app.route('/participle')
+def participle():
+    return render_template('participle_bootstrap.html')
 
 
 @app.route('/learn_data')
 def learn_data():
     return render_template('learn_bootstrap.html')
+
+
+@app.route('/_do_participle')
+def _do_participle():
+    # 弄个线程也没看出来有啥用
+    part.start()
+    part.join()  # 阻塞主线程
+    return jsonify(result=1)  # 返回1代表分词保存完了
+
+
+@app.route('/_get_participle')
+def _get_participle():
+    # 这里就没用线程
+    start_index = request.args.get('start_index', 1, type=int)
+    print('start index: ', start_index)
+    res = part.get_want_participle(start_index)
+    return jsonify(result=res, count=part.csv_hand.num)
 
 
 @app.route('/test.png')

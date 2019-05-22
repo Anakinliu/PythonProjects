@@ -5,8 +5,6 @@ DL-NLP
 {% block styles %}
     {{ super() }}
     <style>
-
-
 a{
   text-decoration: none;
 }
@@ -96,12 +94,15 @@ a{
             </div>
         </div>
     </div>
+
+    <!-- 加载动画 -->
     <div id="loader_div" class="container hidden">
         <div class="align-center">
             <div class="loader" id="loader"></div>
         </div>
     </div>
 
+    <!-- 表格 -->
     <div>
     <table class="table table-bordered table-condensed table-hover">
         <caption><b id="page_count"></b></caption>
@@ -172,7 +173,7 @@ a{
                 <button id="pre_btn" class="btn btn-success">上一页</button>
             </div>
             <div class="col-md-2 col-md-offset-4">
-                <p>当前第 <b id="current_page_num"></b> 页</p>
+                <p>当前第 <b id="current_page_num"></b> 页，每页10条。</p>
             </div>
             <div class="col-md-1 col-md-offset-4">
                 <button id="next_btn" class="btn btn-success">下一页</button>

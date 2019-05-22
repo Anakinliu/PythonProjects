@@ -9,7 +9,7 @@ let page_count = 0;
 let current_page_num = 1;
 let cla_page_count;
 // 页面加载完执行
-$(document).ready(function(){
+$(function(){
         show_all_btn = $('button#show_all');
         jump_to_btn = $('button#jump_to');
         pre_btn = $('button#pre_btn');
@@ -17,7 +17,7 @@ $(document).ready(function(){
         good_btn = $('button#show_good');
         normal_btn = $('button#show_normal');
         bad_btn = $('button#show_bad');
-        set_btn(true)
+        set_btn(true);
 });
 function set_btn(flag){
     //show_all_btn.attr('disabled', !flag);
@@ -151,31 +151,31 @@ function next_p() {
         //$('div#loader_div').removeClass('hidden');
     });
 }
-
+// 文档载入完成后执行
 $(function() {
     show_all_btn.bind('click', start);
 });
-
+// 文档载入完成后执行
 $(function() {
     jump_to_btn.bind('click', jump);
 });
-
+// 文档载入完成后执行
 $(function () {
     good_btn.bind('click', good);
 });
-
+// 文档载入完成后执行
 $(function () {
     normal_btn.bind('click', normal);
 });
-
+// 文档载入完成后执行
 $(function () {
     bad_btn.bind('click', bad);
 });
-
+// 文档载入完成后执行
 $(function() {
 pre_btn.bind('click', pre_p);
 });
-
+// 文档载入完成后执行
 $(function() {
 next_btn.bind('click', next_p);
 });

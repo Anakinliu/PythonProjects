@@ -7,7 +7,7 @@
          // console.log($('select#score').get(0).selectedIndex);
          console.log(p);
          // 显示第几页
-         $('b#current_page').html('已爬取的第 ' + p + ' 页');
+         $('b#current_page').html(p);
 
           $.getJSON('/_get_reviews', {
               // 发送的数据

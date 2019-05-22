@@ -1,0 +1,223 @@
+{% extends "base_bootstrap.html" %}
+{% block title %}
+DL-NLP
+{% endblock %}
+{% block styles %}
+    {{ super() }}
+    <style>
+a{
+  text-decoration: none;
+}
+
+.main-wrap h1 {
+        color: #fff;
+            margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+/* ALL LOADERS */
+
+.loader{
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
+/* LOADER 7 */
+
+#loader{
+  -webkit-perspective: 120px;
+  -moz-perspective: 120px;
+  -ms-perspective: 120px;
+  perspective: 120px;
+}
+
+#loader:before{
+  content: "";
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  width: 50px;
+  height: 50px;
+  background-color: #3498db;
+  animation: flip 1s infinite;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotate(0);
+  }
+
+  50% {
+    transform: rotateY(180deg);
+  }
+
+  100% {
+    transform: rotateY(180deg)  rotateX(180deg);
+  }
+}
+
+    </style>
+{% endblock %}
+
+{% block page_content %}
+    {% block script %}
+        <script src="{{ url_for("static",filename="js/jquery-3.4.1.min.js") }}"></script>
+{#    <script src="{{ url_for("static",filename="js/crawler.js") }}"></script>#}
+{#        <script src="{{ url_for("static",filename="js/csv.js") }}">#}
+{#        </script>#}
+    <script>
+    let do_part_btn;
+    let load_part_btn;
+    let loaded = 0;
+    let current_page_num = 1;
+    $(document).ready(function(){
+        do_part_btn = $('button#do_participle');
+        load_part_btn = $('button#load_participle');
+        load_part_btn.attr('disabled', true);
+    });
+
+    function do_part() {
+        // 显示加载动画
+        $('div#loader_div').removeClass('hidden');
+        // 禁用按钮
+        do_part_btn.attr('disabled', true);
+        $.getJSON('/_do_participle', {
+            // 空
+        }, function (data) {
+            loaded = data.result;
+            // 后台执行完分词后隐藏动画,启用按钮
+            if (loaded === 1){
+                $('div#loader_div').addClass('hidden');
+                load_part_btn.attr('disabled', false);
+            }
+        });
+    }
+
+    function load_part() {
+        // 显示加载动画
+        $('div#loader_div').removeClass('hidden');
+        // 获取跳转页码
+        let jump_num = $('input#jump_num').val();
+        if (jump_num === "") {
+            jump_num = 1;
+        } else {
+            current_page_num = jump_num;
+        }
+        $.getJSON('/_get_participle', {
+            // 空
+            start_index: jump_num,
+        }, function (data) {
+            $('div#loader_div').addClass('hidden');
+            //console.log(data.result);
+            //console.log(data.count);
+            $('b#page_count').html(data.count);
+            $('b#current_page_num').html();
+            for (let i = 1; i <= data.result.length; i++) {
+                let id = 'td#' + i;
+                $(id).html(data.result[i-1]);
+            }
+        });
+    }
+    $(function () {
+        do_part_btn.bind('click', do_part);
+    });
+
+    $(function () {
+        load_part_btn.bind('click', load_part)
+    })
+    </script>
+{% endblock %}
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-2">
+                <button id="do_participle" class="btn btn-success">开始进行分词</button>
+            </div>
+            <div class="form-group col-md-2">
+                <label class="sr-only" for="jump">跳转页号</label>
+                <input id="jump_num" type="text" class="form-control" placeholder="跳转页号， 默认第1页">
+            </div>
+            <div class="col-md-2">
+                <button id="load_participle" class="btn btn-success">显示分词结果</button>
+            </div>
+        </div>
+        <!-- 加载动画 -->
+        <div id="loader_div" class="container hidden">
+            <div class="align-center">
+                <div class="loader" id="loader"></div>
+            </div>
+        </div>
+    </div>
+
+     <!-- 表格 -->
+    <div>
+    <table class="table table-bordered table-condensed table-hover">
+        <caption>总共&nbsp<b id="page_count"></b>&nbsp页，每页10条。</caption>
+      <thead>
+        <tr>
+          <th class="col-md-1">行</th>
+          <th scope="col" class="col-md-11">分词后的评论</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="r1">
+            <td class="col-md-1">1</td>
+            <td id="1" class="col-md-11"></td>
+        </tr>
+        <tr id="r2">
+            <td class="col-md-1">2</td>
+            <td id="2" class="col-md-11"></td>
+        </tr>
+        <tr id="r3">
+            <td class="col-md-1">3</td>
+            <td id="3" class="col-md-11"></td>
+        </tr>
+        <tr id="r4" >
+            <td class="col-md-1">4</td>
+            <td id="4" class="col-md-11"></td>
+        </tr>
+        <tr id="r5">
+            <td class="col-md-1">5</td>
+            <td id="5" class="col-md-11"></td>
+        </tr>
+        <tr id="r6">
+            <td class="col-md-1">6</td>
+            <td id="6" class="col-md-11"></td>
+        </tr>
+        <tr id="r7">
+            <td class="col-md-1">7</td>
+            <td id="7" class="col-md-11"></td>
+        </tr>
+        <tr id="r8">
+            <td class="col-md-1">8</td>
+            <td id="8" class="col-md-11"></td>
+        </tr>
+        <tr id="r9">
+            <td class="col-md-1">9</td>
+            <td id="9" class="col-md-11"></td>
+        </tr>
+        <tr id="r10">
+            <td class="col-md-1">10</td>
+            <td id="10" class="col-md-11"></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="row" >
+            <div class="col-md-1">
+                <button id="pre_btn" class="btn btn-success">上一页</button>
+            </div>
+            <div class="col-md-2 col-md-offset-4">
+                <p>当前第&nbsp<b id="current_page_num"></b>&nbsp页</p>
+            </div>
+            <div class="col-md-1 col-md-offset-4">
+                <button id="next_btn" class="btn btn-success">下一页</button>
+            </div>
+    </div>
+
+
+{#    <img src="/test.png" alt="my plot">#}
+{% endblock %}

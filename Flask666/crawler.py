@@ -66,8 +66,9 @@ class JDCommentsCrawler:
         comments = json_info['comments']
         for com in comments:
             tmp_list.append([com['content'], com['score']])
-        df = pd.DataFrame(tmp_list, columns=['content', 'score'])
-        self.save_csv(df, self.productId, p, self.score)
+        if len(tmp_list) == 10:
+            df = pd.DataFrame(tmp_list, columns=['content', 'score'])
+            self.save_csv(df, self.productId, p, self.score)
         return tmp_list
 
 

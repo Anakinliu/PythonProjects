@@ -13,6 +13,27 @@ class CSVHandler:
         self.pre = 'csv/'
         self.count = {}
         self.x = []
+        self.num = 0
+
+    def cla_x(self, cla):
+        """
+        根据类别区分文件名
+        :param cla: 0:则self.x包含所有文件名, 1-3分别为差-好文件名
+        :return: None
+        """
+        # file: 每个文件的文件名， 不好含路径
+        for file in os.listdir(self.pre):
+            self.num += 1
+            if file.endswith('.csv'):
+                # print(file)
+                # print(file[-5])
+                if cla is 0:
+                    self.x.append(self.pre + file)
+                elif cla is int(file[-5]):  # 注意要转为int！！！
+                    # 只向x中加入差评
+                    self.x.append(self.pre + file)
+                    pass
+        # print(len(self.x))
 
     def get_first(self, cla=0):
         """
@@ -23,17 +44,9 @@ class CSVHandler:
         # 为None时各个value为三个品牌的所有评论总数
         for k in param_list:
             self.count[k] = 0
-        # file: 每个文件的文件名， 不好含路径
-        for file in os.listdir(self.pre):
-            if file.endswith('.csv'):
-                # print(file)
-                # print(file[-5])
-                if cla is 0:
-                    self.x.append(self.pre + file)
-                elif cla is int(file[-5]):  # 注意要转为int！！！
-                    # 只向x中加入差评
-                    self.x.append(self.pre + file)
-                    pass
+
+        self.cla_x(cla)
+
         print(len(self.x))
         for f in self.x:
             for k in param_list:
@@ -59,22 +72,9 @@ class CSVHandler:
         #     print(c, s)
         return result
 
-    # 不用了，前台给index
-    # def get_pre(self):
-    #     f = pd.read_csv(self.x[index], encoding='gbk')
-    #     result = [[c, s] for c, s in zip(f['content'], f['score'])]
-    #     # for c, s in zip(first['content'], first['score']):
-    #     #     print(c, s)
-    #     return result
-    #
-    #
-    # def get_next(self):
-    #     first = pd.read_csv(x[0], encoding='gbk')
-    #     result = [[c, s] for c, s in zip(first['content'], first['score'])]
-    #     # for c, s in zip(first['content'], first['score']):
-    #     #     print(c, s)
-    #     return count, result
 
 
-test = CSVHandler()
-print(test.get_first(1))
+
+
+# test = CSVHandler()
+# print(test.get_first(1))
