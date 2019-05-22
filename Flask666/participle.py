@@ -3,6 +3,7 @@ from csv_handler import CSVHandler
 import pandas as pd
 import numpy as np
 from threading import Thread
+import os
 
 
 class Participle(Thread):
@@ -20,6 +21,7 @@ class Participle(Thread):
         self.pre = 'p/'
         self.f_name = 'participle.csv'
         self.step = 10  # 每次反水的数量
+        self.num = 0
         pass
 
     def read(self):
@@ -49,6 +51,9 @@ class Participle(Thread):
         self.all_score = np_score
 
     def cut(self):
+        # 让csv_hand的x得到初始化
+        if os.path.exists(self.csv_hand.pre + self.pre + self.f_name):
+            return
         self.read()  # 读取所有爬取到的数据
         self.mess()  # 打乱顺序
         done_cut = []
@@ -78,9 +83,15 @@ class Participle(Thread):
         start_index *= 10
         return list(ten['participle'][start_index: start_index + self.step])
 
+    def get_num(self):
+        num = pd.read_csv(self.csv_hand.pre + self.pre + self.f_name,
+                          encoding='gbk')
+        return int(num.count(0))
 
-hand = CSVHandler()
-t = Participle(hand)
+
+# hand = CSVHandler()
+# t = Participle(hand)
+
 # t.start()
 # t.join()
 # t.get_want_participle(10)

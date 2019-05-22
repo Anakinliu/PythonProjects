@@ -135,11 +135,11 @@ function pre_p() {
 
 function next_p() {
      if (current_page_num === page_count) {
-        // 下面会减一，导致下标错误，所以设成循环的
-        current_page_num = 1;
-        } else {
-            current_page_num++;
-        }
+          // 下面会减一，导致下标错误，所以设成循环的
+          current_page_num = 1;
+      } else {
+          current_page_num++;
+      }
     $.getJSON('/_get_want_csv', {
         want_index: current_page_num,
         },

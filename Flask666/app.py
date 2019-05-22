@@ -25,7 +25,7 @@ param_list = [['4354506', 'fetchJSON_comment98vv3810'],
 
 # init
 csv_handler = CSVHandler()
-part = Participle(csv_handler)
+part = None
 
 
 @app.route('/')
@@ -101,6 +101,8 @@ def learn_data():
 @app.route('/_do_participle')
 def _do_participle():
     # 弄个线程也没看出来有啥用
+    global part
+    part = Participle(csv_handler)
     part.start()
     part.join()  # 阻塞主线程
     return jsonify(result=1)  # 返回1代表分词保存完了
@@ -112,7 +114,12 @@ def _get_participle():
     start_index = request.args.get('start_index', 1, type=int)
     print('start index: ', start_index)
     res = part.get_want_participle(start_index)
-    return jsonify(result=res, count=part.csv_hand.num)
+    return jsonify(r=res, c=part.get_num() / 10) # 别忘了10
+
+
+@app.route('/word_2_vec')
+def word_2_vec():
+    return render_template('word2vec_bootstrap.html')
 
 
 @app.route('/test.png')
