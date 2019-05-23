@@ -72,6 +72,7 @@ class Participle(Thread):
         done_cut = np.asarray(done_cut)
         # 改用adarray形式保存
         np.save(Participle.path, done_cut)
+        np.save("csv/np/score.py", self.all_score)
         # df = pd.DataFrame(done_cut)
         # df.to_csv(self.csv_hand.pre + self.pre + self.f_name
         #           , index=False, encoding='gbk', quoting=0)
@@ -97,10 +98,26 @@ class Participle(Thread):
     def get_all():
         return np.load(Participle.path + ".npy")
 
+    @staticmethod
+    def get_r_s():
+        cut_review = np.load(Participle.path + ".npy")
+        score = np.load("csv/np/score.py" + ".npy")
+        new_s = []
+        for i in score:
+            if i == 1:
+                new_s.append(0)
+            elif i == 2 or i == 3:
+                new_s.append(1)
+            else:
+                new_s.append(2)
+        return cut_review, new_s
+
 
 # hand = CSVHandler()
 # t = Participle(hand)
 # t.cut()
+# r, s = t.get_r_s()
+# print(type(r))
 # print(t.get_want_participle(2))
 # print(t.get_all()[1])
 # print(type(t.get_all()))

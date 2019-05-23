@@ -29,7 +29,7 @@ class CSVHandler:
                 # print(file)
                 # print(file[-5])
                 if cla is 0:
-                    print(self.pre + file)
+                    # print(self.pre + file)
                     CSVHandler.x.append(self.pre + file)
                 elif cla is int(file[-5]):  # 注意要转为int！！！
                     # 只向x中加入差评

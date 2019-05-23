@@ -8,29 +8,33 @@ embedding_dim = 100
 
 
 class W2V:
-    path = 'model/word_vec_model.model'
 
     def __init__(self):
-        self.model = None
+        self.path = 'model'
 
     def convert(self):
         from gensim.models import word2vec
         # 使用分词类的一个静态方法
         sentences = Participle.get_all()
         sentences = np.ndarray.tolist(sentences)
-        if os.path.exists(self.path):
-            self.model = word2vec.Word2Vec.load(self.path)
+        if os.path.exists(self.path + "word_vec_model.model"):
+            model = word2vec.Word2Vec.load(self.path + "word_vec_model.model")
             pass
         else:
-            self.model = word2vec.Word2Vec(sentences, hs=1, min_count=10, window=1, size=embedding_dim)
-            self.model.save(self.path)  # 保存模型
+            model = word2vec.Word2Vec(sentences, hs=1, min_count=5, window=1, size=embedding_dim)
+            model.save(self.path + "/word_vec_model.model")  # 保存模型
         print('saved')
 
     def sim(self, word):
         # 可能出现keterror！！！
-        sim_list = self.model.wv.similar_by_word(word)
-        print(type(sim_list))
-        print(sim_list[0])
+        from gensim.models import word2vec
+        model = word2vec.Word2Vec.load(self.path + "word_vec_model.model")
+        try:
+            sim_list = model.wv.similar_by_word(word)
+        except KeyError:
+            sim_list = []
+        # print(type(sim_list))
+        # print(sim_list[0])
         return sim_list
 
     def get_fig(self):

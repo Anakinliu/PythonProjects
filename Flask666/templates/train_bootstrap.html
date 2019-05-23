@@ -1,0 +1,102 @@
+{% extends "base_bootstrap.html" %}
+{% block title %}
+训练模型
+{% endblock %}
+{% block page_content %}
+    {% block script %}
+    <script src="{{ url_for("static",filename="js/jquery-3.4.1.min.js") }}"></script>
+{#    <script src="{{ url_for("static",filename="js/crawler.js") }}"></script>#}
+{#        <script src="{{ url_for("static",filename="js/csv.js") }}">#}
+{#        </script>#}
+    <script>
+        let do_fit_bt;
+        let plot_bt_1;
+        let plot_bt_2;
+        function set_btn(flag) {
+            do_fit_bt.attr('disabled', flag);
+            plot_bt_1.attr('disabled', !flag);
+            plot_bt_2.attr('disabled', !flag);
+        }
+        function do_fit() {
+            $('div#loader_div').removeClass('hidden');
+            set_btn(true);
+
+            $.getJSON('/_do_fit', {
+                // 空
+                epochs:$('input#input_epochs').val(),
+            },
+            function (data) {
+            $('div#loader_div').addClass('hidden');
+            // 警告框
+            $('<div>').appendTo('div#info')
+                .addClass('alert alert-success')
+                .html('🎉已完成训练🎉').show().delay(1500).fadeOut();
+            });
+            do_fit_bt.attr('disabled', false);
+            $('img#plot_1')
+                .removeAttr('src');
+            $('img#plot_2')
+                .removeAttr('src');
+        }
+
+        function show_plot_1() {
+            $('img#plot_1')
+                .attr('src','/plot_1.png');
+        }
+
+        function show_plot_2() {
+            $('img#plot_2')
+                .attr('src','/plot_2.png');
+        }
+
+
+        $(function () {
+            do_fit_bt = $('button#do_fit').bind('click', do_fit);
+            plot_bt_1 = $('button#plot_btn_1').bind('click', show_plot_1);
+            plot_bt_2 = $('button#plot_btn_2').bind('click', show_plot_2);
+        });
+    </script>
+    {% endblock %}
+
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-2">
+                <button id="do_fit" class="btn btn-success">训练模型</button>
+            </div>
+            <div class="form-group col-md-3">
+            <label class="sr-only" for="start-page-num">训练轮次</label>
+            <input id="input_epochs" type="number" min="1" data-bind="value:replyNumber" max="20" class="form-control" placeholder="训练轮次, 默认为5">
+          </div>
+            <div class="col-md-2">
+                <button id="plot_btn_1" class="btn btn-success">显示准确率</button>
+            </div>
+            <div class="col-md-2">
+                <button id="plot_btn_2" class="btn btn-success">显示损失率</button>
+            </div>
+        </div>
+        </div>
+        <div id="info">
+        <p></p>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <!-- 加载动画 -->
+            <div id="loader_div" class="container hidden">
+                <div class="align-center">
+                    <div class="loader" id="loader"></div>
+                </div>
+                <p>✨模型学习中✨</p>
+            </div>
+        <div class="row">
+            <div id="plot_1" class="col-md-6">
+                <img id="plot_1"/>
+            </div>
+            <div id="plot_2" class="col-md-6">
+                <img id="plot_2"/>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

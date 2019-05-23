@@ -10,9 +10,21 @@
 {#        </script>#}
     <script>
         let do_btn;
+        let sim_btn;
+        let plot_btn;
         $(function () {
-           do_btn = $('button#do_convert');
+            do_btn = $('button#do_convert');
+            sim_btn = $('button#sim_btn');
+            plot_btn = $('button#plot_btn');
+            set_btn(false);
         });
+
+        function set_btn (flag) {
+            do_btn.attr('disabled', flag);
+            sim_btn.attr('disabled', !flag);
+            plot_btn.attr('disabled', !flag);
+        }
+
         function convert() {
             $('div#loader_div').removeClass('hidden');
 
@@ -24,17 +36,57 @@
             // 后台执行完分词后隐藏动画,启用按钮
             if (loaded === 1){
                 $('div#loader_div').addClass('hidden');
-                do_btn.attr('disabled', true);
+                set_btn(true)
             }
             // 警告框
             $('<div>').appendTo('.page-header').addClass('alert alert-success').html('🎉转换已完成🎉').show().delay(1500).fadeOut();
 
         });
         }
+        let tt;
+        function sim() {
+            $('div#loader_div').removeClass('hidden');
+
+            sim_btn.attr('disabled', true);
+            let w = $('input#input_word').val();
+            $.getJSON('/_get_sim', {
+                // 空
+                input_word: w,
+            },
+            function (data) {
+                sim_btn.attr('disabled', false);
+                $('div#loader_div').addClass('hidden');
+
+                if (data.result.length === 0) {
+                    // 没有这个词，keyerror
+                    // 警告框
+                         $('<div>').appendTo('.page-header')
+                             .addClass('alert alert-danger')
+                             .html('👀没有这个词哦👀')
+                             .show().delay(800).fadeOut();
+                }
+                for (let i = 0; i< data.result.length; i++){
+                    for(let j=0; j<2; j++){
+                        let id = "td#" + (i+1) + (j+1);
+                        // 不显示数字，显示表情
+                        $(id).html(data.result[i][j]);
+
+                    }
+                }
+        });
+        }
 
         $(function () {
            do_btn.bind('click', convert);
         });
+
+        $(function () {
+           sim_btn.bind('click', sim);
+        });
+
+        //$(function () {
+         //   plot_btn.bind('click', plot);
+        //})
     </script>
 {% endblock %}
     <div class="page-header">
@@ -44,13 +96,13 @@
             </div>
             <div class="form-group col-md-3">
                 <label class="sr-only" for="jump">输入</label>
-                <input id="jump_num" type="text" class="form-control" placeholder="显示输入的近似词">
+                <input id="input_word" type="text" class="form-control" placeholder="显示输入的近似词">
             </div>
             <div class="col-md-2">
-                <button id="load_participle" class="btn btn-success">显示</button>
+                <button id="sim_btn" class="btn btn-success">显示</button>
             </div>
             <div class="col-md-2 col-md-5">
-                <a href="/test.png" target="_blank"><button id="load_participle" class="btn btn-success">显示分词结果</button></a>
+                <a href="/test.png" target="_blank"><button id="plot_btn" class="btn btn-success">显示分词结果</button></a>
             </div>
 
         </div>
@@ -65,5 +117,70 @@
             </div>
         </div>
     </div>
+
+        <!-- 表格 -->
+        <table class="table table-bordered table-condensed">
+            <caption><b>共10个</b></caption>
+          <thead>
+            <tr>
+              <th class="col-md-1">行</th>
+              <th scope="col" class="col-md-3">相似词</th>
+              <th scope="col" class="col-md-3">相似度</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="r1">
+                <td class="col-md-1">1</td>
+                <td id="11" class="col-md-3"></td>
+                <td id="12" class="col-md-3"></td>
+            </tr>
+            <tr id="r2">
+                <td class="col-md-1">2</td>
+                <td id="21" class="col-md-3"></td>
+                <td id="22" class="col-md-3"></td>
+            </tr>
+            <tr id="r3">
+                <td class="col-md-1">3</td>
+                <td id="31" class="col-md-3"></td>
+                <td id="32" class="col-md-3"></td>
+            </tr>
+            <tr id="r4" >
+                <td class="col-md-1">4</td>
+                <td id="41" class="col-md-3"></td>
+                <td id="42" class="col-md-3"></td>
+            </tr>
+            <tr id="r5">
+                <td class="col-md-1">5</td>
+                <td id="51" class="col-md-3"></td>
+                <td id="52" class="col-md-3"></td>
+            </tr>
+            <tr id="r6">
+                <td class="col-md-1">6</td>
+                <td id="61" class="col-md-3"></td>
+                <td id="62" class="col-md-3"></td>
+            </tr>
+            <tr id="r7">
+                <td class="col-md-1">7</td>
+                <td id="71" class="col-md-3"></td>
+                <td id="72" class="col-md-3"></td>
+            </tr>
+            <tr id="r8">
+                <td class="col-md-1">8</td>
+                <td id="81" class="col-md-3"></td>
+                <td id="82" class="col-md-3"></td>
+            </tr>
+            <tr id="r9">
+                <td class="col-md-1">9</td>
+                <td id="91" class="col-md-3"></td>
+                <td id="92" class="col-md-3"></td>
+            </tr>
+            <tr id="r10">
+                <td class="col-md-1">10</td>
+                <td id="101" class="col-md-3"></td>
+                <td id="102" class="col-md-3"></td>
+            </tr>
+          </tbody>
+        </table>
+
 
 {% endblock %}

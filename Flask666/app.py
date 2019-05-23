@@ -11,6 +11,8 @@ from csv_handler import CSVHandler
 from participle import Participle
 from word_2_vec import W2V
 from plot import create_figure
+from threading import Thread
+import tensorflow as tf
 
 
 app = Flask(__name__)
@@ -29,6 +31,10 @@ param_list = [['4354506', 'fetchJSON_comment98vv3810'],
 csv_handler = CSVHandler()
 part = None
 w2v = W2V()
+his = {}
+
+# 。。。
+graph = tf.get_default_graph()
 
 
 @app.route('/')
@@ -43,6 +49,10 @@ def crawler():
 
 @app.route('/_get_reviews')
 def get_reviews():
+    if os.path.exists(Participle.path + ".npy"):
+        os.remove(Participle.path + ".npy")
+    if os.path.exists("csv/np/score.py.npy"):
+        os.remove("csv/np/score.py.npy")
     # 参数名， 默认值，需要转换的类型
     # page = request.args.get('page', type=int)
     # print("得到的page为", page)
@@ -98,7 +108,7 @@ def participle():
 
 @app.route('/learn_data')
 def learn_data():
-    return render_template('learn_bootstrap.html')
+    return render_template('train_bootstrap.html')
 
 
 @app.route('/_do_participle')
@@ -106,7 +116,7 @@ def _do_participle():
     global part
     # 弄个线程也没看出来有啥用
     part = Participle(csv_handler)
-    if os.path.exists(Participle.path) is False:
+    if os.path.exists(Participle.path + ".npy") is False:
         part.start()
         part.join()  # 阻塞主线程
     return jsonify(result=1)  # 返回1代表分词保存完了
@@ -133,6 +143,89 @@ def word_2_vec():
 def _do_convert():
     w2v.convert()
     return jsonify(result=1)
+
+
+@app.route('/_get_sim')
+def _get_sim():
+    input_word = request.args.get('input_word', type=str)
+    print(input_word, type(input_word))
+    res = w2v.sim(input_word)
+    return jsonify(result=res)
+
+
+import train_model
+dl = train_model.DL()
+
+
+@app.route('/_do_fit')
+def _do_fit():
+    ep = request.args.get('epochs', 5, type=int)
+    if ep < 5:
+        ep = 5
+    global graph
+    with graph.as_default():
+        global dl
+        dl = train_model.DL()
+        dl.set_epochs(ep)
+        # print(ep, '-------------------------------------')
+        dl.run()
+    return jsonify(res=1)
+
+
+@app.route('/plot_1.png')
+def _do_plot_1():
+    # input_word = request.args.get('input_word', type=str)
+    fig = dl.show(0)
+    # fig = w2v.get_fig()
+
+    # fig = create_figure()  # from plot import create_figure
+    output = io.BytesIO()
+    f1 = FT(output, fig)
+    f1.start()
+    f1.join()
+    return Response(output.getvalue(), mimetype='image/png')
+
+
+@app.route('/plot_2.png')
+def _do_plot_2():
+    fig = dl.show(1)
+    # fig = w2v.get_fig()
+
+    # fig = create_figure()  # from plot import create_figure
+    output = io.BytesIO()
+    f2 = FT(output, fig)
+    f2.start()
+    f2.join()
+    return Response(output.getvalue(), mimetype='image/png')
+
+
+# 耗时IO
+class FT(Thread):
+
+    def __init__(self, output, fig):
+        super().__init__()
+        self.output = output
+        self.fig = fig
+
+    def run(self):
+        FigureCanvas(self.fig).print_png(self.output)
+
+
+@app.route('/use_model')
+def use_model():
+    return render_template('use_bootstrap.html')
+
+
+@app.route('/_get_pre')
+def _get_pre():
+    input_review = request.args.get('input_review', type=str)
+    import use_model
+    global graph
+    with graph.as_default():
+        print('获得的用户输入', input_review)
+        res, probs = use_model.predict(input_review)
+        print('模型结果', res)
+    return jsonify(res=res, probs=probs)
 
 
 @app.route('/test.png')
