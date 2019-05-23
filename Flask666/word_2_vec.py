@@ -1,8 +1,6 @@
-from gensim.models import word2vec
-from csv_handler import CSVHandler
 from participle import Participle
 import numpy as np
-
+import os
 from sklearn.manifold import TSNE
 import matplotlib.pyplot as plt
 
@@ -10,20 +8,30 @@ embedding_dim = 100
 
 
 class W2V:
-    def __init__(self, part):
-        self.path = 'model/word_vec_model.model'
-        self.part = part
+    path = 'model/word_vec_model.model'
+
+    def __init__(self):
+        self.model = None
 
     def convert(self):
-        sentences = self.part.get_all()
-        # print(sentences)
+        from gensim.models import word2vec
+        # 使用分词类的一个静态方法
+        sentences = Participle.get_all()
         sentences = np.ndarray.tolist(sentences)
-        # print(sentences)
-        model = word2vec.Word2Vec(sentences, hs=1, min_count=10, window=1, size=embedding_dim)
-        model.save(self.path)  # 保存模型
+        if os.path.exists(self.path):
+            self.model = word2vec.Word2Vec.load(self.path)
+            pass
+        else:
+            self.model = word2vec.Word2Vec(sentences, hs=1, min_count=10, window=1, size=embedding_dim)
+            self.model.save(self.path)  # 保存模型
         print('saved')
-        # print(model.most_similar('插排', topn=1))
-        # ----------------------------------------------- #
+
+    def sim(self, word):
+        # 可能出现keterror！！！
+        sim_list = self.model.wv.similar_by_word(word)
+        print(type(sim_list))
+        print(sim_list[0])
+        return sim_list
 
     def get_fig(self):
         """
@@ -33,11 +41,10 @@ class W2V:
         """
         labels = []
         tokens = []
-        model = word2vec.Word2Vec.load(self.path)
-        for word in model.wv.vocab:
-            print(model[word])
+        for word in self.model.wv.vocab:
+            print(self.model[word])
             print(word)
-            tokens.append(model[word])
+            tokens.append(self.model[word])
             labels.append(word)
 
         tsne_model = TSNE(perplexity=40, n_components=3,
@@ -65,5 +72,6 @@ class W2V:
 
 # hand = CSVHandler()
 # t = Participle(hand)
-# w2v = W2V(t)
-
+# w2v = W2V()
+# w2v.convert()
+# w2v.sim('飞利浦')

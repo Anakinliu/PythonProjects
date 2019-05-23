@@ -1,6 +1,8 @@
 
     let p = 1;
     let e_p = 1;
+    let is_error = false;
+    let temp;
      function getReview() {
          console.log("getreview()");
          // console.log($('select#brand').get(0).selectedIndex);
@@ -17,8 +19,10 @@
               score: $('select#score').get(0).selectedIndex,
               // 结束
           }, function(data) {// data是从服务器接收的数据
+              temp = data;
               // 接受的数据出错
-              if (data.result.length <= 1){
+              if (data.result.length < 10 || data === undefined){
+                  is_error = true;
                   // 显示警告框
                   $('div#crawler_warning').removeClass('hidden');
                   // 停止进度条
@@ -68,6 +72,7 @@
         };
      }
      function resume(){
+         is_error = false;
          p = $('input#start_p').val();
          // if (p < new_p){
          //     p = new_p;
@@ -98,11 +103,12 @@
       });
      //倒计时
      let cool_down;
-     let intDiff = 14;
+     let t_wait = 14;
+     let intDiff = t_wait;
      function timer(last_time) {
          intDiff = last_time;
          if (intDiff <= 1){
-             intDiff = 14;
+             intDiff = t_wait;
          }
          // 将前一个计时清除以避免叠加
          if (cool_down != null)
@@ -111,7 +117,7 @@
                  //与setInterval外不是不是同一线程，所以不能 在碗面times--
                  if (intDiff <= 0){
                      getReview();
-                     if(p > e_p){
+                     if(p > e_p && !is_error){
                          console.log("p > e_p");
                          pause();
                          // 显示警告框
@@ -120,7 +126,7 @@
                          window.clearInterval(cool_down);
                      }
                  }
-                 $('div#cool_down_progress').css("width", (100 - intDiff / 14 * 100) + "%");
+                 $('div#cool_down_progress').css("width", (100 - intDiff / t_wait * 100) + "%");
                  intDiff--;
              }, 1000
          );

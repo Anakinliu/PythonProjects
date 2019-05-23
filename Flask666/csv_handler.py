@@ -9,10 +9,11 @@ param_list = {'小米': '4354506',
 
 
 class CSVHandler:
+    x = []
+    pre = 'csv/'
+
     def __init__(self):
-        self.pre = 'csv/'
         self.count = {}
-        self.x = []
         self.num = 0
 
     def cla_x(self, cla):
@@ -22,13 +23,14 @@ class CSVHandler:
         :return: None
         """
         # file: 每个文件的文件名， 不好含路径
-        for file in os.listdir(self.pre):
+        for file in os.listdir(CSVHandler.pre):
             self.num += 1
             if file.endswith('.csv'):
                 # print(file)
                 # print(file[-5])
                 if cla is 0:
-                    self.x.append(self.pre + file)
+                    print(self.pre + file)
+                    CSVHandler.x.append(self.pre + file)
                 elif cla is int(file[-5]):  # 注意要转为int！！！
                     # 只向x中加入差评
                     self.x.append(self.pre + file)
@@ -40,14 +42,14 @@ class CSVHandler:
         因为可能有新文件加入，所以打开这个html页面时要获取文件个数，文件名
         :return: 一个元组,(csv文件个数, 第一个csv文件的内容)
         """
-        self.x = []
+        CSVHandler.x = []
         # 为None时各个value为三个品牌的所有评论总数
         for k in param_list:
             self.count[k] = 0
 
         self.cla_x(cla)
 
-        print(len(self.x))
+        print(len(CSVHandler.x))
         for f in self.x:
             for k in param_list:
                 if param_list[k] in f:
@@ -71,9 +73,6 @@ class CSVHandler:
         # for c, s in zip(first['content'], first['score']):
         #     print(c, s)
         return result
-
-
-
 
 
 # test = CSVHandler()

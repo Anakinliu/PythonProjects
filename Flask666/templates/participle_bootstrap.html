@@ -2,65 +2,7 @@
 {% block title %}
 2.1 分词
 {% endblock %}
-{% block styles %}
-    {{ super() }}
-    <style>
-a{
-  text-decoration: none;
-}
 
-.main-wrap h1 {
-        color: #fff;
-            margin-top: 50px;
-    margin-bottom: 100px;
-}
-
-/* ALL LOADERS */
-
-.loader{
-  width: 100px;
-  height: 100px;
-  border-radius: 100%;
-  position: relative;
-  margin: 0 auto;
-}
-
-/* LOADER 7 */
-
-#loader{
-  -webkit-perspective: 120px;
-  -moz-perspective: 120px;
-  -ms-perspective: 120px;
-  perspective: 120px;
-}
-
-#loader:before{
-  content: "";
-  position: absolute;
-  left: 25px;
-  top: 25px;
-  width: 50px;
-  height: 50px;
-  background-color: #3498db;
-  animation: flip 1s infinite;
-}
-
-@keyframes flip {
-  0% {
-    transform: rotate(0);
-  }
-
-  50% {
-    transform: rotateY(180deg);
-  }
-
-  100% {
-    transform: rotateY(180deg)  rotateX(180deg);
-  }
-}
-
-    </style>
-{% endblock %}
 
 {% block page_content %}
     {% block script %}

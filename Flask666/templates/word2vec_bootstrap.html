@@ -14,6 +14,8 @@
            do_btn = $('button#do_convert');
         });
         function convert() {
+            $('div#loader_div').removeClass('hidden');
+
             $.getJSON('/_do_convert', {
                 // 空
             },
@@ -40,12 +42,23 @@
             <div class="col-md-2">
                 <button id="do_convert" class="btn btn-success">开始转换</button>
             </div>
-
+            <div class="form-group col-md-3">
+                <label class="sr-only" for="jump">输入</label>
+                <input id="jump_num" type="text" class="form-control" placeholder="显示输入的近似词">
+            </div>
             <div class="col-md-2">
+                <button id="load_participle" class="btn btn-success">显示</button>
+            </div>
+            <div class="col-md-2 col-md-5">
                 <a href="/test.png" target="_blank"><button id="load_participle" class="btn btn-success">显示分词结果</button></a>
             </div>
+
         </div>
-    <!-- 加载动画 -->
+
+            <div>
+                <br>
+            </div>
+        <!-- 加载动画 -->
         <div id="loader_div" class="container hidden">
             <div class="align-center">
                 <div class="loader" id="loader"></div>

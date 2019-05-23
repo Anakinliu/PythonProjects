@@ -7,6 +7,8 @@ import os
 
 
 class Participle(Thread):
+    path = 'csv/np/cut.py'
+
     def __init__(self, csv_hand):
         """
         :param csv_hand: CSVHandler的一个实例
@@ -15,14 +17,12 @@ class Participle(Thread):
         Thread.__init__(self)
 
         # csv_hand时一个CSVHandler实例
-        self.csv_hand = csv_hand
         self.all_review = []
         self.all_score = []
-        self.pre = 'np/'
-        self.f_name = 'cut.npy'
         self.step = 10  # 每次反水的数量
         self.num = 0
         self.tmp = None
+        self.csv_hand = csv_hand
         pass
 
     def read(self):
@@ -56,6 +56,8 @@ class Participle(Thread):
         self.read()  # 读取所有爬取到的数据
         self.mess()  # 打乱顺序
         done_cut = []
+        # 无效， 不知道为啥
+        # jieba.suggest_freq('良品', True)
         for review in self.all_review:
             sen = []  # 保存分词后的一条评论
             for ph in jieba.cut(review, cut_all=False):
@@ -69,7 +71,7 @@ class Participle(Thread):
         # print('<--')
         done_cut = np.asarray(done_cut)
         # 改用adarray形式保存
-        np.save(self.csv_hand.pre + self.pre + self.f_name, done_cut)
+        np.save(Participle.path, done_cut)
         # df = pd.DataFrame(done_cut)
         # df.to_csv(self.csv_hand.pre + self.pre + self.f_name
         #           , index=False, encoding='gbk', quoting=0)
@@ -80,7 +82,7 @@ class Participle(Thread):
         self.cut()
 
     def get_want_participle(self, start_index):
-        self.tmp = np.load(self.csv_hand.pre + self.pre + self.f_name)
+        self.tmp = np.load(Participle.path + ".npy")
         # tmp = list(tmp)
         start_index -= 1
         start_index *= 10
@@ -90,9 +92,10 @@ class Participle(Thread):
         print(type(self.tmp))
         print(self.tmp.shape)
         return self.tmp.shape[0] / 10
-    
-    def get_all(self):
-        return np.load(self.csv_hand.pre + self.pre + self.f_name)
+
+    @staticmethod
+    def get_all():
+        return np.load(Participle.path + ".npy")
 
 
 # hand = CSVHandler()

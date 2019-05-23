@@ -1,15 +1,16 @@
 from flask import Flask, render_template, request, Response, url_for, jsonify
 from flask_bootstrap import Bootstrap
-from plot import create_figure
+
 import urllib
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import io
+import os
 # 项目内
 from crawler import JDCommentsCrawler
 from csv_handler import CSVHandler
 from participle import Participle
 from word_2_vec import W2V
-import os
+from plot import create_figure
 
 
 app = Flask(__name__)
@@ -27,6 +28,7 @@ param_list = [['4354506', 'fetchJSON_comment98vv3810'],
 # init
 csv_handler = CSVHandler()
 part = None
+w2v = W2V()
 
 
 @app.route('/')
@@ -104,7 +106,7 @@ def _do_participle():
     global part
     # 弄个线程也没看出来有啥用
     part = Participle(csv_handler)
-    if os.path.exists(part.csv_hand.pre + part.pre + part.f_name) is False:
+    if os.path.exists(Participle.path) is False:
         part.start()
         part.join()  # 阻塞主线程
     return jsonify(result=1)  # 返回1代表分词保存完了
@@ -129,15 +131,12 @@ def word_2_vec():
 
 @app.route('/_do_convert')
 def _do_convert():
-
-    w2v = W2V(part)
     w2v.convert()
     return jsonify(result=1)
 
 
 @app.route('/test.png')
 def plot_png():
-    w2v = W2V(part)
     fig = w2v.get_fig()
 
     # fig = create_figure()  # from plot import create_figure
