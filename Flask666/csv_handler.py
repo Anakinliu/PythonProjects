@@ -22,6 +22,8 @@ class CSVHandler:
         :param cla: 0:则self.x包含所有文件名, 1-3分别为差-好文件名
         :return: None
         """
+        # 需要重置这个x，不然会有多余的文件名加进去
+        CSVHandler.x = []
         # file: 每个文件的文件名， 不好含路径
         for file in os.listdir(CSVHandler.pre):
             self.num += 1

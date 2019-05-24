@@ -30,7 +30,7 @@ class Participle(Thread):
         self.csv_hand.cla_x(0)
         file_names = self.csv_hand.x
 
-        print(len(file_names))
+        # print('--------------------------------', len(file_names))
         for file in file_names:
             d = pd.read_csv(file, encoding='gbk')
             len_d = len(d)

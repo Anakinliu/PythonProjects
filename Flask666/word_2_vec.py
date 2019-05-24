@@ -28,7 +28,7 @@ class W2V:
     def sim(self, word):
         # 可能出现keterror！！！
         from gensim.models import word2vec
-        model = word2vec.Word2Vec.load(self.path + "word_vec_model.model")
+        model = word2vec.Word2Vec.load(self.path + "/word_vec_model.model")
         try:
             sim_list = model.wv.similar_by_word(word)
         except KeyError:
