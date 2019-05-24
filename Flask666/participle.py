@@ -58,10 +58,15 @@ class Participle(Thread):
         done_cut = []
         # 无效， 不知道为啥
         # jieba.suggest_freq('良品', True)
+        with open("res/stopwords.txt", encoding='utf-8') as f:
+            stopWords = [word.replace("\n", "") for word in f.readlines()]
         for review in self.all_review:
             sen = []  # 保存分词后的一条评论
             for ph in jieba.cut(review, cut_all=False):
-                sen.append(ph)
+                if ph in stopWords:
+                    print(ph)
+                else:
+                    sen.append(ph)
             # print(sen)
             # df.append(sen, ignore_index=True)
             # print(df)

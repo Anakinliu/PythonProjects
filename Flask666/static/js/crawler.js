@@ -30,7 +30,9 @@
                   // 禁用按钮
                   $("button#resume").attr('disabled',false);
                   $("button#pause").attr('disabled',true);
+                  return;
               }
+
               for (let i = 0; i< data.result.length; i++){
                   for(let j=0; j<2; j++){
                       let id = String("#" + (i+1) + (j+1));
@@ -103,11 +105,12 @@
       });
      //倒计时
      let cool_down;
-     let t_wait = 14;
+     let t_wait = 14;      // 获取从1到10的随机整数 ，取0的概率极小。;
      let intDiff = t_wait;
      function timer(last_time) {
          intDiff = last_time;
          if (intDiff <= 1){
+             // t_wait = 20;
              intDiff = t_wait;
          }
          // 将前一个计时清除以避免叠加

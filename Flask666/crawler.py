@@ -18,7 +18,6 @@ class JDCommentsCrawler:
             'productId': self.productId,
             'score': self.score,
             'sortType': self.sortType,
-            'pageSize': self.pageSize,
         }
         self.locationUrl = None
 
@@ -29,7 +28,8 @@ class JDCommentsCrawler:
         return str1
 
     def concat_linkparam(self):
-        self.locationUrl = self.locationLink + '?' + self.param_dict2str(self.paramValue) + 'isShadowSku=0&fold=1&page=0'
+        self.locationUrl = self.locationLink + '?' + self.param_dict2str(self.paramValue) + \
+                           'page=' + str(self.page) + '&pageSize=10&isShadowSku=0&fold=1'
         # print(self.locationUrl)
 
     def request_method_page(self, p):
@@ -38,11 +38,12 @@ class JDCommentsCrawler:
             'Connection': 'Keep-Alive',
             'Accept': 'text/html, application/xhtml+xml, */*',
             'Accept-Language': 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36',
             'Referer': 'https://item.jd.com/%s.html' % (self.productId),
             'Host': 'sclub.jd.com'
         }
-        url = self.locationUrl[:-1] + str(p)
+        # url = self.locationUrl[:-1] + str(p)
+        url = self.locationUrl
         print('url : ', url)
         reqs = req.Request(url, headers=headers)
         return reqs
@@ -52,6 +53,7 @@ class JDCommentsCrawler:
         conn = req.urlopen(request_m)
         return_str = conn.read().decode('gbk')
         return_str = return_str[len(self.callback) + 1:-2]
+        print('geted json!')
         return json.loads(return_str)
 
     def save_csv(self, df, pro_id, p, score):

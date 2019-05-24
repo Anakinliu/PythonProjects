@@ -75,8 +75,9 @@ def get_reviews():
     try:
         res = jd_crawler.crawler(start_page)
     except urllib.error.URLError as e:
-        print(e)
+        print('打印', e)
         res = [[]]
+    print('res', res)
     # print(JDC.crawler())
     return jsonify(result=res)
 
@@ -175,6 +176,7 @@ def _do_fit():
 @app.route('/plot_1.png')
 def _do_plot_1():
     # input_word = request.args.get('input_word', type=str)
+    global dl
     fig = dl.show(0)
     # fig = w2v.get_fig()
 
@@ -188,6 +190,7 @@ def _do_plot_1():
 
 @app.route('/plot_2.png')
 def _do_plot_2():
+    global dl
     fig = dl.show(1)
     # fig = w2v.get_fig()
 
