@@ -163,6 +163,8 @@ def _do_fit():
     ep = request.args.get('epochs', 5, type=int)
     if ep < 5:
         ep = 5
+    if ep >= 20:
+        ep = 20
     global graph
     with graph.as_default():
         global dl

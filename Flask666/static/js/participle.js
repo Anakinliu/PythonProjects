@@ -15,7 +15,12 @@
     });
 
     function set_table(result) {
-        for (let i = 1; i <= result.length; i++) {
+        let i;
+        for (i=1; i <= 10; i++) {
+            let id = 'td#' + i;
+            $(id).html("");
+        }
+        for (i = 1; i <= result.length; i++) {
             let id = 'td#' + i;
             $(id).html(result[i-1]);
         }
@@ -45,7 +50,7 @@
         //$('div#loader_div').removeClass('hidden'); // 时间短
         // 获取跳转页码
         let jump_num = $('input#jump_num').val();
-        if (jump_num === "") {
+        if (jump_num.trim() === "") {
             jump_num = 1;
         } else {
             current_page_num = jump_num;
@@ -62,15 +67,17 @@
             page_count = data.c;
             show = data.r;
             $('b#page_count').html(page_count);
+
             $('b#current_page_num').html(current_page_num);
             set_table(data.r);
         });
     }
 
     function pre_p() {
-        if (current_page_num === 1) {
+        console.log(current_page_num);
+        if (current_page_num <= 1) {
             // 下面会减一，导致下标错误，所以设成循环的
-            current_page_num = page_count + 1;
+            current_page_num = parseInt(page_count/10) + 2;
         }
         $.getJSON('/_get_participle', {
             start_index: current_page_num - 1,
@@ -86,7 +93,7 @@
     }
 
     function next_p() {
-        if (current_page_num === page_count) {
+        if (current_page_num >= parseInt(page_count/10) + 1) {
           // 下面会减一，导致下标错误，所以设成循环的
             current_page_num = 0;
         }

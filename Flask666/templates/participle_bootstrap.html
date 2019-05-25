@@ -21,7 +21,7 @@
             </div>
             <div class="form-group col-md-2">
                 <label class="sr-only" for="jump">跳转页号</label>
-                <input id="jump_num" type="text" class="form-control" placeholder="跳转页号， 默认第1页">
+                <input id="jump_num" type="number" min="1" data-bind="value:replyNumber" class="form-control" placeholder="跳转页号， 默认第1页">
             </div>
             <div class="col-md-2">
                 <button id="load_participle" class="btn btn-success">显示分词结果</button>
@@ -32,13 +32,14 @@
             <div class="align-center">
                 <div class="loader" id="loader"></div>
             </div>
+            <p>✨分词中✨</p>
         </div>
     </div>
 
      <!-- 表格 -->
     <div>
     <table class="table table-bordered table-condensed">
-        <caption>总共&nbsp<b id="page_count"></b>&nbsp页，每页10条。</caption>
+        <caption>总共&nbsp<b id="page_count"></b>&nbsp条评论，每页10条。</caption>
       <thead>
         <tr>
           <th class="col-md-1">行</th>

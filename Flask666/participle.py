@@ -31,14 +31,20 @@ class Participle(Thread):
         file_names = self.csv_hand.x
 
         # print('--------------------------------', len(file_names))
+        tmp_review_set = set()
         for file in file_names:
             d = pd.read_csv(file, encoding='gbk')
             len_d = len(d)
             if len_d != 10:  # 有些页不够10条
                 print(file)
             for i in range(len_d):
-                self.all_review.append(d['content'][i])
-                self.all_score.append(d['score'][i])
+                review = d['content'][i]
+                score = d['score'][i]
+                if review not in tmp_review_set:
+                    tmp_review_set.add(review)
+                    self.all_review.append(review)
+                    self.all_score.append(score)
+                    pass
 
     def mess(self):
         # 打乱顺序以便训练
@@ -63,9 +69,7 @@ class Participle(Thread):
         for review in self.all_review:
             sen = []  # 保存分词后的一条评论
             for ph in jieba.cut(review, cut_all=False):
-                if ph in stopWords:
-                    print(ph)
-                else:
+                if ph not in stopWords:
                     sen.append(ph)
             # print(sen)
             # df.append(sen, ignore_index=True)
@@ -92,12 +96,16 @@ class Participle(Thread):
         # tmp = list(tmp)
         start_index -= 1
         start_index *= 10
+        print('start:', start_index, "; end: ", start_index+self.step)
+        if start_index + self.step > self.tmp.shape[0]:
+            print('!!!!!!!!!!!!!!!!!')
+            return self.tmp[start_index:]
         return self.tmp[start_index: start_index + self.step]
 
     def get_num(self):
         print(type(self.tmp))
         print(self.tmp.shape)
-        return self.tmp.shape[0] / 10
+        return self.tmp.shape[0]
 
     @staticmethod
     def get_all():

@@ -65,6 +65,13 @@
      function start(){
          p =  $('input#start_p').val();
          e_p = $('input#end_p').val();
+         if (p === "" || e_p === "") {
+             $('<div>').appendTo('.page-header')
+                             .addClass('alert alert-danger')
+                             .html('😂你还没输入起始范围啊😂')
+                             .show().delay(1000).fadeOut();
+             return;
+         }
          console.log("start()");
          getReview();
          $("button#start").attr('disabled',true);
