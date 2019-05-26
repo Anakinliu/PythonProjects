@@ -129,6 +129,7 @@ def _get_participle():
     start_index = request.args.get('start_index', 1, type=int)
     print('start index: ', start_index)
     res = part.get_want_participle(start_index)
+    # print(res)
     fin = []
     for i in res:
         fin.append(' | '.join(i))

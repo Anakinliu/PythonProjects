@@ -69,7 +69,7 @@ class Participle(Thread):
         for review in self.all_review:
             sen = []  # 保存分词后的一条评论
             for ph in jieba.cut(review, cut_all=False):
-                if ph not in stopWords:
+                if ph not in stopWords and ph is not " ":
                     sen.append(ph)
             # print(sen)
             # df.append(sen, ignore_index=True)

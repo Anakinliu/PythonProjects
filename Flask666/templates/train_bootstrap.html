@@ -13,11 +13,11 @@
         let plot_bt_1;
         let plot_bt_2;
         function set_btn(flag) {
-            do_fit_bt.attr('disabled', flag);
             plot_bt_1.attr('disabled', !flag);
             plot_bt_2.attr('disabled', !flag);
         }
         function do_fit() {
+            do_fit_bt.attr('disabled', true);
             $('div#loader_div').removeClass('hidden');
             set_btn(true);
 
@@ -32,7 +32,8 @@
                 .addClass('alert alert-success')
                 .html('🎉已完成训练🎉').show().delay(1500).fadeOut();
             });
-            do_fit_bt.attr('disabled', false);
+            set_btn(true);
+            do_fit_bt.attr('disabled', true);
             $('img#plot_1')
                 .removeAttr('src');
             $('img#plot_2')
@@ -41,12 +42,12 @@
 
         function show_plot_1() {
             $('img#plot_1')
-                .attr('src','/plot_1.png');
+                .attr('src','/plot_2.png');
         }
 
         function show_plot_2() {
             $('img#plot_2')
-                .attr('src','/plot_2.png');
+                .attr('src','/plot_1.png');
         }
 
 
@@ -54,6 +55,7 @@
             do_fit_bt = $('button#do_fit').bind('click', do_fit);
             plot_bt_1 = $('button#plot_btn_1').bind('click', show_plot_1);
             plot_bt_2 = $('button#plot_btn_2').bind('click', show_plot_2);
+            set_btn(false);
         });
     </script>
     {% endblock %}

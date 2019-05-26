@@ -4,13 +4,14 @@ import numpy as np
 
 from keras.models import model_from_json
 
+max_len = 20
+
 
 def get_vectored_review(data):
     review = []
     for ph in jieba.cut(data, cut_all=False):
         review.append(ph)
     # print("分词 结果：", review)
-    max_len = 20
     # 得到word到index的对应
     model = word2vec.Word2Vec.load('model/word_vec_model.model')
     word2index = {token: token_index for token_index, token in enumerate(model.wv.index2word)}
