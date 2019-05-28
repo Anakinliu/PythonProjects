@@ -33,13 +33,6 @@ class W2V:
             sim_list = model.wv.similar_by_word(word, 100)
         except KeyError:
             sim_list = []
-        req_count = 5
-        for key in model.wv.similar_by_word(word, topn=100):
-            if len(key[0]) >= 1:
-                req_count -= 1
-                print(key[0], key[1])
-                if req_count == 0:
-                    break
         # print(type(sim_list))
         # print(sim_list[0])
         return sim_list

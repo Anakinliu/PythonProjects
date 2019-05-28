@@ -1,6 +1,6 @@
 {% extends "base_bootstrap.html" %}
 {% block title %}
-训练模型
+3. 训练模型
 {% endblock %}
 {% block page_content %}
     {% block script %}
@@ -67,7 +67,7 @@
             </div>
             <div class="form-group col-md-3">
             <label class="sr-only" for="start-page-num">训练轮次</label>
-            <input id="input_epochs" type="number" min="1" data-bind="value:replyNumber" max="20" class="form-control" placeholder="训练轮次, 默认为5">
+            <input id="input_epochs" type="number" min="5" data-bind="value:replyNumber" max="20" class="form-control" placeholder="训练轮次, 默认为5">
           </div>
             <div class="col-md-2">
                 <button id="plot_btn_1" class="btn btn-success">显示准确率</button>

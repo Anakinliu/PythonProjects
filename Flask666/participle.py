@@ -31,6 +31,7 @@ class Participle(Thread):
         file_names = self.csv_hand.x
 
         # print('--------------------------------', len(file_names))
+        # 去除重复的评论
         tmp_review_set = set()
         for file in file_names:
             d = pd.read_csv(file, encoding='gbk')
@@ -64,17 +65,28 @@ class Participle(Thread):
         done_cut = []
         # 无效， 不知道为啥
         # jieba.suggest_freq('良品', True)
+        empty_index = []
         with open("res/stopwords.txt", encoding='utf-8') as f:
-            stopWords = [word.replace("\n", "") for word in f.readlines()]
-        for review in self.all_review:
+            stop_words = [word.replace("\n", "") for word in f.readlines()]
+        for i, review in enumerate(self.all_review):
             sen = []  # 保存分词后的一条评论
             for ph in jieba.cut(review, cut_all=False):
-                if ph not in stopWords and ph is not " ":
+                if ph not in stop_words and ph is not " ":
                     sen.append(ph)
+            # 去除到这里时内容为空的评论
+            if len(sen) is 0:
+                empty_index.append(i)
+                print('------------', str(i), '------------')
             # print(sen)
             # df.append(sen, ignore_index=True)
             # print(df)
             done_cut.append(sen)
+        # 删除空评论及对应的label
+        tmp = self.all_score.tolist()
+        for i in empty_index:
+            del done_cut[i]
+            del tmp[i]
+        self.all_score = np.asarray(tmp)
         # print(done_cut)  #ok
         # print(len(done_cut))  #ok
         # print('<--')
@@ -116,6 +128,7 @@ class Participle(Thread):
         cut_review = np.load(Participle.path + ".npy")
         score = np.load("csv/np/score.py" + ".npy")
         new_s = []
+        # 原本是1-5，其中1是差评，2，3是中评，4，5是好评，简化到0差评1中评2好评
         for i in score:
             if i == 1:
                 new_s.append(0)

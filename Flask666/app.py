@@ -75,9 +75,8 @@ def get_reviews():
     try:
         res = jd_crawler.crawler(start_page)
     except urllib.error.URLError as e:
-        print('打印', e)
         res = [[]]
-    print('res', res)
+    # print('res', res)
     # print(JDC.crawler())
     return jsonify(result=res)
 
@@ -98,7 +97,7 @@ def get_first_csv():
 def get_want_csv():
     want_index = request.args.get('want_index', 1, type=int)
     res = csv_handler.get_want(want_index)
-    print(res)
+    # print(res)
     return jsonify(result=res)
 
 
@@ -127,7 +126,7 @@ def _do_participle():
 def _get_participle():
     # 这里就没用线程
     start_index = request.args.get('start_index', 1, type=int)
-    print('start index: ', start_index)
+    print('participle start index: ', start_index)
     res = part.get_want_participle(start_index)
     # print(res)
     fin = []

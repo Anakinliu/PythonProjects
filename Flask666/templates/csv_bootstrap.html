@@ -76,9 +76,9 @@ a{
             <div class="col-md-2">
                 <button id="show_all" class="btn btn-success float-wrapper">显示目前爬取到的数据</button>
             </div>
-            <div class="form-group col-md-1">
+            <div class="form-group col-md-2">
                 <label class="sr-only" for="jump">跳转页号</label>
-                <input id="jump_num" type="text" class="form-control" placeholder="跳转页号">
+                <input id="jump_num" type="number" min="1" data-bind="value:replyNumber" class="form-control" placeholder="跳转页号">
             </div>
             <div class="col-md-1">
                 <button id="jump_to" class="btn btn-success">跳转</button>

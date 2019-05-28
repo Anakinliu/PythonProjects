@@ -87,13 +87,14 @@
          //     p = new_p;
          // }
          e_p = $('input#end_p').val();
-         if (e_p <= p) {
+         if (parseInt(e_p) <= parseInt(p)) {
              return;
          } else {
              // 隐藏警告框
              $('div#task_end').addClass('hidden');
          }
-         timer(intDiff);
+         getReview();
+         // timer(intDiff);
          $("button#pause").attr('disabled',false);
          $("button#resume").attr('disabled',true);
           window.onbeforeunload=function(){
