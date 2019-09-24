@@ -1,0 +1,73 @@
+#:kivy 1.11.1
+
+<Player>:
+    size: 75, 85
+    canvas:
+        Rectangle:
+            pos: self.pos  # important
+            source: 'resource/tank.png'
+            size: self.size
+
+<Enemy>:
+    size: 100, 80
+    canvas:
+        Rectangle:
+            pos: self.pos
+            source: 'resource/plane.png'
+            size: self.size
+
+<Bullet>:
+    size: 10, 30
+    canvas:
+        Rectangle:
+            pos: self.pos
+            source: 'resource/bullet.png'
+            size: self.size
+
+
+<Bg>:
+    size: self.parent.size
+    canvas:
+        Rectangle:
+            pos: self.pos
+            source: 'resource/bg.jpg'
+            size: self.size
+
+
+<GameWidget>:
+    player: player_rect
+    enemy: enemy_rect
+    bullet: bullet_rect
+    bg1: first_bg
+    bg2: last_bg
+
+    Bg:
+        id: first_bg
+        pos: 0, 0
+        size: root.size
+    Bg:
+        id: last_bg
+        pos: root.width, 0
+        size: root.size
+#    canvas:
+#        Rectangle:
+#            source: 'resource/bg.jpg'
+#            pos: 0, 0
+#            size: self.width, self.height
+
+    Player:
+        id: player_rect
+        center_x: 100
+        center_y: 100
+
+    Enemy:
+        id: enemy_rect
+        size: self.size
+        center_x: self.parent.center_x
+        center_y: self.parent.center_y
+        pos: self.parent.width, self.parent.height // 5 * 4
+
+    Bullet:
+        id: bullet_rect
+        size: self.size
+

@@ -1,0 +1,62 @@
+#:kivy 1.11.1
+# first line must like this
+# indentation define nested blocks
+<PongBall>
+    size: 100, 100
+    canvas:
+        Ellipse:
+            source: 'source/ball.jpg'
+            pos: self.pos
+            size: self.size
+
+<PongPaddle>:
+    size: 25, 200
+    canvas:
+        Rectangle:
+            source: 'source/paddle.jpg'
+            pos: self.pos
+            size: self.size
+
+<PongGame>:  # <class name>apply to all instances
+    ball: pong_ball
+    player1: player_left
+    player2: player_right
+
+    canvas:
+        Rectangle:
+        # automatically updated
+        # when the properties of any widgets used
+        # in the value expression change.
+            source: 'source/floor.jpg'
+            pos: 0, 0
+            size: self.width, self.height
+
+    Label:
+        font_size: 70
+        center_x: root.width / 4
+        top: root.top - 50
+        text: str(root.player1.score)
+
+    Label:
+        font_size: 70
+        center_x: root.width * 3 / 4
+        top: root.top - 50
+        text: str(root.player2.score)
+
+    PongBall:
+        id: pong_ball
+        center_x: self.parent.center_x
+        center_y: self.parent.center_y
+#        center: self.parent.center
+
+    PongPaddle:
+        id: player_left
+        x: root.x
+        center_y: root.center_y
+
+    PongPaddle:
+        id: player_right
+        x: root.width - self.width
+        center_y: root.center_y
+
+
