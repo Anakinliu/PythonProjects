@@ -58,6 +58,7 @@ class Bullet(Widget):
             self.launched = False
             self.hit = False
         pass
+        # 连发，上一个炮弹到达一半
 
     def up(self, df):
         step_size = 200 * df
@@ -217,7 +218,7 @@ class MyApp(App):
     def build(self):
         game = GameWidget()
         game.serve_sth()
-        Clock.schedule_interval(game.update_sth, 1.0/60)
+        Clock.schedule_interval(game.update_sth, 0)
         return game
 
 

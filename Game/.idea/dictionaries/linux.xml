@@ -1,8 +1,10 @@
 <component name="ProjectDictionaryState">
   <dictionary name="linux">
     <words>
+      <w>centerx</w>
       <w>keycode</w>
       <w>kivy</w>
+      <w>pygame</w>
       <w>pyglet</w>
     </words>
   </dictionary>
