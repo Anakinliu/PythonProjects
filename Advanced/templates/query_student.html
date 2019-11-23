@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}
+    <title>查询学生信息</title>
+{% endblock %}
+
+{% block body %}
+    {{ super() }}
+
+    <table class="table table-striped">
+    <caption class="text-center">第{{ curent_index }}页</caption>
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">序号</th>
+      <th scope="col">学号</th>
+      <th scope="col">姓名</th>
+      <th scope="col">所在系</th>
+        <th scope="col">操作</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for row in ten_table%}
+        <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <th>{{ row[0] }}</th>
+            <th>{{ row[1] }}</th>
+            <th>{{ row[2] }}</th>
+            <th>
+                <input type="button" class="btn btn-success" onclick="location.href='/query/course/{{ row[0] }}';" value="所选课程">
+            </th>
+        </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+
+    <div class="row justify-content-between">
+
+        <input type="button" class="btn btn-primary col-3" onclick="location.href='/{{ curent_index - 1 }}';" value="上一页">
+        <input type="button" class="btn btn-primary col-3" onclick="location.href='/{{ curent_index + 1 }}';" value="下一页">
+
+    </div>
+
+{% endblock %}
