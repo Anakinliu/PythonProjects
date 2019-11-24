@@ -43,6 +43,9 @@
                 <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-danger">
                     修改成绩
                 </button>
+                <button type="button" data-toggle="modal" data-target="#deleteCourseModal" class="btn btn-danger">
+                    删除课程
+                </button>
             </th>
 {#            <th>#}
 {#                <input type="button" class="btn btn-success" onclick="location.href='/query/course/{{ row[0] }}';" value="所选课程">#}
@@ -58,7 +61,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">修改</h5>
+        <h5 class="modal-title" id="exampleModalLabel">修改为</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -66,7 +69,6 @@
       <div class="modal-body">
         <label>
             <select id="grade_select" class="custom-select custom-select-lg mb-7">
-              <option id="now_grade_option" selected>?</option>
               <option value="1">A+</option>
               <option value="2">A</option>
               <option value="3">A-</option>
@@ -82,6 +84,27 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
         <button id="confirm_update_button" type="button" class="btn btn-primary">确认</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- deleteCourseModal -->
+<div class="modal fade" id="deleteCourseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">确定删除课程？</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            {#   body     #}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+        <button id="confirm_delete_button" type="button" class="btn btn-primary">确认</button>
       </div>
     </div>
   </div>
@@ -112,6 +135,13 @@
             }
         );
 
-
+        $('#confirm_delete_button').click(
+            function () {
+                window.location.href =
+                    '/delete/take?id={{ id }}&'
+                    + 'c_id='
+                    + course_id;
+            }
+        );
     </script>
 {% endblock %}
