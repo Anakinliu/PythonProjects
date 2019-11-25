@@ -28,13 +28,13 @@ fs = {'file': open('__init__.py', 'rb')}
 r = requests.request('POST', 'http://python123.io/ws', files=fs)
 
 
-# POST1 字典 被放入form中
+# POST1 -字典- 被放入form中
 payload = {"k": "v", 1: 2}
 r = requests.post("http://httpbin.org/post", data=payload)
 print(r.status_code)
 print(r.text)
 
-# POST2 字符串 被放入data中
+# POST2 -字符串- 被放入data中
 payload = "str"
 r = requests.post("http://httpbin.org/post", data=payload)
 print(r.status_code)

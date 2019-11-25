@@ -22,7 +22,7 @@ def delete_take():
     # except:
     #     print('error in delete_take route, rollback...')
     #     db.rollback()
-    return redirect(url_for('query.page_2', id=id))
+    return redirect(url_for('query.query_course', id=id))
 
 
 @delete.route('/delete/student')
@@ -43,4 +43,4 @@ def delete_student():
     # except:
     #     print('error in delete_student route, rollback...')
     #     db.rollback()
-    return redirect(url_for('query.page_1', index=reload_index))
+    return redirect(url_for('query.query_student', index=reload_index))

@@ -6,7 +6,7 @@ query = Blueprint('query', __name__,
 
 @query.route('/query/student/')
 @query.route('/query/student/<int:index>')
-def page_1(index=1):
+def query_student(index=1):
     if index < 1:
         index = 1
     print(index)
@@ -28,7 +28,7 @@ def page_1(index=1):
 
 
 @query.route('/query/course/<int:id>')
-def page_2(id):
+def query_course(id):
     sql = f'SELECT course_id, title, dept_name, semester, YEAR, credits, grade FROM takes NATURAL JOIN course WHERE id={id}  ORDER BY course_id ASC;'
     with DB() as db_o:
         db_o.execute(sql)
@@ -37,3 +37,12 @@ def page_2(id):
     return render_template('query_course.html',
                            result_table=result,
                            id=id)
+
+
+@query.route('/query/all_dept_name')
+def query_all_dept_name():
+    sql = 'SELECT dept_name FROM department;'
+    with DB() as db_o:
+        db_o.execute(sql)
+        result = db_o.fetchall()
+    return jsonify(result)

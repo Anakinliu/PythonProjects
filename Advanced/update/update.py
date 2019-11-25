@@ -29,4 +29,4 @@ def update_take():
     # except:
     #     print('error in updare_take route, rollback...')
     #     db.rollback()
-    return redirect(url_for('query.page_2', id=id))
+    return redirect(url_for('query.query_course', id=id))
