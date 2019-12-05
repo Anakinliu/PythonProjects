@@ -22,14 +22,16 @@
 {# 设置class为container使其宽度不占满整个页面 #}
 <div class="container">
     {% block container %}
-        <nav class="navbar navbar-collapse navbar-expand nav-header flex-column flex-md-row bd-navbar" >
+        <nav class="navbar navbar-collapse navbar-expand nav-header flex-column flex-md-row bd-navbar bg-light" >
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item active">
             <a class="nav-link" href="/query/student/">学生信息<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/insert">添加学生</a>
+            <a class="nav-link" href="/insert">添加学生&课程</a>
+            <li class="nav-item">
+            <a class="nav-link" href="/query/rank">学分排名</a>
           </li>
     {#      <li class="nav-item">#}
     {#        <a class="nav-link" href="#">Pricing</a>#}
@@ -47,7 +49,7 @@
             </ul>
         </div>
     </nav>
-
+    <hr>
     {% endblock %}
 </div>
 

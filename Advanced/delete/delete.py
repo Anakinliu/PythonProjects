@@ -28,7 +28,7 @@ def delete_take():
 @delete.route('/delete/student')
 def delete_student():
     id = request.args.get('id').strip()
-    # print('id=', id)
+    print('delete id=', str(id))
     reload_index = request.args.get('index').strip()
     # print(reload_index)
     # sql中grade加引号

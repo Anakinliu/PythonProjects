@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+
+{% block title %}
+    选课
+{% endblock %}
+
+{% block container %}
+    {{ super() }}
+    <!-- 选课 Form -->
+    <form class="needs-validation" id="theForm" action="{{ url_for('insert.insert_take',id=id) }}">
+
+      <div class="form-row">
+          <div class="form-group col-md-4">
+          <label for="inputEmail4">区域号</label>
+                <select id="secID" name="secID" class="form-control dept_select" required>
+                </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputEmail4">课程号</label>
+                <select id="courseID" name="courseID" class="form-control dept_select">
+                </select>
+        </div>
+      </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-4">
+          <label for="inputPassword4">系名</label>
+                <select id="deptName" name="deptName" class="form-control">
+                </select>
+          </div>
+            <div class="form-group col-md-4">
+          <label for="inputPassword4">课程名</label>
+            <select name="title" id="title" class="form-control dept_select">
+                </select>
+            </div>
+        </div>
+          <div class="form-row">
+                <div class="form-group col-md-8">
+              <button id="submit2" class="btn btn-primary btn-block">确定</button>
+              </div>
+          </div>
+
+    </form>
+    <!-- end form-->
+
+    <script>
+
+    // 下面用于选课
+
+        // 迭代赋值系名
+        function generate_dept(item, index) {
+            {# 用于data的forEach #}
+            let select_item = "<option>" + item + "</option>";
+            $('#deptName').append(select_item);
+        }
+
+        // 迭代赋值课程+ID
+        function generate_title_id(item, index) {
+            $('#courseID').append("<option>" + item[0] + "</option>");
+            $('#title').append("<option>" + item[1] + "</option>");
+        }
+
+        // 迭代赋值secID
+        function generate_sec_id(item, index) {
+            $('#secID').append("<option>" + item + "</option>");
+        }
+        // 页面加载完成时获取系名
+        window.onload = function () {
+            $.ajax({
+                   url: "{{ url_for('query.query_all_dept_name') }}",
+                   type: 'GET',
+                   success: function(data)
+                   {
+                       data.forEach(generate_dept);
+                       $('#queryDeptNameAlert').removeClass('invisible');
+                       // 显示第一个系的课程
+                       $.ajax({
+                           url: "/query/dept_course/" + data[0][0],
+                           type: 'GET',
+                           success: function(data)
+                           {
+                               {#console.log(data);#}
+                               data.forEach(generate_title_id);
+                               // 切换secID
+                                $( "#courseID option:selected" ).each(function() {
+                                    $.ajax({
+                                               url: "/query/sec_id/" + $( this ).text(),
+                                               type: 'GET',
+                                               success: function(data)
+                                               {
+                                                    console.log("GG" + data + "GG");
+                                                    $('#secID').find('option').remove();
+                                                    data.forEach(generate_sec_id);
+                                               }
+                                             });
+                                });
+                           }
+                         });
+                   }
+                 });
+
+        };
+        // 切换系名时
+        $("#deptName").change(function () {
+            // 抹除上一个系的学号与课名
+            $('#title').find('option').remove();
+            $('#courseID').find('option').remove();
+
+            $( "#deptName option:selected" ).each(function() {
+                {#console.log($( this ).text());#}
+                $.ajax({
+                           url: "/query/dept_course/" + $( this ).text(),
+                           type: 'GET',
+                           success: function(data)
+                           {
+                               data.forEach(generate_title_id);
+                               // 切换secID
+                                $( "#courseID option:selected" ).each(function() {
+                                    $.ajax({
+                                               url: "/query/sec_id/" + $( this ).text(),
+                                               type: 'GET',
+                                               success: function(data)
+                                               {
+                                                    console.log("GG" + data + "GG");
+                                                    $('#secID').find('option').remove();
+                                                    data.forEach(generate_sec_id);
+                                               }
+                                             });
+                                });
+                           }
+                         });
+            });
+          })
+          .change();
+
+        // 切换课程名时
+        $("#title").change(function () {
+            // 抹除上一个课程的学号
+            $( "#title option:selected" ).each(function() {
+                {#console.log($( this ).text());#}
+                $.ajax({
+                           url: "/query/course_id_by_title_and_dept_name/?deptName=" +
+                                   $( "#deptName option:selected" ).val() +
+                                    "&title=" +
+                                    $( this ).text(),
+                           type: 'GET',
+                           success: function(data)
+                           {
+                                console.log("query course_id" + data );
+                                $('#courseID').find('option').remove();
+                                $('#courseID').append("<option>" + data[0] + "</option>");
+
+                                $.ajax({
+                                   url: "/query/sec_id/" + data[0],
+                                   type: 'GET',
+                                   success: function(data)
+                                   {
+                                        console.log("courseID: " + data[0]);
+                                        console.log("query secID" + data);
+                                        $('#secID').find('option').remove();
+                                        data.forEach(generate_sec_id);
+                                   }
+                                 });
+                           }
+                         });
+            });
+          })
+          .change();
+
+        // 切换课程ID时
+        $('#courseID').change(function () {
+            // 切换secID
+            $( "#courseID option:selected" ).each(function() {
+                $.ajax({
+                           url: "/query/sec_id/" + $( this ).text(),
+                           type: 'GET',
+                           success: function(data)
+                           {
+                                console.log("GG" + data + "GG");
+                                $('#secID').find('option').remove();
+                                data.forEach(generate_sec_id);
+                           }
+                         });
+            });
+          })
+          .change();
+        $("#theForm").submit(function(e) {
+            console.log('in js');
+            let form = $(this);
+            let action_url = form.attr('action');
+            $.ajax({
+                   url: action_url,
+                   data: form.serialize(), // serializes the form's elements.
+                   success: function(data)
+                   {
+                       {#console.log(data);#}
+                       alert(data['stat']); // show response from the php script.
+                       location.reload();
+                   }
+                 });
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+        });
+    </script>
+{% endblock %}

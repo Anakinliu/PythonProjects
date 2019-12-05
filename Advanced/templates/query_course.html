@@ -2,11 +2,13 @@
 
 {% block head %}
     {{ super() }}
-    <title>查询选课信息</title>
+    <title>添加课程</title>
 {% endblock %}
 
 {% block container %}
     {{ super() }}
+
+    <hr>
 
     <table class="table table-striped">
   <thead class="thead-light">
@@ -109,6 +111,7 @@
     </div>
   </div>
 </div>
+<hr>
 
     <script>
         let grade;
@@ -143,5 +146,6 @@
                     + course_id;
             }
         );
+
     </script>
 {% endblock %}

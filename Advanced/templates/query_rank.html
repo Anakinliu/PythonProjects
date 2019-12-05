@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+    学分排名
+{% endblock %}
+
+{% block container %}
+    {{ super() }}
+<table class="table table-striped">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">序号</th>
+      <th scope="col">学号</th>
+        <th scope="col">姓名</th>
+      <th scope="col">已选课总学分</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for row in hundred_table%}
+        <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <th id="student_id">
+                {{ row[0] }}
+            </th>
+            <th>{{ row[1] }}</th>
+            <th>{{ row[2] }}</th>
+        </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+{% endblock %}
