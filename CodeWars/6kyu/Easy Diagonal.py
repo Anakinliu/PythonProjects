@@ -9,8 +9,9 @@ def diagonal(n, p):
     return c(n, p) + c(n, p+1)
     pass
 
+# 科学计算大佬
 from scipy.special import comb
-def diagonal(n, p):
+def diagonal2(n, p):
     return comb(n+1, p+1, exact=True)
 
 # 129100 5
