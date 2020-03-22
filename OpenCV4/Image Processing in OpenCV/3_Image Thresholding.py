@@ -104,7 +104,7 @@ ret1, th1 = cv.threshold(img, 127, 255, cv.THRESH_BINARY)
 ret2, th2 = cv.threshold(img, 0, 255, cv.THRESH_BINARY + cv.THRESH_OTSU)
 
 # Otsu's thresholding after Gaussian filtering
-blur = cv.GaussianBlur(img, (7, 7), 0)
+blur = cv.GaussianBlur(img, (9, 7), 0)  # 长宽必须奇数！
 ret3, th3 = cv.threshold(blur, 0, 255, cv.THRESH_BINARY + cv.THRESH_OTSU)
 # plot all the images and their histograms
 images = [img, 0, th1,
