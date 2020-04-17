@@ -58,7 +58,7 @@ def josephus_survivor_b(n,k):
     # print(res)
     return res
 
-# GeekforGeek的递归版，会导致栈溢出
+# GeekforGeek的递归版，会导致栈溢出，我也看不懂为什么这么写。。。
 def josephus_survivor_rev(n,k):
     if (n == 1):
         return 1
@@ -72,7 +72,7 @@ def josephus_survivor_rev(n,k):
         return (josephus_survivor(n - 1, k) + k - 1) % n + 1
 
 
-# 通过， GeekforGeek 迭代版
+# 通过， GeekforGeek 迭代版，看不懂
 def josephus_survivor(n, k):
     s = 0
     for i in range(2, n+1):
@@ -80,7 +80,7 @@ def josephus_survivor(n, k):
         print(s)
     return s + 1
 
-# 通过，https://xbuba.com/questions/12444979
+# 通过，能看懂，https://xbuba.com/questions/12444979
 def josephus(n, k):
     ls = list(range(1, n+1))
     k -= 1  # pop automatically skips the dead guy
