@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce1eac2f-4399-4207-bc4b-11b88f99d856" name="Default" comment="python crash course &#10;chapter 12.8">
+    <list default="true" id="ce1eac2f-4399-4207-bc4b-11b88f99d856" name="Default" comment="pop nb">
+      <change afterPath="$PROJECT_DIR$/CodeWars/5kyu/RGB To Hex Conversion.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CodeWars/5kyu/Josephus Permutation.py" beforeDir="false" afterPath="$PROJECT_DIR$/CodeWars/5kyu/Josephus Permutation.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -430,7 +430,7 @@
       <option name="presentableId" value="Default" />
       <updated>1482219507425</updated>
       <workItem from="1592299502111" duration="2678000" />
-      <workItem from="1592376845585" duration="4606000" />
+      <workItem from="1592376845585" duration="7001000" />
     </task>
     <task id="LOCAL-00001" summary="add comment for binary_search">
       <created>1507012927581</created>
@@ -474,7 +474,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512873109154</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="pop nb">
+      <created>1592381667297</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1592381667297</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -528,13 +535,14 @@
     <MESSAGE value="python crash course &#10;chapter 10.3" />
     <MESSAGE value="python crash course &#10;chapter 12.4" />
     <MESSAGE value="python crash course &#10;chapter 12.8" />
-    <option name="LAST_COMMIT_MESSAGE" value="python crash course &#10;chapter 12.8" />
+    <MESSAGE value="pop nb" />
+    <option name="LAST_COMMIT_MESSAGE" value="pop nb" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1038" y="0" key="CommitChangelistDialog2" timestamp="1592379523810">
+    <state x="954" y="0" key="CommitChangelistDialog2" timestamp="1592383465006">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1038" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1592379523810" />
+    <state x="954" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1592383465006" />
     <state width="914" height="316" key="GridCell.Tab.0.bottom" timestamp="1592380250003">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -555,6 +563,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="650" y="158" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1592378115246" />
+    <state x="552" y="248" key="Vcs.Push.Dialog.v2" timestamp="1592381674135">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="248" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1592381674135" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
