@@ -12,4 +12,6 @@ hex_string_to_RGB("#FF9933")
 
 
 def solution(s):
+    # 1. 字典生成
+    # 2. zip函数
     return {i: int(s[j:j + 2], 16) for i, j in zip('rgb', [1, 3, 5])}

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce1eac2f-4399-4207-bc4b-11b88f99d856" name="Default" comment="创造条件">
-      <change afterPath="$PROJECT_DIR$/CodeWars/4kyu/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CodeWars/5kyu/Convert A Hex String To RGB.py" afterDir="false" />
+    <list default="true" id="ce1eac2f-4399-4207-bc4b-11b88f99d856" name="Default" comment="开始4kyu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeWars/4kyu/Next bigger number with the same digits.py" beforeDir="false" afterPath="$PROJECT_DIR$/CodeWars/4kyu/Next bigger number with the same digits.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeWars/5kyu/Convert A Hex String To RGB.py" beforeDir="false" afterPath="$PROJECT_DIR$/CodeWars/5kyu/Convert A Hex String To RGB.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +202,7 @@
       <recent name="F:\PyCharm\Projects\book\file" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Convert A Hex String To RGB">
+  <component name="RunManager" selected="Python.【】Next bigger number with the same digits">
     <configuration default="true" type="tests" factoryName="Attests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -280,6 +280,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="【】Next bigger number with the same digits" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Projects" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CodeWars/4kyu" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="E:\PycharmProjects\PythonProjects\CodeWars\4kyu\【】Next bigger number with the same digits.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="SeleniumWITHPhantomJS" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Projects" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -294,28 +316,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GoogleNumbers/SeleniumWITHPhantomJS.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Simple assembler interpreter" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Projects" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CodeWars/5kyu" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="E:\PycharmProjects\PythonProjects\CodeWars\5kyu\Simple assembler interpreter.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -407,13 +407,13 @@
       <item itemvalue="Python.SeleniumWITHPhantomJS" />
       <item itemvalue="Python.String Letter Counting" />
       <item itemvalue="Python.Josephus Permutation" />
-      <item itemvalue="Python.[T]Simple assembler interpreter" />
       <item itemvalue="Python.Convert A Hex String To RGB" />
+      <item itemvalue="Python.【】Next bigger number with the same digits" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.【】Next bigger number with the same digits" />
         <item itemvalue="Python.Convert A Hex String To RGB" />
-        <item itemvalue="Python.[T]Simple assembler interpreter" />
         <item itemvalue="Python.Josephus Permutation" />
         <item itemvalue="Python.String Letter Counting" />
         <item itemvalue="Python.SeleniumWITHPhantomJS" />
@@ -432,7 +432,8 @@
       <updated>1482219507425</updated>
       <workItem from="1592299502111" duration="2678000" />
       <workItem from="1592376845585" duration="7623000" />
-      <workItem from="1592463039183" duration="2314000" />
+      <workItem from="1592463039183" duration="3204000" />
+      <workItem from="1592482536949" duration="4146000" />
     </task>
     <task id="LOCAL-00001" summary="add comment for binary_search">
       <created>1507012927581</created>
@@ -497,40 +498,15 @@
       <option name="project" value="LOCAL" />
       <updated>1592463911155</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="开始4kyu">
+      <created>1592467487959</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1592467487959</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
-  </component>
-  <component name="TestHistory">
-    <history-entry file="Unittests_for_test_formatted_name_function_NamesTestCase_test_first_last_name - 2017.11.25 at 14h 09m 09s.xml">
-      <configuration name="Unittests for test_formatted_name_function.NamesTestCase.test_first_last_name" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_test_formatted_name_function_NamesTestCase_test_first_last_name - 2017.11.25 at 14h 09m 22s.xml">
-      <configuration name="Unittests for test_formatted_name_function.NamesTestCase.test_first_last_name" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_test_formatted_name_function_NamesTestCase_test_first_last_name - 2017.11.25 at 14h 16m 44s.xml">
-      <configuration name="Unittests for test_formatted_name_function.NamesTestCase.test_first_last_name" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_test_formatted_name_function_NamesTestCase_test_first_last_name - 2017.11.25 at 14h 16m 58s.xml">
-      <configuration name="Unittests for test_formatted_name_function.NamesTestCase.test_first_last_name" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_test_formatted_name_function_NamesTestCase_test_first_last_name - 2017.11.25 at 15h 51m 14s.xml">
-      <configuration name="Unittests for test_formatted_name_function.NamesTestCase.test_first_last_name" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_test_formatted_name_function_py - 2017.11.25 at 14h 09m 02s.xml">
-      <configuration name="Unittests in test_formatted_name_function.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_test_formatted_name_function_py - 2017.11.25 at 14h 12m 24s.xml">
-      <configuration name="Unittests in test_formatted_name_function.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_test_formatted_name_function_py - 2017.11.25 at 14h 12m 38s.xml">
-      <configuration name="Unittests in test_formatted_name_function.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_test_formatted_name_function_py - 2017.11.25 at 15h 50m 40s.xml">
-      <configuration name="Unittests in test_formatted_name_function.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_test_formatted_name_function_py - 2017.11.25 at 15h 51m 27s.xml">
-      <configuration name="Unittests in test_formatted_name_function.py" configurationId="tests" />
-    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -554,29 +530,30 @@
     <MESSAGE value="pop nb" />
     <MESSAGE value="max min" />
     <MESSAGE value="创造条件" />
-    <option name="LAST_COMMIT_MESSAGE" value="创造条件" />
+    <MESSAGE value="开始4kyu" />
+    <option name="LAST_COMMIT_MESSAGE" value="开始4kyu" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2" timestamp="1592463910129">
+    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2" timestamp="1592467487029">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1592463910129" />
-    <state width="914" height="314" key="GridCell.Tab.0.bottom" timestamp="1592466937366">
+    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1592467487029" />
+    <state width="1877" height="351" key="GridCell.Tab.0.bottom" timestamp="1592486783759">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="914" height="314" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592466937366" />
-    <state width="914" height="314" key="GridCell.Tab.0.center" timestamp="1592466937366">
+    <state width="1877" height="351" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592486783759" />
+    <state width="1877" height="351" key="GridCell.Tab.0.center" timestamp="1592486783759">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="914" height="314" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592466937366" />
-    <state width="914" height="314" key="GridCell.Tab.0.left" timestamp="1592466937366">
+    <state width="1877" height="351" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592486783759" />
+    <state width="1877" height="351" key="GridCell.Tab.0.left" timestamp="1592486783759">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="914" height="314" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592466937366" />
-    <state width="914" height="314" key="GridCell.Tab.0.right" timestamp="1592466937366">
+    <state width="1877" height="351" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592486783759" />
+    <state width="1877" height="351" key="GridCell.Tab.0.right" timestamp="1592486783759">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="914" height="314" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592466937366" />
+    <state width="1877" height="351" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592486783759" />
     <state x="650" y="158" key="SettingsEditor" timestamp="1592378115246">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -610,6 +587,7 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/PythonProjects$Next_bigger_number_with_the_same_digits.coverage" NAME="Next bigger number with the same digits Coverage Results" MODIFIED="1592486783753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/4kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$String_Letter_Counting.coverage" NAME="String Letter Counting Coverage Results" MODIFIED="1592300601808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/6kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$Convert_A_Hex_String_To_RGB.coverage" NAME="Convert A Hex String To RGB Coverage Results" MODIFIED="1592466937358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/5kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$Josephus_Permutation.coverage" NAME="Josephus Permutation Coverage Results" MODIFIED="1592380249999" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/5kyu" />
