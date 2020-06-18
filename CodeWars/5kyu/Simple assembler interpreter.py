@@ -38,7 +38,8 @@ So, the function should return
 {'a': 1}
 """
 
-def simple_assembler(program):
+
+def simple_assembler2(program):
     # return a dictionary with the registers
     print(program)
     registers = dict()
@@ -57,7 +58,8 @@ def simple_assembler(program):
         if state_list[0] == 'dec':
             registers[state_list[1]] -= 1
 
-        if state_list[0] == 'jnz' and ((not state_list[1].isalpha() and state_list[1] != 0) or registers[state_list[1]] != 0):
+        if state_list[0] == 'jnz' and (
+                (not state_list[1].isalpha() and state_list[1] != 0) or registers[state_list[1]] != 0):
             # print('ook')
             ins_index = ins_index + int(state_list[2])
         else:
@@ -85,7 +87,25 @@ mov a b
 jnz c -5
 jnz 0 1
 mov c a'''
-# print(simple_assembler(['mov a -10', 'mov b a', 'inc a', 'dec b', 'jnz a -2']))
+print(simple_assembler2(['mov a -10', 'mov b a', 'inc a', 'dec b', 'jnz a -2']))
+
+
 # {'a': 1}
 # {'a': 409600, 'c': 409600, 'b': 409600}
 # print('a'.isalpha())
+
+def simple_assembler(program):
+    d, i = {}, 0
+    while i < len(program):
+        # r: register
+        cmd, r, v = (program[i] + ' 0').split()[:3]  # 加的这个 0 很厉害
+        if cmd == 'inc':
+            d[r] += 1
+        if cmd == 'dec':
+            d[r] -= 1
+        if cmd == 'mov':
+            d[r] = d[v] if v in d else int(v)
+        if cmd == 'jnz' and (d[r] if r in d else int(r)):
+            i += int(v) - 1
+        i += 1
+    return d
