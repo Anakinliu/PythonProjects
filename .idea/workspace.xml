@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce1eac2f-4399-4207-bc4b-11b88f99d856" name="Default" comment="max min">
+    <list default="true" id="ce1eac2f-4399-4207-bc4b-11b88f99d856" name="Default" comment="创造条件">
+      <change afterPath="$PROJECT_DIR$/CodeWars/4kyu/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CodeWars/5kyu/Convert A Hex String To RGB.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CodeWars/5kyu/[T]Simple assembler interpreter.py" beforeDir="false" afterPath="$PROJECT_DIR$/CodeWars/5kyu/Simple assembler interpreter.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +202,7 @@
       <recent name="F:\PyCharm\Projects\book\file" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.[T]Simple assembler interpreter">
+  <component name="RunManager" selected="Python.Convert A Hex String To RGB">
     <configuration default="true" type="tests" factoryName="Attests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -233,6 +234,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="ADDITIONAL_ARGS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Convert A Hex String To RGB" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Projects" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CodeWars/5kyu" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CodeWars/5kyu/Convert A Hex String To RGB.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
     <configuration name="Josephus Permutation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -323,28 +346,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="result_stats" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Projects" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/GoogleNumbers" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GoogleNumbers/result_stats.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="js.build_tools.gulp">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -403,19 +404,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.result_stats" />
       <item itemvalue="Python.SeleniumWITHPhantomJS" />
       <item itemvalue="Python.String Letter Counting" />
       <item itemvalue="Python.Josephus Permutation" />
       <item itemvalue="Python.[T]Simple assembler interpreter" />
+      <item itemvalue="Python.Convert A Hex String To RGB" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Convert A Hex String To RGB" />
         <item itemvalue="Python.[T]Simple assembler interpreter" />
         <item itemvalue="Python.Josephus Permutation" />
         <item itemvalue="Python.String Letter Counting" />
         <item itemvalue="Python.SeleniumWITHPhantomJS" />
-        <item itemvalue="Python.result_stats" />
       </list>
     </recent_temporary>
   </component>
@@ -431,7 +432,7 @@
       <updated>1482219507425</updated>
       <workItem from="1592299502111" duration="2678000" />
       <workItem from="1592376845585" duration="7623000" />
-      <workItem from="1592463039183" duration="834000" />
+      <workItem from="1592463039183" duration="2314000" />
     </task>
     <task id="LOCAL-00001" summary="add comment for binary_search">
       <created>1507012927581</created>
@@ -489,7 +490,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592384094358</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="创造条件">
+      <created>1592463911155</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1592463911155</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -545,37 +553,38 @@
     <MESSAGE value="python crash course &#10;chapter 12.8" />
     <MESSAGE value="pop nb" />
     <MESSAGE value="max min" />
-    <option name="LAST_COMMIT_MESSAGE" value="max min" />
+    <MESSAGE value="创造条件" />
+    <option name="LAST_COMMIT_MESSAGE" value="创造条件" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="954" y="0" key="CommitChangelistDialog2" timestamp="1592384093714">
+    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2" timestamp="1592463910129">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="954" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1592384093714" />
-    <state width="916" height="317" key="GridCell.Tab.0.bottom" timestamp="1592385491887">
+    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1592463910129" />
+    <state width="914" height="314" key="GridCell.Tab.0.bottom" timestamp="1592466937366">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="916" height="317" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592385491887" />
-    <state width="916" height="317" key="GridCell.Tab.0.center" timestamp="1592385491887">
+    <state width="914" height="314" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592466937366" />
+    <state width="914" height="314" key="GridCell.Tab.0.center" timestamp="1592466937366">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="916" height="317" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592385491887" />
-    <state width="916" height="317" key="GridCell.Tab.0.left" timestamp="1592385491887">
+    <state width="914" height="314" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592466937366" />
+    <state width="914" height="314" key="GridCell.Tab.0.left" timestamp="1592466937366">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="916" height="317" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592385491887" />
-    <state width="916" height="317" key="GridCell.Tab.0.right" timestamp="1592385491887">
+    <state width="914" height="314" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592466937366" />
+    <state width="914" height="314" key="GridCell.Tab.0.right" timestamp="1592466937366">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="916" height="317" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592385491887" />
+    <state width="914" height="314" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592466937366" />
     <state x="650" y="158" key="SettingsEditor" timestamp="1592378115246">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="650" y="158" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1592378115246" />
-    <state x="552" y="248" key="Vcs.Push.Dialog.v2" timestamp="1592384103134">
+    <state x="552" y="248" key="Vcs.Push.Dialog.v2" timestamp="1592463920936">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="248" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1592384103134" />
+    <state x="552" y="248" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1592463920936" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -602,6 +611,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PythonProjects$String_Letter_Counting.coverage" NAME="String Letter Counting Coverage Results" MODIFIED="1592300601808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/6kyu" />
+    <SUITE FILE_PATH="coverage/PythonProjects$Convert_A_Hex_String_To_RGB.coverage" NAME="Convert A Hex String To RGB Coverage Results" MODIFIED="1592466937358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/5kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$Josephus_Permutation.coverage" NAME="Josephus Permutation Coverage Results" MODIFIED="1592380249999" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/5kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$_T_Simple_assembler_interpreter.coverage" NAME="[T]Simple assembler interpreter Coverage Results" MODIFIED="1592463403968" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/5kyu" />
   </component>
