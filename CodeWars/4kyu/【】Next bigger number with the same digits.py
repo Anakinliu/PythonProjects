@@ -9,7 +9,7 @@
 """
  commit: 4KYU 是一个新世界啊！！！
 """
-
+import itertools
 
 def permutations(arr, position, end, res=[]):
     if position == end:
@@ -42,7 +42,7 @@ def next_bigger2(n):
     return bigger
 
 
-next_bigger2(122)
+# next_bigger2(122)
 #
 # arr = ["1","2","2"]
 # res = []
@@ -50,22 +50,21 @@ next_bigger2(122)
 # print(res)
 
 
-# import itertools
+
+
+def next_bigger(n):
+    n_str = str(n)
+    lst = list(n_str)
+    len_ = len(lst)
+    res = list(itertools.permutations(lst, len_))
+    bigger = -1
+    for i in res:
+        num = int(''.join(list(i)))
+        if num > n:
+            bigger = num
+            break
+    print(bigger)
+    return bigger
 #
-# def next_bigger(n):
-#     all = []
-#     n_str = str(n)
-#     lst = list(n_str)
-#     len_ = len(lst)
-#     res = list(itertools.permutations(lst, len_))
-#     bigger = -1
-#     for i in res:
-#         num = int(''.join(list(i)))
-#         if num > n:
-#             bigger = num
-#             break
-#     print(bigger)
-#     return bigger
 #
-#
-# next_bigger(123)
+next_bigger(12354674987)
