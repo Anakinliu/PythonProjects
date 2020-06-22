@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce1eac2f-4399-4207-bc4b-11b88f99d856" name="Default" comment="开始4kyu">
-      <change afterPath="$PROJECT_DIR$/CodeWars/4kyu/Permutations and Sum.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithms/Karatsuba乘法.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithms/递归计算乘法.py" afterDir="false" />
+    <list default="true" id="ce1eac2f-4399-4207-bc4b-11b88f99d856" name="Default" comment="Karatsuba">
+      <change afterPath="$PROJECT_DIR$/CodeWars/4kyu/【】Snail.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithms/MergeSort.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CodeWars/4kyu/【】Next bigger number with the same digits.py" beforeDir="false" afterPath="$PROJECT_DIR$/CodeWars/4kyu/【】Next bigger number with the same digits.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,6 +154,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/algorithms/MergeSort.py" root0="SKIP_INSPECTION" />
+  </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
     <exe-path />
@@ -204,7 +205,7 @@
       <recent name="F:\PyCharm\Projects\book\file" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.递归计算乘法">
+  <component name="RunManager" selected="Python.【】Snail">
     <configuration default="true" type="tests" factoryName="Attests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -260,7 +261,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Convert A Hex String To RGB" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="MergeSort" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Projects" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -268,34 +269,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CodeWars/5kyu" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithms" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CodeWars/5kyu/Convert A Hex String To RGB.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Josephus Permutation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Projects" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CodeWars/5kyu" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CodeWars/5kyu/Josephus Permutation.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/algorithms/MergeSort.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -340,6 +319,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CodeWars/4kyu/Permutations and Sum.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="【】Snail" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Projects" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CodeWars/4kyu" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CodeWars/4kyu/【】Snail.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -406,19 +407,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.Josephus Permutation" />
-      <item itemvalue="Python.Convert A Hex String To RGB" />
       <item itemvalue="Python.【】Next bigger number with the same digits" />
       <item itemvalue="Python.Permutations and Sum" />
       <item itemvalue="Python.递归计算乘法" />
+      <item itemvalue="Python.MergeSort" />
+      <item itemvalue="Python.【】Snail" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.【】Snail" />
+        <item itemvalue="Python.MergeSort" />
         <item itemvalue="Python.递归计算乘法" />
         <item itemvalue="Python.Permutations and Sum" />
         <item itemvalue="Python.【】Next bigger number with the same digits" />
-        <item itemvalue="Python.Convert A Hex String To RGB" />
-        <item itemvalue="Python.Josephus Permutation" />
       </list>
     </recent_temporary>
   </component>
@@ -437,7 +438,10 @@
       <workItem from="1592463039183" duration="3204000" />
       <workItem from="1592482536949" duration="4290000" />
       <workItem from="1592530110054" duration="4397000" />
-      <workItem from="1592565291015" duration="4658000" />
+      <workItem from="1592565291015" duration="4957000" />
+      <workItem from="1592619419931" duration="2538000" />
+      <workItem from="1592813984967" duration="443000" />
+      <workItem from="1592814450119" duration="3898000" />
     </task>
     <task id="LOCAL-00001" summary="add comment for binary_search">
       <created>1507012927581</created>
@@ -516,7 +520,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592486904552</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Karatsuba">
+      <created>1592573452507</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1592573452507</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView">
@@ -542,37 +553,54 @@
     <MESSAGE value="max min" />
     <MESSAGE value="创造条件" />
     <MESSAGE value="开始4kyu" />
-    <option name="LAST_COMMIT_MESSAGE" value="开始4kyu" />
+    <MESSAGE value="Karatsuba" />
+    <option name="LAST_COMMIT_MESSAGE" value="Karatsuba" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2" timestamp="1592486903393">
+    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2" timestamp="1592573451486">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1592486903393" />
-    <state width="916" height="253" key="GridCell.Tab.0.bottom" timestamp="1592573167469">
+    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1592573451486" />
+    <state width="1106" height="253" key="GridCell.Tab.0.bottom" timestamp="1592818255835">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="916" height="253" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592573167469" />
-    <state width="916" height="253" key="GridCell.Tab.0.center" timestamp="1592573167468">
+    <state width="1106" height="253" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592818255835" />
+    <state width="1106" height="253" key="GridCell.Tab.0.center" timestamp="1592818255835">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="916" height="253" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592573167468" />
-    <state width="916" height="253" key="GridCell.Tab.0.left" timestamp="1592573167468">
+    <state width="1106" height="253" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592818255835" />
+    <state width="1106" height="253" key="GridCell.Tab.0.left" timestamp="1592818255835">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="916" height="253" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592573167468" />
-    <state width="916" height="253" key="GridCell.Tab.0.right" timestamp="1592573167469">
+    <state width="1106" height="253" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592818255835" />
+    <state width="1106" height="253" key="GridCell.Tab.0.right" timestamp="1592818255835">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="916" height="253" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592573167469" />
+    <state width="1106" height="253" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592818255835" />
+    <state width="1877" height="334" key="GridCell.Tab.1.bottom" timestamp="1592622905346">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="334" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592622905346" />
+    <state width="1877" height="334" key="GridCell.Tab.1.center" timestamp="1592622905346">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="334" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592622905346" />
+    <state width="1877" height="334" key="GridCell.Tab.1.left" timestamp="1592622905346">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="334" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592622905346" />
+    <state width="1877" height="334" key="GridCell.Tab.1.right" timestamp="1592622905346">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="334" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592622905346" />
     <state x="650" y="158" key="SettingsEditor" timestamp="1592378115246">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="650" y="158" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1592378115246" />
-    <state x="552" y="248" key="Vcs.Push.Dialog.v2" timestamp="1592486909655">
+    <state x="552" y="248" key="Vcs.Push.Dialog.v2" timestamp="1592573457516">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="248" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1592486909655" />
+    <state x="552" y="248" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1592573457516" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -601,7 +629,9 @@
     <SUITE FILE_PATH="coverage/PythonProjects$Next_bigger_number_with_the_same_digits.coverage" NAME="【】Next bigger number with the same digits Coverage Results" MODIFIED="1592530605170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/4kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$Permutations_and_Sum.coverage" NAME="Permutations and Sum Coverage Results" MODIFIED="1592532402969" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/4kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$.coverage" NAME="递归计算乘法 Coverage Results" MODIFIED="1592573387276" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/algorithms" />
+    <SUITE FILE_PATH="coverage/PythonProjects$Snail.coverage" NAME="【】Snail Coverage Results" MODIFIED="1592818059012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/4kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$String_Letter_Counting.coverage" NAME="String Letter Counting Coverage Results" MODIFIED="1592300601808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/6kyu" />
+    <SUITE FILE_PATH="coverage/PythonProjects$MergeSort.coverage" NAME="MergeSort Coverage Results" MODIFIED="1592621180589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/algorithms" />
     <SUITE FILE_PATH="coverage/PythonProjects$Convert_A_Hex_String_To_RGB.coverage" NAME="Convert A Hex String To RGB Coverage Results" MODIFIED="1592466937358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/5kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$Josephus_Permutation.coverage" NAME="Josephus Permutation Coverage Results" MODIFIED="1592380249999" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/5kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$_T_Simple_assembler_interpreter.coverage" NAME="[T]Simple assembler interpreter Coverage Results" MODIFIED="1592463403968" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/5kyu" />
