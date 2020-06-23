@@ -11,7 +11,7 @@
 """
 import itertools
 
-def permutations(arr, position, end, res=[]):
+def permutationsD(arr, position, end, res=[]):
     if position == end:
         res.append(int(''.join(arr)))
 
@@ -52,11 +52,12 @@ def next_bigger2(n):
 
 
 
-def next_bigger(n):
+def next_bigger3(n):
     n_str = str(n)
     lst = list(n_str)
     len_ = len(lst)
     res = list(itertools.permutations(lst, len_))
+    res.sort()
     bigger = -1
     for i in res:
         num = int(''.join(list(i)))
@@ -67,4 +68,73 @@ def next_bigger(n):
     return bigger
 #
 #
-next_bigger(12354674987)
+
+
+def per(lst):
+    res = list(itertools.permutations(lst, len(lst)))
+    res.sort()
+    return res
+
+def next_bigger4(n):
+    n_str = str(n)
+    lst = list(n_str)
+    len_ = len(lst)
+    bigger = -1
+    for i in range(len_):
+        s = n_str[-2-i:]
+        per_lst = per(s)
+        for j in per_lst:
+            new = n_str[:-2-i] + j
+            if int(new) > n:
+                bigger = new
+                break
+        if bigger != -1:
+            break
+
+    print(bigger)
+    return bigger
+
+
+# next_bigger4(12354674987)
+
+def p(n):
+    digits = []
+    b = n % 10
+    a = n // 10
+    digits.append(b)
+    while a:
+        b = a % 10
+        a = a // 10
+        digits.append(b)
+    res = []
+    z = 1
+    print(res)
+
+def permutations(iterable, r=None):
+    # permutations('ABCD', 2) --> AB AC AD BA BC BD CA CB CD DA DB DC
+    # permutations(range(3)) --> 012 021 102 120 201 210
+    pool = tuple(iterable)
+    n = len(pool)
+    r = n if r is None else r
+    if r > n:
+        return
+    indices = list(range(n))  # index的复数形式
+    cycles = list(range(n, n-r, -1))
+    yield tuple(pool[i] for i in indices[:r])  # 第一次返回原iterable
+    while n:
+        for i in reversed(range(r)):
+            cycles[i] -= 1
+            if cycles[i] == 0:
+                indices[i:] = indices[i+1:] + indices[i:i+1]
+                cycles[i] = n - i
+            else:
+                j = cycles[i]
+                indices[i], indices[-j] = indices[-j], indices[i]
+                yield tuple(pool[i] for i in indices[:r])
+                break
+        else:
+            return
+
+
+for j in permutations('123'):
+    print(j)
