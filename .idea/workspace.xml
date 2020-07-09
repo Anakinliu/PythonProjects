@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce1eac2f-4399-4207-bc4b-11b88f99d856" name="Default" comment="螺旋数组">
+    <list default="true" id="ce1eac2f-4399-4207-bc4b-11b88f99d856" name="Default" comment="全排列看不懂啊看不懂">
+      <change afterPath="$PROJECT_DIR$/CodeWars/5kyu/【】Directions Reduction.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CodeWars/6kyu/Equal Sides Of An Array.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CodeWars/4kyu/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/CodeWars/4kyu/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CodeWars/4kyu/【】Next bigger number with the same digits.py" beforeDir="false" afterPath="$PROJECT_DIR$/CodeWars/4kyu/【】Next bigger number with the same digits.py" afterDir="false" />
@@ -206,7 +208,7 @@
       <recent name="F:\PyCharm\Projects\book\file" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.【】Next bigger number with the same digits">
+  <component name="RunManager" selected="Python.【】Directions Reduction">
     <configuration default="true" type="tests" factoryName="Attests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -240,7 +242,7 @@
       <option name="ADDITIONAL_ARGS" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="递归计算乘法" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="【】Directions Reduction" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Projects" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -248,12 +250,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithms" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CodeWars/5kyu" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/algorithms/递归计算乘法.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CodeWars/5kyu/【】Directions Reduction.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -262,7 +264,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="MergeSort" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Equal Sides Of An Array" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Projects" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -270,12 +272,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithms" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CodeWars/6kyu" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/algorithms/MergeSort.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CodeWars/6kyu/Equal Sides Of An Array.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -408,19 +410,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.递归计算乘法" />
-      <item itemvalue="Python.MergeSort" />
       <item itemvalue="Python.【】Snail" />
       <item itemvalue="Python.__init__" />
       <item itemvalue="Python.【】Next bigger number with the same digits" />
+      <item itemvalue="Python.Equal Sides Of An Array" />
+      <item itemvalue="Python.【】Directions Reduction" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.【】Directions Reduction" />
+        <item itemvalue="Python.Equal Sides Of An Array" />
         <item itemvalue="Python.【】Next bigger number with the same digits" />
         <item itemvalue="Python.__init__" />
         <item itemvalue="Python.【】Snail" />
-        <item itemvalue="Python.MergeSort" />
-        <item itemvalue="Python.递归计算乘法" />
       </list>
     </recent_temporary>
   </component>
@@ -444,6 +446,10 @@
       <workItem from="1592813984967" duration="443000" />
       <workItem from="1592814450119" duration="11751000" />
       <workItem from="1592913447909" duration="2663000" />
+      <workItem from="1592916536154" duration="40000" />
+      <workItem from="1592961792511" duration="2773000" />
+      <workItem from="1593150397106" duration="742000" />
+      <workItem from="1594295628216" duration="4524000" />
     </task>
     <task id="LOCAL-00001" summary="add comment for binary_search">
       <created>1507012927581</created>
@@ -536,7 +542,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592818362457</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="全排列看不懂啊看不懂">
+      <created>1592916558690</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1592916558690</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TodoView">
@@ -564,53 +577,54 @@
     <MESSAGE value="开始4kyu" />
     <MESSAGE value="Karatsuba" />
     <MESSAGE value="螺旋数组" />
-    <option name="LAST_COMMIT_MESSAGE" value="螺旋数组" />
+    <MESSAGE value="全排列看不懂啊看不懂" />
+    <option name="LAST_COMMIT_MESSAGE" value="全排列看不懂啊看不懂" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2" timestamp="1592818361450">
+    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2" timestamp="1592916557700">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1592818361450" />
-    <state width="1877" height="311" key="GridCell.Tab.0.bottom" timestamp="1592916527118">
+    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1592916557700" />
+    <state width="1877" height="230" key="GridCell.Tab.0.bottom" timestamp="1594301976305">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="311" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592916527118" />
-    <state width="1877" height="311" key="GridCell.Tab.0.center" timestamp="1592916527118">
+    <state width="1877" height="230" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1594301976305" />
+    <state width="1877" height="230" key="GridCell.Tab.0.center" timestamp="1594301976305">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="311" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592916527118" />
-    <state width="1877" height="311" key="GridCell.Tab.0.left" timestamp="1592916527118">
+    <state width="1877" height="230" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1594301976305" />
+    <state width="1877" height="230" key="GridCell.Tab.0.left" timestamp="1594301976305">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="311" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592916527118" />
-    <state width="1877" height="311" key="GridCell.Tab.0.right" timestamp="1592916527118">
+    <state width="1877" height="230" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1594301976305" />
+    <state width="1877" height="230" key="GridCell.Tab.0.right" timestamp="1594301976305">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="311" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592916527118" />
-    <state width="1877" height="334" key="GridCell.Tab.1.bottom" timestamp="1592622905346">
+    <state width="1877" height="230" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594301976305" />
+    <state width="1877" height="334" key="GridCell.Tab.1.bottom" timestamp="1592964566785">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="334" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592622905346" />
-    <state width="1877" height="334" key="GridCell.Tab.1.center" timestamp="1592622905346">
+    <state width="1877" height="334" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592964566785" />
+    <state width="1877" height="334" key="GridCell.Tab.1.center" timestamp="1592964566785">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="334" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592622905346" />
-    <state width="1877" height="334" key="GridCell.Tab.1.left" timestamp="1592622905346">
+    <state width="1877" height="334" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592964566785" />
+    <state width="1877" height="334" key="GridCell.Tab.1.left" timestamp="1592964566785">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="334" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592622905346" />
-    <state width="1877" height="334" key="GridCell.Tab.1.right" timestamp="1592622905346">
+    <state width="1877" height="334" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592964566785" />
+    <state width="1877" height="334" key="GridCell.Tab.1.right" timestamp="1592964566785">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="334" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592622905346" />
+    <state width="1877" height="334" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592964566785" />
     <state x="650" y="158" key="SettingsEditor" timestamp="1592378115246">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="650" y="158" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1592378115246" />
-    <state x="552" y="248" key="Vcs.Push.Dialog.v2" timestamp="1592818367510">
+    <state x="552" y="248" key="Vcs.Push.Dialog.v2" timestamp="1592916564235">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="248" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1592818367510" />
+    <state x="552" y="248" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1592916564235" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -638,14 +652,16 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PythonProjects$Permutations_and_Sum.coverage" NAME="Permutations and Sum Coverage Results" MODIFIED="1592532402969" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/4kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$.coverage" NAME="递归计算乘法 Coverage Results" MODIFIED="1592573387276" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/algorithms" />
-    <SUITE FILE_PATH="coverage/PythonProjects$Next_bigger_number_with_the_same_digits.coverage" NAME="【】Next bigger number with the same digits Coverage Results" MODIFIED="1592916346741" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/4kyu" />
+    <SUITE FILE_PATH="coverage/PythonProjects$Next_bigger_number_with_the_same_digits.coverage" NAME="【】Next bigger number with the same digits Coverage Results" MODIFIED="1592964538755" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/4kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1592830219318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/4kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$Snail.coverage" NAME="【】Snail Coverage Results" MODIFIED="1592818059012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/4kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$String_Letter_Counting.coverage" NAME="String Letter Counting Coverage Results" MODIFIED="1592300601808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/6kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$MergeSort.coverage" NAME="MergeSort Coverage Results" MODIFIED="1592621180589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/algorithms" />
     <SUITE FILE_PATH="coverage/PythonProjects$Convert_A_Hex_String_To_RGB.coverage" NAME="Convert A Hex String To RGB Coverage Results" MODIFIED="1592466937358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/5kyu" />
+    <SUITE FILE_PATH="coverage/PythonProjects$Directions_Reduction.coverage" NAME="【】Directions Reduction Coverage Results" MODIFIED="1594302088279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/5kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$Josephus_Permutation.coverage" NAME="Josephus Permutation Coverage Results" MODIFIED="1592380249999" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/5kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$_T_Simple_assembler_interpreter.coverage" NAME="[T]Simple assembler interpreter Coverage Results" MODIFIED="1592463403968" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/5kyu" />
+    <SUITE FILE_PATH="coverage/PythonProjects$Equal_Sides_Of_An_Array.coverage" NAME="Equal Sides Of An Array Coverage Results" MODIFIED="1594300472110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/6kyu" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
