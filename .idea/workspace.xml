@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce1eac2f-4399-4207-bc4b-11b88f99d856" name="Default" comment="暑假啊啊啊">
-      <change afterPath="$PROJECT_DIR$/CodeWars/5kyu/Unique digits sequence.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CodeWars/5kyu/【】Factorial decomposition.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -205,7 +205,7 @@
       <recent name="F:\PyCharm\Projects\drcom" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Unique digits sequence">
+  <component name="RunManager" selected="Python.【】Factorial decomposition (1)">
     <configuration default="true" type="tests" factoryName="Attests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -261,7 +261,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="【】Next bigger number with the same digits" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="【】Factorial decomposition (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Projects" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -269,12 +269,34 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CodeWars/4kyu" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CodeWars/5kyu" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CodeWars/4kyu/【】Next bigger number with the same digits.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CodeWars/5kyu/【】Factorial decomposition.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="【】Factorial decomposition" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Projects" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CodeWars/5kyu" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="E:\PycharmProjects\PythonProjects\CodeWars\5kyu\【】Factorial decomposition.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -319,28 +341,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CodeWars/5kyu/Unique digits sequence.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Projects" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CodeWars/4kyu" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CodeWars/4kyu/__init__.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -407,19 +407,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.__init__" />
-      <item itemvalue="Python.【】Next bigger number with the same digits" />
       <item itemvalue="Python.Equal Sides Of An Array" />
       <item itemvalue="Python.Play with two Strings" />
       <item itemvalue="Python.Unique digits sequence" />
+      <item itemvalue="Python.【】Factorial decomposition" />
+      <item itemvalue="Python.【】Factorial decomposition (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.【】Factorial decomposition (1)" />
+        <item itemvalue="Python.【】Factorial decomposition" />
         <item itemvalue="Python.Unique digits sequence" />
         <item itemvalue="Python.Play with two Strings" />
         <item itemvalue="Python.Equal Sides Of An Array" />
-        <item itemvalue="Python.【】Next bigger number with the same digits" />
-        <item itemvalue="Python.__init__" />
       </list>
     </recent_temporary>
   </component>
@@ -450,7 +450,12 @@
       <workItem from="1594346095697" duration="128000" />
       <workItem from="1594375114743" duration="4763000" />
       <workItem from="1594386375270" duration="51000" />
-      <workItem from="1594438848867" duration="6619000" />
+      <workItem from="1594438848867" duration="6775000" />
+      <workItem from="1594528915641" duration="68000" />
+      <workItem from="1594529003544" duration="3597000" />
+      <workItem from="1594798300947" duration="101000" />
+      <workItem from="1594798408884" duration="632000" />
+      <workItem from="1594819962588" duration="593000" />
     </task>
     <task id="LOCAL-00001" summary="add comment for binary_search">
       <created>1507012927581</created>
@@ -564,7 +569,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594386392221</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="暑假啊啊啊">
+      <created>1594449241113</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1594449241113</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TodoView">
@@ -601,42 +613,42 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="713" y="309" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1594346146554" />
-    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2" timestamp="1594386391243">
+    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2" timestamp="1594449240341">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1594386391243" />
-    <state width="1877" height="319" key="GridCell.Tab.0.bottom" timestamp="1594449057285">
+    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1594449240341" />
+    <state width="1877" height="404" key="GridCell.Tab.0.bottom" timestamp="1594820552266">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1594449057285" />
-    <state width="1877" height="319" key="GridCell.Tab.0.center" timestamp="1594449057285">
+    <state width="1877" height="404" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1594820552266" />
+    <state width="1877" height="404" key="GridCell.Tab.0.center" timestamp="1594820552265">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1594449057285" />
-    <state width="1877" height="319" key="GridCell.Tab.0.left" timestamp="1594449057285">
+    <state width="1877" height="404" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1594820552265" />
+    <state width="1877" height="404" key="GridCell.Tab.0.left" timestamp="1594820552265">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1594449057285" />
-    <state width="1877" height="319" key="GridCell.Tab.0.right" timestamp="1594449057285">
+    <state width="1877" height="404" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1594820552265" />
+    <state width="1877" height="404" key="GridCell.Tab.0.right" timestamp="1594820552265">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="319" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594449057285" />
-    <state width="1877" height="334" key="GridCell.Tab.1.bottom" timestamp="1594302188649">
+    <state width="1877" height="404" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594820552265" />
+    <state width="1877" height="334" key="GridCell.Tab.1.bottom" timestamp="1594532767628">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="334" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1594302188649" />
-    <state width="1877" height="334" key="GridCell.Tab.1.center" timestamp="1594302188649">
+    <state width="1877" height="334" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1594532767628" />
+    <state width="1877" height="334" key="GridCell.Tab.1.center" timestamp="1594532767628">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="334" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1594302188649" />
-    <state width="1877" height="334" key="GridCell.Tab.1.left" timestamp="1594302188649">
+    <state width="1877" height="334" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1594532767628" />
+    <state width="1877" height="334" key="GridCell.Tab.1.left" timestamp="1594532767628">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="334" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1594302188649" />
-    <state width="1877" height="334" key="GridCell.Tab.1.right" timestamp="1594302188649">
+    <state width="1877" height="334" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1594532767628" />
+    <state width="1877" height="334" key="GridCell.Tab.1.right" timestamp="1594532767628">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="334" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594302188649" />
+    <state width="1877" height="334" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594532767628" />
     <state x="650" y="158" key="SettingsEditor" timestamp="1592378115246">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -676,6 +688,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PythonProjects$Next_bigger_number_with_the_same_digits.coverage" NAME="【】Next bigger number with the same digits Coverage Results" MODIFIED="1592964538755" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/4kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$Snail.coverage" NAME="【】Snail Coverage Results" MODIFIED="1592818059012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/4kyu" />
+    <SUITE FILE_PATH="coverage/PythonProjects$Factorial_decomposition__1_.coverage" NAME="【】Factorial decomposition (1) Coverage Results" MODIFIED="1594820120187" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/5kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$String_Letter_Counting.coverage" NAME="String Letter Counting Coverage Results" MODIFIED="1592300601808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/6kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$MergeSort.coverage" NAME="MergeSort Coverage Results" MODIFIED="1592621180589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/algorithms" />
     <SUITE FILE_PATH="coverage/PythonProjects$Convert_A_Hex_String_To_RGB.coverage" NAME="Convert A Hex String To RGB Coverage Results" MODIFIED="1592466937358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/5kyu" />
@@ -688,6 +701,7 @@
     <SUITE FILE_PATH="coverage/PythonProjects$Unique_digits_sequence.coverage" NAME="Unique digits sequence Coverage Results" MODIFIED="1594449129717" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/5kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$Play_with_two_Strings.coverage" NAME="Play with two Strings Coverage Results" MODIFIED="1594378321192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/5kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$_T_Simple_assembler_interpreter.coverage" NAME="[T]Simple assembler interpreter Coverage Results" MODIFIED="1592463403968" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/5kyu" />
+    <SUITE FILE_PATH="coverage/PythonProjects$Factorial_decomposition.coverage" NAME="Factorial decomposition Coverage Results" MODIFIED="1594532597878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/5kyu" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
