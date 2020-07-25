@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce1eac2f-4399-4207-bc4b-11b88f99d856" name="Default" comment="暑假啊啊啊">
+      <change afterPath="$PROJECT_DIR$/CodeWars/4kyu/Sum by Factors.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CodeWars/4kyu/Human readable duration format.py" beforeDir="false" afterPath="$PROJECT_DIR$/CodeWars/4kyu/Human readable duration format.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +205,7 @@
       <recent name="F:\PyCharm\Projects\drcom" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Human readable duration format">
+  <component name="RunManager" selected="Python.Sum by Factors">
     <configuration default="true" type="tests" factoryName="Attests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -283,7 +283,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Play with two Strings" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Sum by Factors" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Projects" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -291,12 +291,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CodeWars/5kyu" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CodeWars/4kyu" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CodeWars/5kyu/Play with two Strings.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CodeWars/4kyu/Sum by Factors.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -429,19 +429,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.Play with two Strings" />
       <item itemvalue="Python.Unique digits sequence" />
       <item itemvalue="Python.【TimeOut】Factorial decomposition" />
       <item itemvalue="Python.蓝桥杯-完美代价" />
       <item itemvalue="Python.Human readable duration format" />
+      <item itemvalue="Python.Sum by Factors" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Sum by Factors" />
         <item itemvalue="Python.Human readable duration format" />
         <item itemvalue="Python.蓝桥杯-完美代价" />
         <item itemvalue="Python.【TimeOut】Factorial decomposition" />
         <item itemvalue="Python.【TimeOut】Factorial decomposition" />
-        <item itemvalue="Python.Unique digits sequence" />
       </list>
     </recent_temporary>
   </component>
@@ -485,7 +485,8 @@
       <workItem from="1595242612852" duration="2902000" />
       <workItem from="1595420300801" duration="314000" />
       <workItem from="1595574674857" duration="533000" />
-      <workItem from="1595575228628" duration="3735000" />
+      <workItem from="1595575228628" duration="4741000" />
+      <workItem from="1595672551105" duration="3160000" />
     </task>
     <task id="LOCAL-00001" summary="add comment for binary_search">
       <created>1507012927581</created>
@@ -634,7 +635,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595575267531</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="暑假啊啊啊">
+      <created>1595579258084</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1595579258084</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TodoView">
@@ -671,30 +679,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="713" y="309" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1594346146554" />
-    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2" timestamp="1595575266536">
+    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2" timestamp="1595579257057">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1595575266536" />
+    <state x="942" y="51" width="978" height="919" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1595579257057" />
     <state x="739" y="261" key="FileChooserDialogImpl" timestamp="1595063870793">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="739" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1595063870793" />
-    <state width="1877" height="347" key="GridCell.Tab.0.bottom" timestamp="1595578542095">
+    <state width="1877" height="279" key="GridCell.Tab.0.bottom" timestamp="1595675704587">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1595578542095" />
-    <state width="1877" height="347" key="GridCell.Tab.0.center" timestamp="1595578542095">
+    <state width="1877" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1595675704587" />
+    <state width="1877" height="279" key="GridCell.Tab.0.center" timestamp="1595675704587">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1595578542095" />
-    <state width="1877" height="347" key="GridCell.Tab.0.left" timestamp="1595578542095">
+    <state width="1877" height="279" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1595675704587" />
+    <state width="1877" height="279" key="GridCell.Tab.0.left" timestamp="1595675704587">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1595578542095" />
-    <state width="1877" height="347" key="GridCell.Tab.0.right" timestamp="1595578542095">
+    <state width="1877" height="279" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1595675704587" />
+    <state width="1877" height="279" key="GridCell.Tab.0.right" timestamp="1595675704587">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1595578542095" />
+    <state width="1877" height="279" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1595675704587" />
     <state width="981" height="638" key="GridCell.Tab.1.bottom" timestamp="1595245562493">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -715,10 +723,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="200" y="179" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1595578977299" />
-    <state x="552" y="248" key="Vcs.Push.Dialog.v2" timestamp="1594386396359">
+    <state x="552" y="248" key="Vcs.Push.Dialog.v2" timestamp="1595579382028">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="248" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1594386396359" />
+    <state x="552" y="248" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1595579382028" />
     <state x="778" y="91" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1594378732082">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -749,6 +757,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PythonProjects$Next_bigger_number_with_the_same_digits.coverage" NAME="【】Next bigger number with the same digits Coverage Results" MODIFIED="1592964538755" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/4kyu" />
+    <SUITE FILE_PATH="coverage/PythonProjects$Sum_by_Factors.coverage" NAME="Sum by Factors Coverage Results" MODIFIED="1595675704583" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/4kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$Snail.coverage" NAME="【】Snail Coverage Results" MODIFIED="1592818059012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/4kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$Factorial_decomposition__1_.coverage" NAME="【】Factorial decomposition (1) Coverage Results" MODIFIED="1594866360238" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/5kyu" />
     <SUITE FILE_PATH="coverage/PythonProjects$String_Letter_Counting.coverage" NAME="String Letter Counting Coverage Results" MODIFIED="1592300601808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CodeWars/6kyu" />
