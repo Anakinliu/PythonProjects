@@ -21,9 +21,3 @@ def say_whee():
 say_whee()  # 其实调用的是 __call__ 方法
 print(say_whee.__name__)
 
-lst = [1,3,5,3]
-print(tuple(lst))
-x = {e for e in lst}
-print(x)
-print(type(x))
-print(x)
