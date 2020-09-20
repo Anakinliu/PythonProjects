@@ -1,6 +1,6 @@
 # 注意反转后的整数的大小！！！
 def reverse(x):
-    y = x 
+    y = x
     if y < 0:
         y = - y
     res = y % 10
