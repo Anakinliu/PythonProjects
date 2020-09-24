@@ -46,5 +46,5 @@ def climb_stairs2(n, n_lst):
 
 # 动态规划版不写了，就是斐波那契额数
 # print(climb_stairs(2))
-lst = [0] * 45
-print(climb_stairs2(6, lst))
+lst = [0] * 451
+print(climb_stairs2(450, lst))
