@@ -17,7 +17,40 @@ Input: grid = [
   ["0","0","0","1","1"]
 ]
 Output: 3
+注意输入的元素是str
 """
 
+m = 0
+n = 0
+directions = ((0, 1), (0, -1), (1, 0), (-1, 0))
 
 
+def solution(grid):
+    if not grid:
+        return 0
+    global m, n
+    m = len(grid)
+    n = len(grid[0])
+    islands_num = 0
+    for i in range(m):
+        for j in range(n):
+            if grid[i][j] != '0':
+                dfs(grid, i, j)
+                islands_num += 1
+    return islands_num
+
+
+def dfs(grid, i, j):
+    if i >= m or i < 0 or j >= n or j < 0 or grid[i][j] == '0':
+        return
+    grid[i][j] = '0'
+    for direction in directions:
+        dfs(grid, i + direction[0], j + direction[1])
+
+grid = [
+  ["1","1","0","0","0"],
+  ["1","1","0","0","0"],
+  ["0","0","1","0","0"],
+  ["0","0","0","1","1"]
+]
+print(solution(grid))
