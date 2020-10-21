@@ -1,0 +1,1 @@
+# PyQt应用必须两个类：QApplication，QWidget。都在PyQt5.QtWidgets内
