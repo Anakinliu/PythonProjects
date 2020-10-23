@@ -15,9 +15,33 @@
 !python "/content/drive/My Drive/Colab Notebooks/StyleText/src/test.py" --text_name "/content/drive/My Drive/Colab Notebooks/StyleText/data/rawtext/yaheiB/less/0165.png" --scale -1 --scale_step 0.05 --structure_model "/content/drive/My Drive/Colab Notebooks/StyleText/save/water-GS-iccv.ckpt" --texture_model "/content/drive/My Drive/Colab Notebooks/StyleText/save/water-GT-iccv.ckpt" --result_dir "/content/drive/My Drive/Colab Notebooks/StyleText/output/water/" --name water-0165 --gpu
 
 =================TRAIN============
-训练 G_B 的参数
+训练 Sketch Module G_B 
+
 test 3
+
+参数：
+
 添加augmented图像到训练集可以使得G_B更健壮
 !python "/content/drive/My Drive/Colab Notebooks/StyleText/src/trainSketchModule.py" --text_path "/content/drive/My Drive/Colab Notebooks/StyleText/data/rawtext/yaheiB/train" --text_datasize 708 --augment_text_path "/content/drive/My Drive/Colab Notebooks/StyleText/data/rawtext/augment" --augment_text_datasize 5 --batchsize 64 --Btraining_num 12800 --save_GB_name "/content/drive/My Drive/Colab Notebooks/StyleText/save/GB.ckpt" --gpu
+
+-------------------------
+训练Structure Transfer G_S
+
+test 4
+
+参数：
+步骤1：G_S 首先以 l = 1训练以学习到最好的变形
+步骤2：使用 l in [0,1] 学习两个极端
+步骤3：G_S 在 l in [i/K] 之间调整，其中 i=0,1,...K ; K = 3 即--scale_num  4
+对于带有方向的模式的结构，训练时最好不要加--Sanglejitter
+
+python trainStructureTransfer.py \
+--style_name ../data/style/fire.png \
+--batchsize 16 --Straining_num 2560 \
+--step1_epochs 30 --step2_epochs 40 --step3_epochs 80 \
+--scale_num 4 \
+--Sanglejitter \
+--save_path ../save --save_name fire \
+--gpu
 
 
