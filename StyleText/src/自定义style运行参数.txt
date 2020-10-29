@@ -1,0 +1,15 @@
+python text.py
+
+
+
+电
+--text_name ../data/rawtext/sentence/红色警戒_dis.png --scale -1 --scale_step 0.05 --structure_model ../save/dian-GS.ckpt --texture_model ../save/dian-GT.ckpt --result_dir ../output/dian-红色警戒 --name diann-红色警戒 --gpu
+
+樱花
+--text_name ../data/rawtext/sentence/红色警戒_dis.png --scale -1 --scale_step 0.05 --structure_model ../save/sakura-GS.ckpt --texture_model ../save/sakura-GT.ckpt --result_dir ../output/sakura-redalert --name sakura-红色警戒 --gpu
+
+樱花cqupt
+--text_name ../data/rawtext/sentence/重庆邮电大学_dis.png --scale -1 --scale_step 0.05 --structure_model ../save/sakura-GS.ckpt --texture_model ../save/sakura-GT.ckpt --result_dir ../output/sakura-cqupt --name sakura-cqupt --gpu
+
+樱花 重庆邮电大学生
+--text_name ../data/rawtext/sentence/重庆邮电大学生_dis.png --scale -1 --scale_step 0.05 --structure_model ../save/sakura-GS.ckpt --texture_model ../save/sakura-GT.ckpt --result_dir ../output/sakura-cqupts --name sakura-cqupts --gpu

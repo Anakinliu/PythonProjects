@@ -1,0 +1,20 @@
+================TEST=========
+test1 
+--scale 0.0 --structure_model ../save/fire-GS-iccv.ckpt --texture_model ../save/fire-GT-iccv.ckpt --gpu
+
+-----------------------------
+
+test2
+setting scale to -1 means testing with multiple scales in [0,1] with step of scale_step
+specify the input text name, output image path and name with text_name, result_dir and name, respectively
+
+--text_name ../data/rawtext/yaheiB/val/0745.png --scale -1 --scale_step 0.05 --structure_model ../save/fire-GS-iccv.ckpt --texture_model ../save/fire-GT-iccv.ckpt --result_dir ../output --name fire-0745 --gpu
+
+=================TRAIN============
+训练 G_B 的参数
+test 3
+添加augmented图像到训练集可以使得G_B更健壮
+python trainSketchModule.py \
+--text_path ../data/rawtext/yaheiB/train --text_datasize 708 --augment_text_path ../data/rawtext/augment --augment_text_datasize 5 --batchsize 16 --Btraining_num 12800 --save_GB_name ../save/GB.ckpt --gpu
+
+

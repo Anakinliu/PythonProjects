@@ -12,9 +12,15 @@
 !python "/content/drive/My Drive/Colab Notebooks/StyleText/src/test.py" --text_name "/content/drive/My Drive/Colab Notebooks/StyleText/data/rawtext/yaheiB/less/0165.png" --scale -1 --scale_step 0.05 --structure_model "/content/drive/My Drive/Colab Notebooks/StyleText/save/fire-GS-iccv.ckpt" --texture_model "/content/drive/My Drive/Colab Notebooks/StyleText/save/fire-GT-iccv.ckpt" --result_dir "/content/drive/My Drive/Colab Notebooks/StyleText/output" --name fire-0745 --gpu
 
 水
-!python "/content/drive/My Drive/Colab Notebooks/StyleText/src/test.py" --text_name "/content/drive/My Drive/Colab Notebooks/StyleText/data/rawtext/yaheiB/less/0165.png" --scale -1 --scale_step 0.05 --structure_model "/content/drive/My Drive/Colab Notebooks/StyleText/save/water-GS-iccv.ckpt" --texture_model "/content/drive/My Drive/Colab Notebooks/StyleText/save/water-GT-iccv.ckpt" --result_dir "/content/drive/My Drive/Colab Notebooks/StyleText/output/water/" --name water-0165 --gpu
+!python "/content/drive/My Drive/Colab Notebooks/StyleText/src/test.py" --text_name "/content/drive/My Drive/Colab Notebooks/StyleText/data/rawtext/yaheiB/less/0165.png" --scale -1 --scale_step 0.05 --structure_model "/content/drive/My Drive/Colab Notebooks/StyleText/save/water-GS-iccv.ckpt" --texture_model "/content/drive/My Drive/Colab Notebooks/StyleText/save/water-GT-iccv.ckpt" --result_dir "/content/drive/My Drive/Colab Notebooks/StyleText/output/water-0165/" --name water-0165 --gpu
+
+樱花
+!python "/content/drive/My Drive/Colab Notebooks/StyleText/src/test.py" --text_name "/content/drive/My Drive/Colab Notebooks/StyleText/data/rawtext/yaheiB/less/shu_dis.png" --scale -1 --scale_step 0.05 --structure_model "/content/drive/My Drive/Colab Notebooks/StyleText/save/sakura-GS.ckpt" --texture_model "/content/drive/My Drive/Colab Notebooks/StyleText/save/sakura-GT.ckpt" --result_dir "/content/drive/My Drive/Colab Notebooks/StyleText/output/sakura-shu" --name sakura-shu --gpu
+
 
 =================TRAIN============
+
+---------------style 通用-----------
 训练 Sketch Module G_B 
 
 test 3
@@ -26,7 +32,7 @@ test 3
 
 生成GB.ckpt
 
--------------------------
+-------------style 特定------------
 训练Structure Transfer G_S 和 D_S
 
 test 4
@@ -39,17 +45,24 @@ test 4
 
 !python "/content/drive/My Drive/Colab Notebooks/StyleText/src/trainStructureTransfer.py" --style_name "/content/drive/My Drive/Colab Notebooks/StyleText/data/style/sakura.png" --batchsize 32 --Straining_num 2560 --step1_epochs 30 --step2_epochs 40 --step3_epochs 80 --scale_num 4 --Sanglejitter --save_path "/content/drive/My Drive/Colab Notebooks/StyleText/save" --save_name sakura --gpu --load_GB_name "/content/drive/My Drive/Colab Notebooks/StyleText/save/GB.ckpt"
 
-生成sakura-GS.ckpt与sakura-DS.ckpt
+生成sakura-GS.ckpt与sakura-DS.ckpt；S指的是结构
 
-----------------------------
+-------------style 特定---------------
 
 训练Texture Transfer G_T 和 D_T
-对于复杂的样式或具有方向性样式的样式，不使用--Tanglejitter进行训练将是一个不错的选择
+对于复杂的样式或具有方向性样式的样式，最好不使用--Tanglejitter进行训练
 
-樱花纹理应该属于没有方向的。。。
+樱花纹理应该属于没有方向的。。。所以加上--Tanglejitter
 
 !python "/content/drive/My Drive/Colab Notebooks/StyleText/src/trainTextureTransfer.py" --style_name "/content/drive/My Drive/Colab Notebooks/StyleText/data/style/sakura.png" --batchsize 32 --Ttraining_num 800 --texture_step1_epochs 40 --Tanglejitter --save_path "/content/drive/My Drive/Colab Notebooks/StyleText/save" --save_name sakura --gpu --load_GB_name "/content/drive/My Drive/Colab Notebooks/StyleText/save/GB.ckpt" --load_GS_name "/content/drive/My Drive/Colab Notebooks/StyleText/save/sakura-GS.ckpt" --text_path "/content/drive/My Drive/Colab Notebooks/StyleText/data/rawtext/yaheiB/train"
 
-应该生成sakura-GT.ckpt
+应该生成sakura-GT.ckpt和sakura-DT.ckpt；T指的是纹理
 
 
+========================
+使用自己的风格图像
+风格图像准备：
+- 为了使风格化的文本易于识别，希望在文本和背景之间有一定的区别。如果纹理没有明显的形状，则生成的风格化文本将与背景互相混合。因此，建议使用具有不同形状的纹理作为参考样式。不要使用覆盖整个风格图像的纹理。
+- 使用抠图算法或者PS快速选择工具得到风格图像 Y 黑白的结构图 X 。（纹理部分是黑还是白？）
+- 得到结构图 X 的基于距离的图：使用utils.text_image_preprocessing转换黑白的 X 为 基于距离的 X。
+- 拼接基于距离的 X 和原风格图像 Y。拼接方式见data/style
