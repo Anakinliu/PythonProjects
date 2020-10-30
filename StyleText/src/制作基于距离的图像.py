@@ -27,7 +27,7 @@ def text_image_preprocessing(filename, t):
         Image.fromarray(I).save(f'{BASE_DIR}/{filename[:dot_idx]}_dis.{filename[dot_idx + 1:]}')
         print(f'{BASE_DIR}/{filename[:dot_idx]}_dis.{filename[dot_idx + 1:]} 已保存 ')
     else:
-        # 风格图片
+        # 风格图片和基于举例的风格图片拼接，达到论文要求的输入格式。
         style = np.array(
             Image.open(f'{BASE_DIR}/{filename}')
         )
