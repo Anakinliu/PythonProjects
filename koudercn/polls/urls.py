@@ -7,7 +7,17 @@ from django.urls import path
 
 from . import views
 
+# 使用URLconf的命名空间, 就叫app_name
+app_name = 'polls'
+
 # 在整个project里属于二级路由
 urlpatterns = [
+    # 浏览器输入：/polls
     path('', views.index, name='index'),
+    # 浏览器输入：/polls/数值ID
+    path('xiangxi/<int:q_id>/', views.detail, name='name有啥用'),
+
+    path('<int:q_id>/vote', views.vote, name='vote'),
+
+    path('<int:q_id>/results', views.results, name='results')
 ]

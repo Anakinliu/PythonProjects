@@ -17,7 +17,7 @@ Output:
 """
 
 
-# 手机APP迭代解法
+# 手机APP给的迭代解法版解答
 def subsets(nums):  # 数字列表
     nb_subsets = 2 ** len(nums)
     all_subsets = []
@@ -40,7 +40,7 @@ def subsets(nums):  # 数字列表
 
 
 # leetcode 讨论区 回溯解法 https://leetcode.com/problems/subsets/discuss/360873/Python-Backtracking
-def solution(nums):
+def solution(nums_lst):
     def explore(chosen, remaining, res):
         if not remaining:
             res.append(chosen[:])
@@ -57,7 +57,7 @@ def solution(nums):
 
     result = []
     chosen = []
-    explore(chosen, nums, result)
+    explore(chosen, nums_lst, result)
     return result
 
 
