@@ -3,7 +3,8 @@ from PIL import Image
 import scipy.ndimage as pyimg
 
 # BASE_DIR = '../data/oth'
-BASE_DIR = '../data/rawtext/sentence/'
+# BASE_DIR = '../data/rawtext/sentence/'
+BASE_DIR = '../data/style/'
 
 def text_image_preprocessing(filename, t):
     """
@@ -31,6 +32,7 @@ def text_image_preprocessing(filename, t):
         style = np.array(
             Image.open(f'{BASE_DIR}/{filename}')
         )
+        # 拼接图
         res = Image.fromarray(
             np.concatenate((I, style), axis=1)
         )
@@ -38,5 +40,6 @@ def text_image_preprocessing(filename, t):
         print(f'{BASE_DIR}/{filename[:dot_idx]}_style.{filename[dot_idx + 1:]} 已保存')
 
 
-text_image_preprocessing('重庆邮电大学生.png', 0)
+# text_image_preprocessing('firework.jpg', 0)
+text_image_preprocessing('firework.jpg', 1)
 

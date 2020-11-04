@@ -5,9 +5,6 @@
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
-    <content url="file://X:/SoftOnSSD/Anaconda37/envs/py36forTensorFlow/Lib/site-packages/flask_bootstrap/templates">
-      <sourceFolder url="file://X:/SoftOnSSD/Anaconda37/envs/py36forTensorFlow/Lib/site-packages/flask_bootstrap/templates" isTestSource="false" />
-    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
@@ -16,12 +13,7 @@
     <option name="TEMPLATE_FOLDERS">
       <list>
         <option value="$MODULE_DIR$/templates" />
-        <option value="$MODULE_DIR$" />
       </list>
     </option>
-  </component>
-  <component name="TestRunnerService">
-    <option name="projectConfiguration" value="pytest" />
-    <option name="PROJECT_TEST_RUNNER" value="pytest" />
   </component>
 </module>
