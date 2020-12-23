@@ -2,7 +2,7 @@ import imageio
 import os
 import re
 
-SOURCE_DIR = '../output/dian-dian/'
+SOURCE_DIR = '../output/sand_sand-sha2/'
 # print(os.listdir(SOURCE_DIR))
 
 

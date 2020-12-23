@@ -1,0 +1,123 @@
+--- load options ---
+DB_nf: 32
+DB_nlayers: 5
+DS_nf: 32
+DS_nlayers: 4
+DT_nf: 32
+DT_nlayers: 4
+GB_nf: 32
+GB_nlayers: 6
+GS_nf: 32
+GS_nlayers: 6
+GT_nf: 32
+GT_nlayers: 6
+Sanglejitter: True
+Straining_num: 2560
+Tanglejitter: False
+Ttraining_num: 800
+batchsize: 32
+glyph_preserve: False
+gpu: True
+load_GB_name: /content/drive/My Drive/Colab Notebooks/StyleText/save/GB.ckpt
+load_GS_name: ../save/fire-GS.ckpt
+save_name: lotus-S-angle-jitter
+save_path: /content/drive/My Drive/Colab Notebooks/StyleText/save
+scale_num: 4
+step1_epochs: 30
+step2_epochs: 40
+step3_epochs: 80
+step4_epochs: 10
+style_loss: False
+style_name: /content/drive/My Drive/Colab Notebooks/StyleText/data/style/lotus2_style.jpg
+subimg_size: 256
+text_datasize: 708
+text_path: ../data/rawtext/yaheiB/train
+texture_step1_epochs: 40
+texture_step2_epochs: 10
+--- create model ---
+--- training ---
+Step1, Epoch [01/30][001/080]: LDadv: +0.001, LGadv: +0.004, Lrec: +89.840, Lgly: +0.000
+Step1, Epoch [01/30][002/080]: LDadv: +0.008, LGadv: +0.005, Lrec: +75.470, Lgly: +0.000
+Step1, Epoch [01/30][003/080]: LDadv: +0.017, LGadv: +0.005, Lrec: +62.226, Lgly: +0.000
+Traceback (most recent call last):
+  File "/content/drive/My Drive/Colab Notebooks/StyleText/src/trainStructureTransfer.py", line 93, in <module>
+    main()
+  File "/content/drive/My Drive/Colab Notebooks/StyleText/src/trainStructureTransfer.py", line 45, in main
+    opts.Sanglejitter, opts.subimg_size, opts.subimg_size)
+  File "/content/drive/My Drive/Colab Notebooks/StyleText/src/utils.py", line 172, in cropping_training_batches
+    input[:, 0] = torch.clamp(input[:, 0] + noise[:, 0], -1, 1)
+RuntimeError: The size of tensor a (256) must match the size of tensor b (255) at non-singleton dimension 1
+
+批次由32改为30后也不行，不是显存缘故：
+
+--- load options ---
+DB_nf: 32
+DB_nlayers: 5
+DS_nf: 32
+DS_nlayers: 4
+DT_nf: 32
+DT_nlayers: 4
+GB_nf: 32
+GB_nlayers: 6
+GS_nf: 32
+GS_nlayers: 6
+GT_nf: 32
+GT_nlayers: 6
+Sanglejitter: True
+Straining_num: 2560
+Tanglejitter: False
+Ttraining_num: 800
+batchsize: 30
+glyph_preserve: False
+gpu: True
+load_GB_name: /content/drive/My Drive/Colab Notebooks/StyleText/save/GB.ckpt
+load_GS_name: ../save/fire-GS.ckpt
+save_name: lotus-S-angle-jitter
+save_path: /content/drive/My Drive/Colab Notebooks/StyleText/save
+scale_num: 4
+step1_epochs: 30
+step2_epochs: 40
+step3_epochs: 80
+step4_epochs: 10
+style_loss: False
+style_name: /content/drive/My Drive/Colab Notebooks/StyleText/data/style/lotus2_style.jpg
+subimg_size: 256
+text_datasize: 708
+text_path: ../data/rawtext/yaheiB/train
+texture_step1_epochs: 40
+texture_step2_epochs: 10
+--- create model ---
+--- training ---
+Step1, Epoch [01/30][001/085]: LDadv: +0.001, LGadv: -0.024, Lrec: +66.760, Lgly: +0.000
+Step1, Epoch [01/30][002/085]: LDadv: +0.006, LGadv: -0.025, Lrec: +50.731, Lgly: +0.000
+Step1, Epoch [01/30][003/085]: LDadv: +0.011, LGadv: -0.027, Lrec: +38.549, Lgly: +0.000
+Step1, Epoch [01/30][004/085]: LDadv: +0.016, LGadv: -0.029, Lrec: +29.187, Lgly: +0.000
+Step1, Epoch [01/30][005/085]: LDadv: +0.019, LGadv: -0.032, Lrec: +22.247, Lgly: +0.000
+Step1, Epoch [01/30][006/085]: LDadv: +0.018, LGadv: -0.033, Lrec: +18.884, Lgly: +0.000
+Step1, Epoch [01/30][007/085]: LDadv: +0.013, LGadv: -0.034, Lrec: +15.401, Lgly: +0.000
+Step1, Epoch [01/30][008/085]: LDadv: +0.013, LGadv: -0.035, Lrec: +13.482, Lgly: +0.000
+Step1, Epoch [01/30][009/085]: LDadv: +0.013, LGadv: -0.035, Lrec: +12.574, Lgly: +0.000
+Step1, Epoch [01/30][010/085]: LDadv: +0.012, LGadv: -0.039, Lrec: +11.262, Lgly: +0.000
+Step1, Epoch [01/30][011/085]: LDadv: +0.018, LGadv: -0.037, Lrec: +10.785, Lgly: +0.000
+Step1, Epoch [01/30][012/085]: LDadv: +0.020, LGadv: -0.034, Lrec: +10.584, Lgly: +0.000
+Step1, Epoch [01/30][013/085]: LDadv: +0.018, LGadv: -0.033, Lrec: +10.331, Lgly: +0.000
+Step1, Epoch [01/30][014/085]: LDadv: +0.020, LGadv: -0.037, Lrec: +9.815, Lgly: +0.000
+Step1, Epoch [01/30][015/085]: LDadv: +0.029, LGadv: -0.034, Lrec: +9.897, Lgly: +0.000
+Step1, Epoch [01/30][016/085]: LDadv: +0.030, LGadv: -0.036, Lrec: +10.211, Lgly: +0.000
+Step1, Epoch [01/30][017/085]: LDadv: +0.031, LGadv: -0.034, Lrec: +9.842, Lgly: +0.000
+Step1, Epoch [01/30][018/085]: LDadv: +0.036, LGadv: -0.040, Lrec: +9.583, Lgly: +0.000
+Step1, Epoch [01/30][019/085]: LDadv: +0.040, LGadv: -0.039, Lrec: +9.473, Lgly: +0.000
+Step1, Epoch [01/30][020/085]: LDadv: +0.041, LGadv: -0.042, Lrec: +9.751, Lgly: +0.000
+Step1, Epoch [01/30][021/085]: LDadv: +0.045, LGadv: -0.066, Lrec: +8.882, Lgly: +0.000
+Step1, Epoch [01/30][022/085]: LDadv: +0.047, LGadv: -0.032, Lrec: +8.804, Lgly: +0.000
+Step1, Epoch [01/30][023/085]: LDadv: +0.053, LGadv: -0.052, Lrec: +8.874, Lgly: +0.000
+Traceback (most recent call last):
+  File "/content/drive/My Drive/Colab Notebooks/StyleText/src/trainStructureTransfer.py", line 93, in <module>
+    main()
+  File "/content/drive/My Drive/Colab Notebooks/StyleText/src/trainStructureTransfer.py", line 45, in main
+    opts.Sanglejitter, opts.subimg_size, opts.subimg_size)
+  File "/content/drive/My Drive/Colab Notebooks/StyleText/src/utils.py", line 172, in cropping_training_batches
+    input[:, 0] = torch.clamp(input[:, 0] + noise[:, 0], -1, 1)
+RuntimeError: The size of tensor a (256) must match the size of tensor b (255) at non-singleton dimension 2
+
+看了下style图片，难道是因为图片宽度是奇数？？？

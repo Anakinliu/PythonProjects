@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="370383a4-8f36-4918-a004-3e978d986ddf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../AnHengFlask/.idea/AnHengFlask.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CodeWars/4kyu/【】parseInt() reloaded.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LeetCode/.idea/LeetCode.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/.replit" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/CycleGAN.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/data/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/data/aligned_dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/data/base_dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/data/colorization_dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/data/image_folder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/data/single_dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/data/template_dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/data/unaligned_dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/docs/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/docs/README_es.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/docs/datasets.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/docs/docker.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/docs/overview.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/docs/qa.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/docs/tips.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/environment.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/imgs/edges2cats.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/imgs/horse2zebra.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/models/base_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/models/colorization_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/models/cycle_gan_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/models/networks.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/models/pix2pix_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/models/template_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/models/test_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/options/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/options/base_options.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/options/test_options.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/options/train_options.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/pix2pix.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/scripts/conda_deps.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/scripts/download_cyclegan_model.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/scripts/download_pix2pix_model.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/scripts/edges/PostprocessHED.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/scripts/edges/batch_hed.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/scripts/eval_cityscapes/caffemodel/deploy.prototxt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/scripts/eval_cityscapes/cityscapes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/scripts/eval_cityscapes/download_fcn8s.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/scripts/eval_cityscapes/evaluate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/scripts/eval_cityscapes/util.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/scripts/install_deps.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/scripts/test_before_push.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/scripts/test_colorization.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/scripts/test_cyclegan.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/scripts/test_pix2pix.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/scripts/test_single.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/scripts/train_colorization.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/scripts/train_cyclegan.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/scripts/train_pix2pix.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/train.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/util/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/util/get_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/util/html.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/util/image_pool.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/util/util.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pix2Pix/util/visualizer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pytorch-StyleControllableFST/.idea/Pytorch-StyleControllableFST.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Qt5Joy/.idea/Qt5Joy.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/SSIM-PSNR.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Perceptual与Style.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SSIM.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/10000-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/10000.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/fire.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/fire_fire-huo_20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/huo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleControllableFST/.idea/StyleControllableFST.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/.idea/StyleImageTransfer.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/12-14.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/12-16.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/12-7.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/12-8.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/12-9.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/PIL合成动图.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/content/E.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/content/E_dis.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/content/Ea.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/content/Q.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/content/chong.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/content/chong2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/content/cqupt.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/content/huo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/content/huo_dis.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/content/光.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/style/color_E.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/style/colorful_E.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/style/delaunay.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/style/fire.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/style/ft51_1_14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/style/ft51_1_17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/style/ft51_1_19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/style/ft51_1_22.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/style/ft51_1_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/style/lotus.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/style/sakura.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/BuTongCeng/问题.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/tool/82_raw.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/tool/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/tool/data/82-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/tool/data/82-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/tool/data/82-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/tool/data/82-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/tool/data/82_raw.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/tool/data/E.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/tool/data/G.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/tool/data/L.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/tool/data/光.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/tool/data/弹.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/tool/data/重.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/tool/data/重2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/tool/合成动图.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/tool/得到右半边.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleImageTransfer/tool/文字转图像.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/.idea/pythonProject.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/bamboo_bamboo-zhu/bamboo_bamboo-zhu_0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/bamboo_bamboo-zhu/bamboo_bamboo-zhu_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/bamboo_bamboo-zhu/bamboo_bamboo-zhu_10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/bamboo_bamboo-zhu/bamboo_bamboo-zhu_11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/bamboo_bamboo-zhu/bamboo_bamboo-zhu_12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/bamboo_bamboo-zhu/bamboo_bamboo-zhu_13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/bamboo_bamboo-zhu/bamboo_bamboo-zhu_14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/bamboo_bamboo-zhu/bamboo_bamboo-zhu_15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/bamboo_bamboo-zhu/bamboo_bamboo-zhu_16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/bamboo_bamboo-zhu/bamboo_bamboo-zhu_17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/bamboo_bamboo-zhu/bamboo_bamboo-zhu_18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/bamboo_bamboo-zhu/bamboo_bamboo-zhu_19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/bamboo_bamboo-zhu/bamboo_bamboo-zhu_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/bamboo_bamboo-zhu/bamboo_bamboo-zhu_20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/bamboo_bamboo-zhu/bamboo_bamboo-zhu_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/bamboo_bamboo-zhu/bamboo_bamboo-zhu_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/bamboo_bamboo-zhu/bamboo_bamboo-zhu_5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/bamboo_bamboo-zhu/bamboo_bamboo-zhu_6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/bamboo_bamboo-zhu/bamboo_bamboo-zhu_7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/bamboo_bamboo-zhu/bamboo_bamboo-zhu_8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/bamboo_bamboo-zhu/bamboo_bamboo-zhu_9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/dian_dian-san/dian_dian-san_0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/dian_dian-san/dian_dian-san_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/dian_dian-san/dian_dian-san_10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/dian_dian-san/dian_dian-san_11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/dian_dian-san/dian_dian-san_12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/dian_dian-san/dian_dian-san_13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/dian_dian-san/dian_dian-san_14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/dian_dian-san/dian_dian-san_15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/dian_dian-san/dian_dian-san_16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/dian_dian-san/dian_dian-san_17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/dian_dian-san/dian_dian-san_18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/dian_dian-san/dian_dian-san_19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/dian_dian-san/dian_dian-san_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/dian_dian-san/dian_dian-san_20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/dian_dian-san/dian_dian-san_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/dian_dian-san/dian_dian-san_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/dian_dian-san/dian_dian-san_5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/dian_dian-san/dian_dian-san_6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/dian_dian-san/dian_dian-san_7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/dian_dian-san/dian_dian-san_8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/dian_dian-san/dian_dian-san_9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/fire_fire-huo/fire_fire-huo_0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/fire_fire-huo/fire_fire-huo_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/fire_fire-huo/fire_fire-huo_10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/fire_fire-huo/fire_fire-huo_11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/fire_fire-huo/fire_fire-huo_12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/fire_fire-huo/fire_fire-huo_13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/fire_fire-huo/fire_fire-huo_14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/fire_fire-huo/fire_fire-huo_15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/fire_fire-huo/fire_fire-huo_16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/fire_fire-huo/fire_fire-huo_17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/fire_fire-huo/fire_fire-huo_18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/fire_fire-huo/fire_fire-huo_19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/fire_fire-huo/fire_fire-huo_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/fire_fire-huo/fire_fire-huo_20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/fire_fire-huo/fire_fire-huo_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/fire_fire-huo/fire_fire-huo_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/fire_fire-huo/fire_fire-huo_5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/fire_fire-huo/fire_fire-huo_6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/fire_fire-huo/fire_fire-huo_7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/fire_fire-huo/fire_fire-huo_8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/fire_fire-huo/fire_fire-huo_9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-he/lotus_lotus-he_0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-he/lotus_lotus-he_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-he/lotus_lotus-he_10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-he/lotus_lotus-he_11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-he/lotus_lotus-he_12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-he/lotus_lotus-he_13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-he/lotus_lotus-he_14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-he/lotus_lotus-he_15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-he/lotus_lotus-he_16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-he/lotus_lotus-he_17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-he/lotus_lotus-he_18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-he/lotus_lotus-he_19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-he/lotus_lotus-he_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-he/lotus_lotus-he_20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-he/lotus_lotus-he_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-he/lotus_lotus-he_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-he/lotus_lotus-he_5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-he/lotus_lotus-he_6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-he/lotus_lotus-he_7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-he/lotus_lotus-he_8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-he/lotus_lotus-he_9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-san/lotus_lotus-san_0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-san/lotus_lotus-san_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-san/lotus_lotus-san_10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-san/lotus_lotus-san_11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-san/lotus_lotus-san_12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-san/lotus_lotus-san_13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-san/lotus_lotus-san_14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-san/lotus_lotus-san_15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-san/lotus_lotus-san_16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-san/lotus_lotus-san_17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-san/lotus_lotus-san_18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-san/lotus_lotus-san_19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-san/lotus_lotus-san_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-san/lotus_lotus-san_20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-san/lotus_lotus-san_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-san/lotus_lotus-san_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-san/lotus_lotus-san_5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-san/lotus_lotus-san_6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-san/lotus_lotus-san_7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-san/lotus_lotus-san_8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/output/lotus_lotus-san/lotus_lotus-san_9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/src/bamboo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/src/colab参数修改器.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/src/dian.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/src/sketchModule网络结构.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/src/字体有无衬线测试.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/src/报错" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/src/显示距离.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/src/本地测试参数修改器.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StyleText/src/距离.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TianChiAI2/.idea/TianChiAI2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../WCT2/.idea/WCT2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../koudercn/.idea/koudercn.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StyleText/src/2-colab自定义style时的运行参数.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../StyleText/src/2-colab自定义style时的运行参数.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StyleText/src/制作基于距离的图像.py" beforeDir="false" afterPath="$PROJECT_DIR$/../StyleText/src/制作基于距离的图像.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StyleText/src/合成动图.py" beforeDir="false" afterPath="$PROJECT_DIR$/../StyleText/src/合成动图.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StyleText/src/文字转图像.py" beforeDir="false" afterPath="$PROJECT_DIR$/../StyleText/src/文字转图像.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../koudercn/polls/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../koudercn/polls/urls.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="JupyterTrust" id="7a71eaea-2138-4daf-810c-20936e2a8a73" />
+  <component name="ProjectId" id="1ljigpAhyPTsMjVm0TX28ah8jgI" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/data" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\PycharmProjects\PythonProjects\SSIM-PSNR\data" />
+      <recent name="E:\PycharmProjects\PythonProjects\SSIM-PSNR" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.SSIM">
+    <configuration name="Perceptual与Style (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="SSIM-PSNR" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Perceptual与Style.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Perceptual与Style" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="SSIM-PSNR" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="E:\PycharmProjects\PythonProjects\SSIM-PSNR\Perceptual与Style.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="SSIM" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="SSIM-PSNR" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SSIM.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="utils" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="SSIM-PSNR" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.SSIM" />
+        <item itemvalue="Python.Perceptual与Style (1)" />
+        <item itemvalue="Python.utils" />
+        <item itemvalue="Python.Perceptual与Style" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="370383a4-8f36-4918-a004-3e978d986ddf" name="Default Changelist" comment="" />
+      <created>1608117014964</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608117014964</updated>
+      <workItem from="1608117016091" duration="8057000" />
+      <workItem from="1608170662164" duration="4005000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1867" height="321" key="GridCell.Tab.0.bottom" timestamp="1608199911316">
+      <screen x="0" y="0" width="1920" height="999" />
+    </state>
+    <state width="1867" height="321" key="GridCell.Tab.0.bottom/0.0.1920.999@0.0.1920.999" timestamp="1608199911316" />
+    <state width="1867" height="321" key="GridCell.Tab.0.center" timestamp="1608199911316">
+      <screen x="0" y="0" width="1920" height="999" />
+    </state>
+    <state width="1867" height="321" key="GridCell.Tab.0.center/0.0.1920.999@0.0.1920.999" timestamp="1608199911316" />
+    <state width="1867" height="321" key="GridCell.Tab.0.left" timestamp="1608199911316">
+      <screen x="0" y="0" width="1920" height="999" />
+    </state>
+    <state width="1867" height="321" key="GridCell.Tab.0.left/0.0.1920.999@0.0.1920.999" timestamp="1608199911316" />
+    <state width="1867" height="321" key="GridCell.Tab.0.right" timestamp="1608199911316">
+      <screen x="0" y="0" width="1920" height="999" />
+    </state>
+    <state width="1867" height="321" key="GridCell.Tab.0.right/0.0.1920.999@0.0.1920.999" timestamp="1608199911316" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/SSIM_PSNR$Perceptual.coverage" NAME="Perceptual Coverage Results" MODIFIED="1608119432596" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SSIM_PSNR$SSIM.coverage" NAME="SSIM Coverage Results" MODIFIED="1608190003640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SSIM_PSNR$PerceptualStyle__1_.coverage" NAME="Perceptual与Style (1) Coverage Results" MODIFIED="1608188840840" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SSIM_PSNR$utils.coverage" NAME="utils Coverage Results" MODIFIED="1608121289915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>

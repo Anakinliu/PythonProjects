@@ -1,0 +1,178 @@
+import glob
+# Importing drive method from colab for accessing google drive
+from google.colab import drive
+drive.mount('/content/drive/')
+
+已生成GB.ckpt
+已生成GB.ckpt
+已生成GB.ckpt
+
+烟花 烟花 烟花
+
+firework
+
+-------------style 特定--训练style的||结构||----------
+训练Structure Transfer G_S 和 D_S
+
+test 4
+
+参数：
+步骤1：G_S 首先以 l = 1训练以学习到最好的变形
+步骤2：使用 l in [0,1] 学习两个极端
+步骤3：G_S 在 l in [i/K] 之间调整，其中 i=0,1,...K ; K = 3 即--scale_num  4
+对于带有方向的模式的结构，训练时最好不要加--Sanglejitter
+
+为什么参数里只需要指定G而不需要D？？？
+
+!python "/content/drive/My Drive/Colab Notebooks/StyleText/src/trainStructureTransfer.py" --style_name "/content/drive/My Drive/Colab Notebooks/StyleText/data/style/firework_style.jpg" --batchsize 32 --Straining_num 2560 --step1_epochs 30 --step2_epochs 40 --step3_epochs 80 --scale_num 4 --save_path "/content/drive/My Drive/Colab Notebooks/StyleText/save" --save_name firework --gpu --load_GB_name "/content/drive/My Drive/Colab Notebooks/StyleText/save/GB.ckpt"
+
+生成
+firework-GS.ckpt
+与
+firework-DS.ckpt；
+S指的是结构
+
+--- load options ---
+DB_nf: 32
+DB_nlayers: 5
+DS_nf: 32
+DS_nlayers: 4
+DT_nf: 32
+DT_nlayers: 4
+GB_nf: 32
+GB_nlayers: 6
+GS_nf: 32
+GS_nlayers: 6
+GT_nf: 32
+GT_nlayers: 6
+Sanglejitter: False
+Straining_num: 2560
+Tanglejitter: False
+Ttraining_num: 800
+batchsize: 32
+glyph_preserve: False
+gpu: True
+load_GB_name: /content/drive/My Drive/Colab Notebooks/StyleText/save/GB.ckpt
+load_GS_name: ../save/fire-GS.ckpt
+save_name: firework
+save_path: /content/drive/My Drive/Colab Notebooks/StyleText/save
+scale_num: 4
+step1_epochs: 30
+step2_epochs: 40
+step3_epochs: 80
+step4_epochs: 10
+style_loss: False
+style_name: /content/drive/My Drive/Colab Notebooks/StyleText/data/style/firework_style.jpg
+subimg_size: 256
+text_datasize: 708
+text_path: ../data/rawtext/yaheiB/train
+texture_step1_epochs: 40
+texture_step2_epochs: 10
+--- create model ---
+--- training ---
+Step1, Epoch [01/30][001/080]: LDadv: +0.003, LGadv: -0.005, Lrec: +84.126, Lgly: +0.000
+Step1, Epoch [01/30][002/080]: LDadv: +0.008, LGadv: -0.005, Lrec: +70.248, Lgly: +0.000
+Step1, Epoch [01/30][003/080]: LDadv: +0.015, LGadv: -0.005, Lrec: +58.443, Lgly: +0.000
+Step1, Epoch [01/30][004/080]: LDadv: +0.019, LGadv: -0.005, Lrec: +49.157, Lgly: +0.000
+Step1, Epoch [01/30][005/080]: LDadv: +0.025, LGadv: -0.005, Lrec: +40.936, Lgly: +0.000
+Step1, Epoch [01/30][006/080]: LDadv: +0.030, LGadv: -0.004, Lrec: +34.090, Lgly: +0.000
+Step1, Epoch [01/30][007/080]: LDadv: +0.036, LGadv: +0.001, Lrec: +28.983, Lgly: +0.000
+Step1, Epoch [01/30][008/080]: LDadv: +0.040, LGadv: +0.003, Lrec: +25.222, Lgly: +0.000
+Step1, Epoch [01/30][009/080]: LDadv: +0.054, LGadv: +0.007, Lrec: +22.193, Lgly: +0.000
+Step1, Epoch [01/30][010/080]: LDadv: +0.063, LGadv: +0.014, Lrec: +21.585, Lgly: +0.000
+Step1, Epoch [01/30][011/080]: LDadv: +0.080, LGadv: +0.022, Lrec: +20.355, Lgly: +0.000
+Step1, Epoch [01/30][012/080]: LDadv: +0.100, LGadv: +0.044, Lrec: +19.172, Lgly: +0.000
+Step1, Epoch [01/30][013/080]: LDadv: +0.117, LGadv: +0.026, Lrec: +18.478, Lgly: +0.000
+Step1, Epoch [01/30][014/080]: LDadv: +0.123, LGadv: +0.061, Lrec: +18.143, Lgly: +0.000
+Step1, Epoch [01/30][015/080]: LDadv: +0.126, LGadv: +0.041, Lrec: +17.745, Lgly: +0.000
+Step1, Epoch [01/30][016/080]: LDadv: +0.155, LGadv: +0.046, Lrec: +17.042, Lgly: +0.000
+Step1, Epoch [01/30][017/080]: LDadv: +0.160, LGadv: +0.063, Lrec: +16.655, Lgly: +0.000
+Step1, Epoch [01/30][018/080]: LDadv: +0.179, LGadv: +0.077, Lrec: +16.143, Lgly: +0.000
+Step1, Epoch [01/30][019/080]: LDadv: +0.198, LGadv: +0.073, Lrec: +16.091, Lgly: +0.000
+Step1, Epoch [01/30][020/080]: LDadv: +0.209, LGadv: +0.078, Lrec: +15.764, Lgly: +0.000
+Step1, Epoch [01/30][021/080]: LDadv: +0.225, LGadv: +0.094, Lrec: +15.230, Lgly: +0.000
+Step1, Epoch [01/30][022/080]: LDadv: +0.235, LGadv: +0.058, Lrec: +15.280, Lgly: +0.000
+Step1, Epoch [01/30][023/080]: LDadv: +0.216, LGadv: +0.108, Lrec: +14.942, Lgly: +0.000
+Step1, Epoch [01/30][024/080]: LDadv: +0.244, LGadv: +0.116, Lrec: +14.432, Lgly: +0.000
+Step1, Epoch [01/30][025/080]: LDadv: +0.225, LGadv: +0.028, Lrec: +13.920, Lgly: +0.000
+Step1, Epoch [01/30][026/080]: LDadv: +0.158, LGadv: +0.101, Lrec: +12.498, Lgly: +0.000
+Step1, Epoch [01/30][027/080]: LDadv: +0.141, LGadv: +0.114, Lrec: +11.536, Lgly: +0.000
+Step1, Epoch [01/30][028/080]: LDadv: +0.096, LGadv: +0.077, Lrec: +12.912, Lgly: +0.000
+Step1, Epoch [01/30][029/080]: LDadv: +0.070, LGadv: -0.000, Lrec: +11.873, Lgly: +0.000
+Step1, Epoch [01/30][030/080]: LDadv: +0.017, LGadv: +0.008, Lrec: +11.146, Lgly: +0.000
+Step1, Epoch [01/30][031/080]: LDadv: +0.037, LGadv: +0.036, Lrec: +10.353, Lgly: +0.000
+-------------style 特定----style的||纹理||-----------
+
+训练Texture Transfer G_T 和 D_T
+T指的是纹理
+
+对于复杂的样式或具有方向性样式的样式，最好不使用--Tanglejitter进行训练
+
+烟花应该属于有方向的而且并不复杂。所以去掉--Tanglejitter
+
+!python "/content/drive/My Drive/Colab Notebooks/StyleText/src/trainTextureTransfer.py" --style_name "/content/drive/My Drive/Colab Notebooks/StyleText/data/style/firework_style.jpg" --batchsize 32 --Ttraining_num 800 --texture_step1_epochs 40 --save_path "/content/drive/My Drive/Colab Notebooks/StyleText/save" --save_name firework --gpu --load_GB_name "/content/drive/My Drive/Colab Notebooks/StyleText/save/GB.ckpt" --load_GS_name "/content/drive/My Drive/Colab Notebooks/StyleText/save/firework-GS.ckpt" --text_path "/content/drive/My Drive/Colab Notebooks/StyleText/data/rawtext/yaheiB/train"
+
+--- load options ---
+DB_nf: 32
+DB_nlayers: 5
+DS_nf: 32
+DS_nlayers: 4
+DT_nf: 32
+DT_nlayers: 4
+GB_nf: 32
+GB_nlayers: 6
+GS_nf: 32
+GS_nlayers: 6
+GT_nf: 32
+GT_nlayers: 6
+Sanglejitter: False
+Straining_num: 2560
+Tanglejitter: False
+Ttraining_num: 800
+batchsize: 32
+glyph_preserve: False
+gpu: True
+load_GB_name: /content/drive/My Drive/Colab Notebooks/StyleText/save/GB.ckpt
+load_GS_name: /content/drive/My Drive/Colab Notebooks/StyleText/save/firework-GS.ckpt
+save_name: firework
+save_path: /content/drive/My Drive/Colab Notebooks/StyleText/save
+scale_num: 4
+step1_epochs: 30
+step2_epochs: 40
+step3_epochs: 80
+step4_epochs: 10
+style_loss: False
+style_name: /content/drive/My Drive/Colab Notebooks/StyleText/data/style/firework_style.jpg
+subimg_size: 256
+text_datasize: 708
+text_path: /content/drive/My Drive/Colab Notebooks/StyleText/data/rawtext/yaheiB/train
+texture_step1_epochs: 40
+texture_step2_epochs: 10
+--- create model ---
+--- training ---
+Step1, Epoch [01/40][001/025]: LDadv: +0.012, LGadv: +0.182, Lrec: +82.306, Lsty: +0.000
+Step1, Epoch [01/40][002/025]: LDadv: +0.044, LGadv: +0.186, Lrec: +65.655, Lsty: +0.000
+Step1, Epoch [01/40][003/025]: LDadv: +0.063, LGadv: +0.192, Lrec: +51.823, Lsty: +0.000
+Step1, Epoch [01/40][004/025]: LDadv: +0.078, LGadv: +0.194, Lrec: +40.726, Lsty: +0.000
+
+
+
+应该生成
+firework-GT.ckpt
+和
+firework-DT.ckpt
+T指的是纹理
+
+为什么只需要指定G而不需要D？？？
+========================
+使用自己的风格图像
+风格图像准备：
+- 为了使风格化的文本易于识别，希望在文本和背景之间有一定的区别。如果纹理没有明显的形状，则生成的风格化文本将与背景互相混合。因此，建议使用具有不同形状的纹理作为参考样式。不要使用覆盖整个风格图像的纹理。
+- 使用抠图算法或者PS快速选择工具得到风格图像 Y 黑白的结构图 X 。（纹理部分是黑还是白？）
+- 得到结构图 X 的基于距离的图：使用utils.text_image_preprocessing转换黑白的 X 为 基于距离的 X。
+- 拼接基于距离的 X 和原风格图像 Y。拼接方式见data/style
+
+测试 测试 测试
+!python "/content/drive/My Drive/Colab Notebooks/StyleText/src/test.py" --text_name "/content/drive/My Drive/Colab Notebooks/StyleText/data/rawtext/yaheiB/less/shu_dis.png" --scale -1 --scale_step 0.05 --structure_model "/content/drive/My Drive/Colab Notebooks/StyleText/save/firework-GS.ckpt" --texture_model "/content/drive/My Drive/Colab Notebooks/StyleText/save/firework-GT.ckpt" --result_dir "/content/drive/My Drive/Colab Notebooks/StyleText/output/firework-shu" --name firework-shu --gpu
+
+!python "/content/drive/My Drive/Colab Notebooks/StyleText/src/test.py" --text_name "/content/drive/My Drive/Colab Notebooks/StyleText/data/rawtext/yaheiB/less/hua_dis.png" --scale -1 --scale_step 0.05 --structure_model "/content/drive/My Drive/Colab Notebooks/StyleText/save/firework-GS.ckpt" --texture_model "/content/drive/My Drive/Colab Notebooks/StyleText/save/firework-GT.ckpt" --result_dir "/content/drive/My Drive/Colab Notebooks/StyleText/output/firework-hua" --name firework-hua --gpu

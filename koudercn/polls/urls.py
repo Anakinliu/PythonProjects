@@ -11,6 +11,9 @@ from . import views
 app_name = 'polls'
 
 # 在整个project里属于二级路由
+"""
+此path三元组可以理解为：浏览器的url，django的视图函数，模版里的url（避免模板中硬编码的URLs）要这么写：{% url 'polls:name有啥用' question.id %}
+"""
 urlpatterns = [
     # 浏览器输入：/polls
     path('', views.index, name='index'),

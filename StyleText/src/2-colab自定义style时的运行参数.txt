@@ -2,6 +2,8 @@
 已生成GB.ckpt
 已生成GB.ckpt
 
+烟花 烟花 烟花
+
 -------------style 特定--训练style的||结构||----------
 训练Structure Transfer G_S 和 D_S
 

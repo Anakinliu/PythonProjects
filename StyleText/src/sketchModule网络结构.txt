@@ -1,0 +1,126 @@
+SketchModule(
+  (loss): L1Loss()
+  (transBlock): SketchGenerator(
+    (encoder): Sequential(
+      (0): Conv2d(4, 32, kernel_size=(9, 9), stride=(1, 1), padding=(4, 4))
+      (1): ReLU()
+      (2): mySConv(
+        (conv): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (bn): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+        (relu): ReLU()
+      )
+      (3): mySConv(
+        (conv): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (bn): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+        (relu): ReLU()
+      )
+    )
+    (transformer): Sequential(
+      (0): mySBlock(
+        (myconv): mySConv(
+          (conv): Conv2d(129, 129, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (bn): InstanceNorm2d(129, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          (relu): ReLU()
+        )
+        (conv): Conv2d(129, 129, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (bn): InstanceNorm2d(129, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+        (relu): ReLU()
+      )
+      (1): mySBlock(
+        (myconv): mySConv(
+          (conv): Conv2d(129, 129, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (bn): InstanceNorm2d(129, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          (relu): ReLU()
+        )
+        (conv): Conv2d(129, 129, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (bn): InstanceNorm2d(129, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+        (relu): ReLU()
+      )
+      (2): mySBlock(
+        (myconv): mySConv(
+          (conv): Conv2d(129, 129, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (bn): InstanceNorm2d(129, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          (relu): ReLU()
+        )
+        (conv): Conv2d(129, 129, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (bn): InstanceNorm2d(129, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+        (relu): ReLU()
+      )
+      (3): mySBlock(
+        (myconv): mySConv(
+          (conv): Conv2d(129, 129, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (bn): InstanceNorm2d(129, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          (relu): ReLU()
+        )
+        (conv): Conv2d(129, 129, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (bn): InstanceNorm2d(129, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+        (relu): ReLU()
+      )
+      (4): mySBlock(
+        (myconv): mySConv(
+          (conv): Conv2d(129, 129, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (bn): InstanceNorm2d(129, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          (relu): ReLU()
+        )
+        (conv): Conv2d(129, 129, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (bn): InstanceNorm2d(129, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+        (relu): ReLU()
+      )
+      (5): mySBlock(
+        (myconv): mySConv(
+          (conv): Conv2d(129, 129, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (bn): InstanceNorm2d(129, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          (relu): ReLU()
+        )
+        (conv): Conv2d(129, 129, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (bn): InstanceNorm2d(129, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+        (relu): ReLU()
+      )
+    )
+    (decoder1): Sequential(
+      (0): ConvTranspose2d(130, 64, kernel_size=(4, 4), stride=(2, 2))
+      (1): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+      (2): ReLU()
+    )
+    (decoder2): Sequential(
+      (0): ConvTranspose2d(65, 32, kernel_size=(4, 4), stride=(2, 2))
+      (1): InstanceNorm2d(32, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+      (2): ReLU()
+    )
+    (decoder3): Sequential(
+      (0): Conv2d(33, 3, kernel_size=(9, 9), stride=(1, 1), padding=(1, 1))
+      (1): Tanh()
+    )
+  )
+  (D_B): Discriminator(
+    (model): Sequential(
+      (0): Conv2d(7, 32, kernel_size=(4, 4), stride=(2, 2), padding=(2, 2))
+      (1): LeakyReLU(negative_slope=0.2)
+      (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2), padding=(2, 2))
+      (3): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+      (4): LeakyReLU(negative_slope=0.2)
+      (5): Conv2d(64, 128, kernel_size=(4, 4), stride=(2, 2), padding=(2, 2))
+      (6): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+      (7): LeakyReLU(negative_slope=0.2)
+      (8): Conv2d(128, 128, kernel_size=(4, 4), stride=(2, 2), padding=(2, 2))
+      (9): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+      (10): LeakyReLU(negative_slope=0.2)
+      (11): Conv2d(128, 128, kernel_size=(4, 4), stride=(2, 2), padding=(2, 2))
+      (12): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+      (13): LeakyReLU(negative_slope=0.2)
+    )
+    (out1): Sequential(
+      (0): Conv2d(128, 1, kernel_size=(4, 4), stride=(1, 1), padding=(2, 2))
+    )
+    (out2): Sequential(
+      (0): Conv2d(128, 128, kernel_size=(4, 4), stride=(1, 1), padding=(2, 2))
+      (1): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+      (2): LeakyReLU(negative_slope=0.2)
+      (3): Conv2d(128, 1, kernel_size=(4, 4), stride=(1, 1), padding=(2, 2))
+    )
+  )
+  (smoothBlock): myBlur(
+    (GF): Conv2d(3, 3, kernel_size=(121, 121), stride=(1, 1), groups=3, bias=False)
+    (gaussian_filter): Conv2d(3, 3, kernel_size=(121, 121), stride=(1, 1), groups=3, bias=False)
+  )
+)
