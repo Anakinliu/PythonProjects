@@ -33,6 +33,8 @@ def load_image(img_path, max_size=800, shape=None, is_path=True, target_size=Non
     if shape is not None:
         size = shape
 
+    size=(512, 512)
+
     # transforms的size是 h, w
     in_transform = transforms.Compose([
         transforms.Resize(size),
@@ -69,13 +71,20 @@ def get_features(image, model, layers=None):
     ## TODO: Complete mapping layer names of PyTorch's VGGNet to names from the paper
     ## Need the layers for the content and style representations of an image
     # 以 320x320图片为例
+    # if layers is None:
+        # layers = {'0': 'conv1_1',  # torch.Size([1, 64, 320, 320])
+        #           '5': 'conv2_1',  # torch.Size([1, 128, 160, 160])
+        #           '10': 'conv3_1',  # torch.Size([1, 256, 80, 80]
+        #           '19': 'conv4_1',  # torch.Size([1, 512，40， 40])
+        #           '21': 'conv4_2',  # torch.Size([1, 512, 40, 40]
+        #           '28': 'conv5_1'}  # torch.Size([1, 512, 20, 20]
+
     if layers is None:
-        layers = {'0': 'conv1_1',  # torch.Size([1, 64, 320, 320])
-                  '5': 'conv2_1',  # torch.Size([1, 128, 160, 160])
-                  '10': 'conv3_1',  # torch.Size([1, 256, 80, 80]
-                  '19': 'conv4_1',  # torch.Size([1, 512，40， 40])
-                  '21': 'conv4_2',  # torch.Size([1, 512, 40, 40]
-                  '28': 'conv5_1'}  # torch.Size([1, 512, 20, 20]
+        layers = {'3': 'relu1_2',  # torch.Size([1, 64, 320, 320])
+                  '8': 'relu2_2',  # torch.Size([1, 128, 160, 160])
+                  '17': 'relu3_4',  # torch.Size([1, 256, 80, 80]
+                  '26': 'relu4_4',  # torch.Size([1, 512，40， 40])
+                  '35': 'relu5_4'}  # torch.Size([1, 512, 20, 20]
 
     features = {}
     x = image
@@ -87,7 +96,7 @@ def get_features(image, model, layers=None):
             features[layers[name]] = x
 
     # print(features.keys())
-    # dict_keys(['conv1_1', 'conv2_1', 'conv3_1', 'conv4_1', 'conv4_2', 'conv5_1'])
+    # dict_keys(['conv1_1', 'conv2_1', 'conv3_1', 'conv4_1', 'con_2', 'conv5_1'])
     return features
 
 

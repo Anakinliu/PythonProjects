@@ -3,6 +3,26 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/data" />
+      <excludeFolder url="file://$MODULE_DIR$/output/corn3-S-angle-jitter_corn3-T-angle-jitter-tai" />
+      <excludeFolder url="file://$MODULE_DIR$/output/corn3-S-angle-jitter_corn3-tai" />
+      <excludeFolder url="file://$MODULE_DIR$/output/corn3-tai" />
+      <excludeFolder url="file://$MODULE_DIR$/output/corn3-tai-2" />
+      <excludeFolder url="file://$MODULE_DIR$/output/corn3_corn3-T-angle-jitter-tai" />
+      <excludeFolder url="file://$MODULE_DIR$/output/fire-biao" />
+      <excludeFolder url="file://$MODULE_DIR$/output/fire_fire-huo-raw" />
+      <excludeFolder url="file://$MODULE_DIR$/output/fire_fire-nezha" />
+      <excludeFolder url="file://$MODULE_DIR$/output/firework-shu" />
+      <excludeFolder url="file://$MODULE_DIR$/output/firework-tai" />
+      <excludeFolder url="file://$MODULE_DIR$/output/keyboard-S-angle-jitter_keyboard-T-angle-jitter-tai" />
+      <excludeFolder url="file://$MODULE_DIR$/output/keyboard-S-angle-jitter_keyboard-tai" />
+      <excludeFolder url="file://$MODULE_DIR$/output/keyboard_keyboard-T-angle-jitter-tai" />
+      <excludeFolder url="file://$MODULE_DIR$/output/keyboard_keyboard-tai" />
+      <excludeFolder url="file://$MODULE_DIR$/output/sakura-sha-WITH-serif" />
+      <excludeFolder url="file://$MODULE_DIR$/output/sakura-sha2-NO-serif" />
+      <excludeFolder url="file://$MODULE_DIR$/output/sand_sand-sha" />
+      <excludeFolder url="file://$MODULE_DIR$/output/sand_sand-sha2" />
+      <excludeFolder url="file://$MODULE_DIR$/output/原NST效果" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.7 (torch)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -72,10 +72,9 @@ print(target.is_leaf)
 def train():
     # for displaying the target image, intermittently
     show_every = 50
-
     # iteration hyperparameters
     # optimizer = optim.Adam([target], lr=0.003)
-    optimizer = optim.Adam([target], lr=0.03)
+    optimizer = optim.Adam([target], lr=0.002)
 
     for ii in range(1, steps + 1):
 

@@ -11,8 +11,8 @@ import random
 import os
 
 pil2tensor = transforms.Compose([
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])])
+    transforms.ToTensor(),  # 变为[0,1]
+    transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])])  # 变为 [-1,1]
 tensor2pil = transforms.ToPILImage()
 
 
@@ -132,6 +132,7 @@ def prepare_text_batch(batchfnames, wd=256, ht=256, anglejitter=False):
         img = pil2tensor(img)
         img = img.unsqueeze(dim=0)
         img_list.append(img)
+    # 返回的tensor的shape为 [len(batchfnames), 3, 256, 256])
     return torch.cat(img_list, dim=0)
 
 

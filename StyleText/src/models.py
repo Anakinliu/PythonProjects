@@ -187,15 +187,15 @@ class myBlur(nn.Module):
         self.channels = channels  # 3
         self.GF = nn.Conv2d(in_channels=channels, out_channels=channels,
                             kernel_size=kernel_size, groups=channels, bias=False)
-        x_cord = torch.arange(self.kernel_size + 0.)  # 0到120不包括121的浮点数，step=1
-        x_grid = x_cord.repeat(self.kernel_size).view(self.kernel_size, self.kernel_size)  # 121*121的张量
+        x_cord = torch.arange(self.kernel_size + 0.)  # 0.0到120.0包括120.0的浮点数，step=1.0
+        x_grid = x_cord.repeat(self.kernel_size).view(self.kernel_size, self.kernel_size)  # 121*121的张量，每个是一个x_cord
         y_grid = x_grid.t()  # 转置
         self.xy_grid = torch.stack([x_grid, y_grid], dim=-1)  # -1就是最后那一维，结果size为 121,121,2
         self.mean = (self.kernel_size - 1) // 2  # 结果是 60
         self.diff = -torch.sum((self.xy_grid - self.mean) ** 2., dim=-1)
         self.gaussian_filter = nn.Conv2d(in_channels=self.channels, out_channels=self.channels,
                                          kernel_size=self.kernel_size, groups=self.channels, bias=False)
-
+        # 权重无需学习，见下面的forward
         self.gaussian_filter.weight.requires_grad = False
 
     def forward(self, x, sigma, gpu):
@@ -207,6 +207,7 @@ class myBlur(nn.Module):
         gaussian_kernel = gaussian_kernel.repeat(self.channels, 1, 1, 1)
         if gpu:
             gaussian_kernel = gaussian_kernel.cuda()
+        # self.gaussian_filter 的权重直接设为 gaussian_kernel，根据sigma(l)来的
         self.gaussian_filter.weight.data = gaussian_kernel
         return self.gaussian_filter(F.pad(x, (self.mean, self.mean, self.mean, self.mean), "replicate"))
 
@@ -227,7 +228,7 @@ class mySConv(nn.Module):
 class mySBlock(nn.Module):
     def __init__(self, num_filter=128):
         super(mySBlock, self).__init__()
-
+        # 在SketchModel的transformer里，num_filter是129
         self.myconv = mySConv(num_filter=num_filter, stride=1, in_channels=num_filter)
         self.conv = Conv2d(out_channels=num_filter, kernel_size=3, padding=1, in_channels=num_filter)
         self.bn = InstanceNorm2d(num_features=num_filter)
@@ -250,7 +251,7 @@ class SketchGenerator(nn.Module):
         super(SketchGenerator, self).__init__()
 
         encoder = []
-        encoder.append(Conv2d(out_channels=ngf, kernel_size=9, padding=4, in_channels=in_channels))
+        encoder.append(Conv2d(in_channels=in_channels, out_channels=ngf, kernel_size=9, padding=4))
         encoder.append(ReLU())
         encoder.append(mySConv(ngf * 2, 2, ngf))
         encoder.append(mySConv(ngf * 4, 2, ngf * 2))
@@ -288,15 +289,31 @@ class SketchGenerator(nn.Module):
     # controlled by label concatenation
     def forward(self, x, l):
         l_img = l.expand(l.size(0), l.size(1), x.size(2), x.size(3))
-        out0 = self.encoder(torch.cat([x, l_img], 1))
+        # print(f'+encoder:x:{x.shape};l_img:{l_img.shape}')  # [16, 3, 256, 256] , [16, 1, 256, 256]
+        out0 = self.encoder(torch.cat([x, l_img], 1))  # [16, 3, 256, 256] cat [16, 1, 256, 256] = [16, 4, 256, 256]
+        # print(f'-encoder:out0:{out0.shape}')  # out0: [16, 128, 64, 64]
+        #         print(torch.cat([x, l_img], 1)[0,3,:,:])  # 值都是0.25
+
         l_img0 = l.expand(l.size(0), l.size(1), out0.size(2), out0.size(3))
+        # print(f'+transformer:l_img0:{l_img0.shape}')  # [16, 1, 64, 64]
         out1 = self.transformer(torch.cat([out0, l_img0], 1))
+        # out0: [16, 128, 64, 64] cat l_img0:[16, 1, 64, 64] = [16, 129, 64, 64]
+        # print(f'-transformer:out1:{out1.shape}')  # [16, 129, 64, 64]
+
         l_img1 = l.expand(l.size(0), l.size(1), out1.size(2), out1.size(3))
-        out2 = self.decoder1(torch.cat([out1, l_img1], 1))
+        # print(f'+decoder1:l_img1:{l_img1.shape}')  # [16, 1, 64, 64]
+        out2 = self.decoder1(torch.cat([out1, l_img1], 1))  # [16, 129, 64, 64] cat [16, 1, 64, 64] = [16, 130, 64, 64]
+        # print(f'-decoder1:out2:{out2.shape}')  # [16, 64, 130, 130]
+
         l_img2 = l.expand(l.size(0), l.size(1), out2.size(2), out2.size(3))
+        # print(f'+decoder2:l_img2:{l_img2.shape}')  # [16, 1, 130, 130]
         out3 = self.decoder2(torch.cat([out2, l_img2], 1))
+        # print(f'-decoder2:out3:{out3.shape}')  # [16, 32, 262, 262]
+
         l_img3 = l.expand(l.size(0), l.size(1), out3.size(2), out3.size(3))
+        # print(f'+decoder3:l_img3:{l_img3.shape}')  # [16, 1, 262, 262]
         out4 = self.decoder3(torch.cat([out3, l_img3], 1))
+        # print(f'-decoder3:out4:{out4.shape}')  # [16, 3, 256, 256]
         return out4
 
 
@@ -306,7 +323,7 @@ class SketchGenerator(nn.Module):
 class Discriminator(nn.Module):
     def __init__(self, in_channels, ndf=32, n_layers=3, multilayer=False, IN=False):
         """
-
+        Sketch Module时:
         :param in_channels: 7
         :param ndf: 32
         :param n_layers: 5
@@ -356,11 +373,11 @@ class Discriminator(nn.Module):
         self.multilayer = multilayer  # 训练SketchModule时传入的是True
 
     def forward(self, x):
-        y = self.model(x)
-        out2 = self.out2(y)
+        y = self.model(x)  # y.shape:[16,128,9,9]
+        out2 = self.out2(y)  # out2.shape:[16,1,11,11]
         if self.multilayer:  # 训练SketchModule时传入的是True
-            out1 = self.out1(y)
-            return torch.cat((out1.view(-1), out2.view(-1)), dim=0)  # 拼接两个向量
+            out1 = self.out1(y)  # out1:[16,1,10,10]
+            return torch.cat((out1.view(-1), out2.view(-1)), dim=0)  # 拼接两个向量，前半个是out1.view(-1)，后半个是out2.view(-1)
         else:
             return out2.view(-1)  # 变成向量
 
@@ -387,6 +404,7 @@ class SketchModule(nn.Module):
         self.transBlock = SketchGenerator(4, self.ngf, self.G_layers)
 
         # D_B 学习去确定输入图像的真实性以及它是否与给定的平滑图像 (t_l ) ̅ 和参数 l 相匹配
+        # 7， 32， 5，True，True
         self.D_B = Discriminator(7, self.ndf, self.D_layers, True, True)
 
         # smoothnessBlock
@@ -428,20 +446,29 @@ class SketchModule(nn.Module):
         return gradient_penalty
 
     def update_discriminator(self, t, l):
-        label = torch.tensor(l).float()
-        label = label.repeat(t.size(0), 1, 1, 1)
+        label = torch.tensor(l).float()  # scale值变为张量
+        label = label.repeat(t.size(0), 1, 1, 1)  # [batch_size, 1, 1, 1]
         label = to_var(label) if self.gpu else label
-        real_label = label.expand(label.size(0), label.size(1), t.size(2), t.size(3))
+
+        real_label = label.expand(label.size(0), label.size(1), t.size(2), t.size(3))  # [16, 1, 256, 256]
+
         with torch.no_grad():
-            tl = self.smoothBlock(t, l, self.gpu)
-            fake_text = self.transBlock(tl, label)
+            # tl: 模糊度为 l 的16个图片张量
+            tl = self.smoothBlock(t, l, self.gpu)  # tl [16, 3, 256, 256]
+            # transBlock：将平滑后的文本图像 tl 映射回文本域以学习字形特征来实现结构转换
+            fake_text = self.transBlock(tl, label)  # fake_text [16, 3, 256, 256]
             # print(tl.size(), real_label.size(), fake_text.size())
             fake_concat = torch.cat((tl, real_label, fake_text), dim=1)
-        fake_output = self.D_B(fake_concat)
+            # fake_concat: [16, 7, 256, 256]
+
+        fake_output = self.D_B(fake_concat)  # 3536维度的向量
+
         real_concat = torch.cat((tl, real_label, t), dim=1)
         real_output = self.D_B(real_concat)
+
         gp = self.calc_gradient_penalty(self.D_B, real_concat.data, fake_concat.data)
         LBadv = self.lambda_adv * (fake_output.mean() - real_output.mean() + self.lambda_gp * gp)
+
         self.trainerD.zero_grad()
         LBadv.backward()
         self.trainerD.step()
@@ -470,7 +497,13 @@ class SketchModule(nn.Module):
         return LBadv.data.mean(), LBrec.data.mean()
 
     def one_pass(self, t, scales):
-        l = random.choice(scales)
+        """
+        训练G_B的时候：
+        :param t: shape为[batch_size, 3, 256, 256])
+        :param scales: 值为[-1.0, -0.75, -0.5, -0.25, 0.0, 0.25, 0.5, 0.75, 1.0]
+        :return:
+        """
+        l = random.choice(scales)  # 从scales随机选择一个值
         LDadv = self.update_discriminator(t, l)
         LGadv, Lrec = self.update_generator(t, l)
         return [LDadv, LGadv, Lrec]

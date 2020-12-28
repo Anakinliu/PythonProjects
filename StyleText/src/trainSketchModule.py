@@ -38,26 +38,29 @@ def main():
         Btraining_num = 12800
         """
         # 按批次划分的文件名，没有的文件也不会报错，(trainnum // batch_size) X (batch_size) 矩阵
-        fnames = load_train_batchfnames(opts.text_path, opts.batchsize,
+        f_names = load_train_batchfnames(opts.text_path, opts.batchsize,
                                         opts.text_datasize, trainnum=opts.Btraining_num)
         """
         augment_text_path = ../data/rawtext/augment/
         batchsize = 16
         augment_text_datasize = 5
         """
-        fnames2 = load_train_batchfnames(opts.augment_text_path, opts.batchsize,
+        f_names2 = load_train_batchfnames(opts.augment_text_path, opts.batchsize,
                                          opts.augment_text_datasize, trainnum=opts.Btraining_num)
 
         # fnames的每个数组里（即每个批次的）前 (opts.batchsize // 2 - 1) 为增强数据
-        for ii in range(len(fnames)):
-            fnames[ii][0:opts.batchsize // 2 - 1] = fnames2[ii][0:opts.batchsize // 2 - 1]
+        for ii in range(len(f_names)):
+            f_names[ii][0:opts.batchsize // 2 - 1] = f_names2[ii][0:opts.batchsize // 2 - 1]
         # print(f'fnames2[1]: {fnames2[0]}')  # OK
-        for fname in fnames:  # 每次循环是一个批次大小
+        for fname in f_names:  # 每次循环是一个批次大小，即fname有batch_size个元素
             itr += 1
             t = prepare_text_batch(fname, anglejitter=True)
             t = to_var(t) if opts.gpu else t
-            losses = netSketch.one_pass(t, [l / 4. - 1. for l in range(0, 9)])
-            print('Epoch [%d/%d][%03d/%03d]' % (epoch + 1, opts.epochs, itr, len(fnames)), end=': ')
+            control_l = [e / 4. - 1. for e in range(0, 9)]
+            # t的shape为[batch_size, 3, 256, 256])
+            # control_l为[-1.0, -0.75, -0.5, -0.25, 0.0, 0.25, 0.5, 0.75, 1.0]
+            losses = netSketch.one_pass(t, control_l)
+            print('Epoch [%d/%d][%03d/%03d]' % (epoch + 1, opts.epochs, itr, len(f_names)), end=': ')
             print('LDadv: %+.3f, LGadv: %+.3f, Lrec: %+.3f' % (losses[0], losses[1], losses[2]))
 
     print('--- save ---')

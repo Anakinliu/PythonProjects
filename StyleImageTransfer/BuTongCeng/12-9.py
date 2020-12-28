@@ -10,7 +10,7 @@ from torchvision import transforms, models
 from utils import *
 import os
 
-content_img_path = 'content/nezha.jpg'
+content_img_path = 'content/cqupt.jpg'
 style_img_path = 'style/nezha_0.png'
 # target_img_path = 'target/output'
 target_img_path = 'target/12-18/nezha/'
@@ -55,6 +55,7 @@ plt.show()
 
 # 计算内容图在VGG的不同层的特征
 content_features = get_features(content, vgg)
+print(content_features)
 # 计算风格图在VGG的不同层的特征
 style_features = get_features(style, vgg)
 
@@ -118,4 +119,3 @@ def train():
             # print(img.dtype)
             Image.fromarray((255 * img_data).astype('uint8')).save(f'{target_img_path}/{ii}.png')
 
-train()
