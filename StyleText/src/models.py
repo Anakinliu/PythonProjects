@@ -108,6 +108,7 @@ class myGBlock(nn.Module):
         return x + self.bn(self.conv(self.pad(self.myconv(x))))
 
 
+# 可控的 ResBlock
 # Controllable ResBlock
 class myGCombineBlock(nn.Module):
     def __init__(self, num_filter=128, p=0.0):
@@ -116,7 +117,7 @@ class myGCombineBlock(nn.Module):
         self.myBlock1 = myGBlock(num_filter=num_filter)
         self.myBlock2 = myGBlock(num_filter=num_filter)
         self.relu = LeakyReLU(0.2)
-        self.label = 1.0
+        self.label = 1.0  # 初始化
         self.dropout = nn.Dropout(p=p)
 
     def myCopy(self):
@@ -128,6 +129,11 @@ class myGCombineBlock(nn.Module):
 
 class GlyphGenerator(nn.Module):
     def __init__(self, ngf=32, n_layers=5):
+        """
+        训练结构时：
+        :param ngf: 32
+        :param n_layers: 6!!!
+        """
         super(GlyphGenerator, self).__init__()
 
         encoder = []
@@ -138,7 +144,7 @@ class GlyphGenerator(nn.Module):
         encoder.append(myGConv(ngf * 4, 2, ngf * 2))
 
         transformer = []
-        for n in range(int(n_layers / 2) - 1):
+        for n in range(int(n_layers / 2) - 1):  # 0,1
             transformer.append(myGCombineBlock(ngf * 4, p=0.0))
         # dropout to make model more robust    
         transformer.append(myGCombineBlock(ngf * 4, p=0.5))
@@ -170,7 +176,8 @@ class GlyphGenerator(nn.Module):
         for myCombineBlock in self.transformer:
             # label smoothing [-1,1]-->[0.9,0.1]
             myCombineBlock.label = (1.0 - l) * 0.4 + 0.1
-        out0 = self.encoder(x)
+            # [-1, -0.333, 0.333, 1]-->[0.9, 0.6333333333333334, 0.3666666666666667, 0.1]
+        out0 = self.encoder(x)  # out0: [32, 128, 64, 64]
         out1 = self.transformer(out0)
         out2 = self.decoder(out1)
         return out2
@@ -336,13 +343,13 @@ class Discriminator(nn.Module):
         outlist1 = []
         outlist2 = []
         kernel_size = 4
-        padding = int(np.ceil((kernel_size - 1) / 2))  # 训练SketchModule时是 2
+        padding = int(np.ceil((kernel_size - 1) / 2))  # 训练SketchModule时是 2,向大数取整
         modelList.append(Conv2d(out_channels=ndf, kernel_size=kernel_size, stride=2,
                                 padding=2, in_channels=in_channels))
         modelList.append(LeakyReLU(0.2))
 
         nf_mult = 1
-        for n in range(1, n_layers):  # 训练SketchModule时是 1,2,3,4
+        for n in range(1, n_layers):  # 训练SketchModule时是 1,2,3,4，训练Structure时是1,2,3
             nf_mult_prev = nf_mult
             nf_mult = min(2 ** n, 4)
             modelList.append(Conv2d(out_channels=ndf * nf_mult, kernel_size=kernel_size, stride=2,
@@ -373,10 +380,10 @@ class Discriminator(nn.Module):
         self.multilayer = multilayer  # 训练SketchModule时传入的是True
 
     def forward(self, x):
-        y = self.model(x)  # y.shape:[16,128,9,9]
-        out2 = self.out2(y)  # out2.shape:[16,1,11,11]
-        if self.multilayer:  # 训练SketchModule时传入的是True
-            out1 = self.out1(y)  # out1:[16,1,10,10]
+        y = self.model(x)  # sketch时 y.shape:[bs,128,9,9]；structure时 y.shape:[bs,128,17,17]
+        out2 = self.out2(y)  # sketch时 out2.shape:[bs,1,11,11]；structure时[bs,1,19,19]
+        if self.multilayer:  # 训练SketchModule时传入的是True;structure时False
+            out1 = self.out1(y)  # out1:[bs,1,10,10]
             return torch.cat((out1.view(-1), out2.view(-1)), dim=0)  # 拼接两个向量，前半个是out1.view(-1)，后半个是out2.view(-1)
         else:
             return out2.view(-1)  # 变成向量
@@ -464,9 +471,11 @@ class SketchModule(nn.Module):
         fake_output = self.D_B(fake_concat)  # 3536维度的向量
 
         real_concat = torch.cat((tl, real_label, t), dim=1)
-        real_output = self.D_B(real_concat)
+        # real_concat: [16, 7, 256, 256]
+        real_output = self.D_B(real_concat)  # 一个3536维度的向量
 
         gp = self.calc_gradient_penalty(self.D_B, real_concat.data, fake_concat.data)
+        # lambda_adv = 1, lambda_gp = 10
         LBadv = self.lambda_adv * (fake_output.mean() - real_output.mean() + self.lambda_gp * gp)
 
         self.trainerD.zero_grad()
@@ -476,16 +485,23 @@ class SketchModule(nn.Module):
 
     def update_generator(self, t, l):
         label = torch.tensor(l).float()
-        label = label.repeat(t.size(0), 1, 1, 1)
+        label = label.repeat(t.size(0), 1, 1, 1)  # [16,1,1,1]
         label = label.cuda() if self.gpu else label
-        real_label = label.expand(label.size(0), label.size(1), t.size(2), t.size(3))
+        # expand方法使用与扩展 1-dim 的张量，可以少用内存
+        real_label = label.expand(label.size(0), label.size(1), t.size(2), t.size(3))  # [16, 1, 256, 256]
+
         tl = self.smoothBlock(t, l, self.gpu)
+
         fake_text = self.transBlock(tl, label)
+
         fake_concat = torch.cat((tl, real_label, fake_text), dim=1)
-        fake_output = self.D_B(fake_concat)
+        # fake_concat: [16, 7, 256, 256]
+        fake_output = self.D_B(fake_concat)  # 一个3536维度的向量
+
         LBadv = -fake_output.mean() * self.lambda_adv
         LBrec = self.loss(fake_text, t) * self.lambda_l1
         LB = LBadv + LBrec
+
         self.trainerG.zero_grad()
         LB.backward()
         self.trainerG.step()
@@ -513,16 +529,27 @@ class SketchModule(nn.Module):
 class ShapeMatchingGAN(nn.Module):
     def __init__(self, GS_nlayers=6, DS_nlayers=5, GS_nf=32, DS_nf=32,
                  GT_nlayers=6, DT_nlayers=5, GT_nf=32, DT_nf=32, gpu=True):
+        """
+        :param GS_nlayers: 6
+        :param DS_nlayers: 4
+        :param GS_nf: 32
+        :param DS_nf: 32
+        :param GT_nlayers: 6
+        :param DT_nlayers: 4
+        :param GT_nf: 32
+        :param DT_nf: 32
+        :param gpu:
+        """
         super(ShapeMatchingGAN, self).__init__()
 
-        self.GS_nlayers = GS_nlayers
-        self.DS_nlayers = DS_nlayers
-        self.GS_nf = GS_nf
-        self.DS_nf = DS_nf
-        self.GT_nlayers = GT_nlayers
-        self.DT_nlayers = DT_nlayers
-        self.GT_nf = GT_nf
-        self.DT_nf = DT_nf
+        self.GS_nlayers = GS_nlayers  # 6
+        self.DS_nlayers = DS_nlayers  # 4
+        self.GS_nf = GS_nf  # 32
+        self.DS_nf = DS_nf  # 32
+        self.GT_nlayers = GT_nlayers  # 6
+        self.DT_nlayers = DT_nlayers  # 4
+        self.GT_nf = GT_nf  # 32
+        self.DT_nf = DT_nf  # 32
         self.gpu = gpu
         self.lambda_l1 = 100
         self.lambda_gp = 10
@@ -531,6 +558,7 @@ class ShapeMatchingGAN(nn.Module):
         self.lambda_tadv = 1.0
         self.lambda_sty = 0.01
         self.style_weights = [1e3 / n ** 2 for n in [64, 128, 256, 512, 512]]
+        # [0.244140625, 0.06103515625, 0.0152587890625, 0.003814697265625, 0.003814697265625]
         self.loss = nn.L1Loss()
         self.gramloss = GramMSELoss()
         self.gramloss = self.gramloss.cuda() if self.gpu else self.gramloss
@@ -548,8 +576,7 @@ class ShapeMatchingGAN(nn.Module):
         self.trainerG_T = torch.optim.Adam(self.G_T.parameters(), lr=0.0002, betas=(0.5, 0.999))
         self.trainerD_T = torch.optim.Adam(self.D_T.parameters(), lr=0.0002, betas=(0.5, 0.999))
 
-        # FOR TESTING
-
+    # FOR TESTING
     def forward(self, x, l):
         x[:, 0:1] = gaussian(x[:, 0:1], stddev=0.2)
         xl = self.G_S(x, l)
@@ -584,10 +611,12 @@ class ShapeMatchingGAN(nn.Module):
 
     def update_structure_discriminator(self, x, xl, l):
         with torch.no_grad():
-            fake_x = self.G_S(xl, l)
-        fake_output = self.D_S(fake_x)
-        real_output = self.D_S(x)
+            fake_x = self.G_S(xl, l)  # shape同 x，是[32,3,256,256]
+        fake_output = self.D_S(fake_x)  # 11552长度向量
+        real_output = self.D_S(x)  # 11552长度向量
+
         gp = self.calc_gradient_penalty(self.D_S, x.data, fake_x.data)
+
         LSadv = self.lambda_sadv * (fake_output.mean() - real_output.mean() + self.lambda_gp * gp)
         self.trainerD_S.zero_grad()
         LSadv.backward()
@@ -595,8 +624,8 @@ class ShapeMatchingGAN(nn.Module):
         return (real_output.mean() - fake_output.mean()).data.mean() * self.lambda_sadv
 
     def update_structure_generator(self, x, xl, l, t=None):
-        fake_x = self.G_S(xl, l)
-        fake_output = self.D_S(fake_x)
+        fake_x = self.G_S(xl, l)  # fake_x ： [32,3,256,256]
+        fake_output = self.D_S(fake_x)  # 向量
         LSadv = -fake_output.mean() * self.lambda_sadv
         LSrec = self.loss(fake_x, x) * self.lambda_l1
         LS = LSadv + LSrec
@@ -620,6 +649,7 @@ class ShapeMatchingGAN(nn.Module):
         return LSadv.data.mean(), LSrec.data.mean(), LSgly.data.mean() if t is not None else 0
 
     def structure_one_pass(self, x, xl, l, t=None):
+        # TODO t 是干嘛的？？？
         LDadv = self.update_structure_discriminator(x, xl, l)
         LGadv, Lrec, Lgly = self.update_structure_generator(x, xl, l, t)
         return [LDadv, LGadv, Lrec, Lgly]

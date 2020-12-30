@@ -14,16 +14,16 @@ drive.mount('/content/drive/')
 # G_B = "GB_kaiti.ckpt"
 G_B = "GB.ckpt"
 # test_name = "sha"  # 测试模型时所用文字图像
-test_name = "huo"  # 测试模型时所用文字图像
-test_file_name = "huo_dis.png"  # 测试模型时所用文字图像的文件名，因为可能是jpg或png
+test_name = "guang"  # 测试模型时所用文字图像
+test_file_name = "0165.png"  # 测试模型时所用文字图像的文件名，因为可能是jpg或png
 # snowflakes2.jpg
-style_file_name = "hot2_style.jpg"  # 风格图像的文件名
+style_file_name = "snowflakes3_style.jpg"  # 风格图像的文件名
 
 s_angle_jitter = True  # 训练结构时是否抖动角度
 t_angle_jitter = False  # 训练纹理时是否抖动角度
 
-s_style_name = "la-jiao"  # 训练结构
-t_style_name = "la-jiao"  # 训练纹理
+s_style_name = "snowflakes3-little"  # 训练结构
+t_style_name = "snowflakes3-little"  # 训练纹理
 
 if s_angle_jitter:  # 是否抖动角度
     s_style_name += "-S-angle-jitter"  # 结构

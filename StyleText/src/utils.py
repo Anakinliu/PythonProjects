@@ -78,11 +78,13 @@ def gaussian(ins, mean=0, stddev=0.2):
 # 没有在utils内用到此方法
 def weights_init(m):
     classname = m.__class__.__name__
+    print(f'weights_init:classname:{classname}')
     if classname.find('Conv') != -1 and classname.find('my') == -1:
-        m.weight.data.normal_(0.0, 0.02)
+        # std = 1/sqrt(n), where n is the number of inputs to NN
+        m.weight.data.normal_(0.0, 0.02)  # mean=0.0. std=0.02
         m.bias.data.fill_(0)
     elif classname.find('BatchNorm') != -1:
-        m.weight.data.normal_(1.0, 0.02)
+        m.weight.data.normal_(1.0, 0.02)  # 为什么是1.0?
         m.bias.data.fill_(0)
 
 
@@ -142,11 +144,11 @@ def load_style_image_pair(filename, scales=[-1.0, -1. / 3, 1. / 3, 1.0], sketchm
     img = Image.open(filename)
     ori_wd, ori_ht = img.size
     ori_wd = ori_wd // 2
-    X = pil2tensor(img.crop((0, 0, ori_wd, ori_ht))).unsqueeze(dim=0)
-    Y = pil2tensor(img.crop((ori_wd, 0, ori_wd * 2, ori_ht))).unsqueeze(dim=0)
+    X = pil2tensor(img.crop((0, 0, ori_wd, ori_ht))).unsqueeze(dim=0)  # 风格距离图
+    Y = pil2tensor(img.crop((ori_wd, 0, ori_wd * 2, ori_ht))).unsqueeze(dim=0)  # 原始风格图
     Xls = []
     Noise = torch.tensor(0).float().repeat(1, 1, 1).expand(3, ori_ht, ori_wd)
-    Noise = Noise.data.new(Noise.size()).normal_(0, 0.2)
+    Noise = Noise.data.new(Noise.size()).normal_(0, 0.2)  # 这个要和初始化网络权重时的normal_一致？？？
     Noise = Noise.unsqueeze(dim=0)
     # Noise = tensor2pil((Noise+1)/2)
     if sketchmodule is not None:
@@ -158,9 +160,9 @@ def load_style_image_pair(filename, scales=[-1.0, -1. / 3, 1. / 3, 1.0], sketchm
     return [Xls, X, Y, Noise]
 
 
-# 没有在utils内用到此方法
 def rotate_tensor(x, angle):
     if angle == 1:
+        # flip ： 反转给定维度的顺序
         return x.transpose(2, 3).flip(2)
     elif angle == 2:
         return x.flip(2).flip(3)
@@ -173,7 +175,6 @@ def rotate_tensor(x, angle):
 # crop subimages for training 
 # for structure transfer:  [Input,Output]=[Xl, X]
 # for texture transfer:  [Input,Output]=[X, Y]
-# 没有在utils内用到此方法
 def cropping_training_batches(Input, Output, Noise, batchsize=16, anglejitter=False, wd=256, ht=256):
     img_list = []
     ori_wd = Input.size(2)
