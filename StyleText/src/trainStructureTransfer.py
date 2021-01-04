@@ -1,11 +1,10 @@
 from __future__ import print_function
 import torch
 from models import SketchModule, ShapeMatchingGAN
-from utils import load_image, to_data, to_var, visualize, save_image, gaussian, weights_init
+from utils import  to_var,    weights_init
 from utils import load_train_batchfnames, prepare_text_batch, load_style_image_pair, cropping_training_batches
 import random
 from options import TrainShapeMatchingOptions
-import os
 
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = "0"
@@ -70,6 +69,7 @@ def main():
             idx = opts.scale_num - 1  # 3
             xl, x = cropping_training_batches(Xl[idx], X, Noise, opts.batchsize,
                                               opts.Sanglejitter, opts.subimg_size, opts.subimg_size)
+            # xl与x裁剪的坐标是相同的。
             # xl是加入了一些噪声的自Xl[idx]随机裁剪出的 32 个 大小为 256x256 的xl图像 [32, 3, 256, 256]
             # x就是输入的Output的随机裁剪/选择后的结果，也就是原距离图像随机裁剪/选择后的，与 xl shape 相同 [32, 3, 256, 256]
 

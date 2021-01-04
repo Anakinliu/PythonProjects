@@ -1,13 +1,11 @@
 from __future__ import print_function
 import torch
-from models import SketchModule, ShapeMatchingGAN
-from utils import load_image, to_data, to_var, visualize, save_image, gaussian, weights_init
+from models import  ShapeMatchingGAN
+from utils import  to_var,    weights_init
 from utils import load_train_batchfnames, prepare_text_batch, load_style_image_pair, cropping_training_batches
-import random
 from vgg import get_GRAM, VGGFeature
 import torchvision.models as models
 from options import TrainShapeMatchingOptions
-import os
 
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = "0"
@@ -27,6 +25,7 @@ def main():
     netShapeM.init_networks(weights_init)
     netShapeM.train()
 
+    # 默认值是 False
     if opts.style_loss:
         netShapeM.G_S.load_state_dict(torch.load(opts.load_GS_name))
         netShapeM.G_S.eval()
@@ -41,17 +40,21 @@ def main():
     print('--- training ---')
     # load image pair
     _, X, Y, Noise = load_style_image_pair(opts.style_name, gpu=opts.gpu)
-    Y = to_var(Y) if opts.gpu else Y
-    X = to_var(X) if opts.gpu else X
+
+    Y = to_var(Y) if opts.gpu else Y  # 风格图
+    X = to_var(X) if opts.gpu else X  # 风格距离图
     Noise = to_var(Noise) if opts.gpu else Noise
-    for epoch in range(opts.texture_step1_epochs):
-        for i in range(opts.Ttraining_num // opts.batchsize):
+
+    for epoch in range(opts.texture_step1_epochs):  # 40
+        for i in range(opts.Ttraining_num // opts.batchsize):  # 800 // 32 = 25
+            # x 风格距离图，y 风格图
             x, y = cropping_training_batches(X, Y, Noise, opts.batchsize,
                                              opts.Tanglejitter, opts.subimg_size, opts.subimg_size)
             losses = netShapeM.texture_one_pass(x, y)
             print('Step1, Epoch [%02d/%02d][%03d/%03d]' % (epoch + 1, opts.texture_step1_epochs, i + 1,
                                                            opts.Ttraining_num // opts.batchsize), end=': ')
             print('LDadv: %+.3f, LGadv: %+.3f, Lrec: %+.3f, Lsty: %+.3f' % (losses[0], losses[1], losses[2], losses[3]))
+
     if opts.style_loss:
         fnames = load_train_batchfnames(opts.text_path, opts.batchsize,
                                         opts.text_datasize, trainnum=opts.Ttraining_num)
@@ -60,6 +63,7 @@ def main():
             for fname in fnames:
                 itr += 1
                 t = prepare_text_batch(fname, anglejitter=False)
+                # x 风格距离图，y 风格图
                 x, y = cropping_training_batches(X, Y, Noise, opts.batchsize,
                                                  opts.Tanglejitter, opts.subimg_size, opts.subimg_size)
                 t = to_var(t) if opts.gpu else t

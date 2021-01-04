@@ -1,7 +1,7 @@
 from options import TestOptions
 import torch
 from models import GlyphGenerator, TextureGenerator
-from utils import load_image, to_data, to_var, visualize, save_image, gaussian
+from utils import load_image, to_data, to_var,  save_image, gaussian
 import os
 
 

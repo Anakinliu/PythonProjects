@@ -11,6 +11,8 @@ import math
 import torch.autograd as autograd
 from torch.autograd import Variable
 import os
+import cv2 as cv
+from PIL import Image
 
 id = 0  # for saving network output to file during training
 
@@ -85,7 +87,7 @@ class TextureGenerator(nn.Module):
 
 
 ###################### Glyph Network
-# based on Convolution-BatchNorm-LeakyReLU
+# based on Convolution-BatchNorm-LeakyReLU    
 class myGConv(nn.Module):
     def __init__(self, num_filter=128, stride=1, in_channels=128):
         super(myGConv, self).__init__()
@@ -151,7 +153,7 @@ class GlyphGenerator(nn.Module):
         transformer = []
         for n in range(int(n_layers / 2) - 1):  # 0,1
             transformer.append(myGCombineBlock(ngf * 4, p=0.0))
-        # dropout to make model more robust
+        # dropout to make model more robust    
         transformer.append(myGCombineBlock(ngf * 4, p=0.5))
         transformer.append(myGCombineBlock(ngf * 4, p=0.5))
         for n in range(int(n_layers / 2) + 1, n_layers):
@@ -176,7 +178,7 @@ class GlyphGenerator(nn.Module):
         for myCombineBlock in self.transformer:
             myCombineBlock.myCopy()
 
-    # controlled by Controllable ResBlcok
+    # controlled by Controllable ResBlcok    
     def forward(self, x, l):
         for myCombineBlock in self.transformer:
             # label smoothing [-1,1]-->[0.9,0.1]
@@ -188,8 +190,8 @@ class GlyphGenerator(nn.Module):
         return out2
 
 
-##################### Sketch Module
-# based on Convolution-InstanceNorm-ReLU
+##################### Sketch Module 
+# based on Convolution-InstanceNorm-ReLU   
 # Smoothness Block
 class myBlur(nn.Module):
     def __init__(self, kernel_size=121, channels=3):
@@ -226,6 +228,30 @@ class myBlur(nn.Module):
         # self.gaussian_filter 的权重直接设为 gaussian_kernel，根据sigma(l)来的
         self.gaussian_filter.weight.data = gaussian_kernel
         return self.gaussian_filter(F.pad(x, (self.mean, self.mean, self.mean, self.mean), "replicate"))
+
+
+# erode?
+class myErode(nn.Module):
+    def __init__(self, kernel_size=5):
+        super(myErode, self).__init__()
+        self.erode_kernel = kernel_size
+
+    def forward(self, x, l, gpu):
+        iterations_times = int(4 * (l + 2 - 1))
+        kernel = np.ones((self.erode_kernel + 2 * iterations_times, self.erode_kernel + 2 * iterations_times), np.uint8)
+        # print(l)
+        # OpenCV是BGR的！！！
+        eroded_lst = []
+        for e in x:
+            x_pil = tensor2pil(e.cpu() * 0.5 + 0.5)
+            eroded_tensor = pil2tensor(Image.fromarray(cv.erode(np.asarray(x_pil), kernel, iterations=1)))
+            eroded_lst.append(eroded_tensor.unsqueeze(dim=0))
+
+        x = torch.cat(eroded_lst, dim=0)
+        # print(f'-myErode forward:{x.shape}')
+        if gpu:
+            x = x.to('cuda')
+        return x
 
 
 class mySConv(nn.Module):
@@ -424,7 +450,9 @@ class SketchModule(nn.Module):
         self.D_B = Discriminator(7, self.ndf, self.D_layers, True, True)
 
         # smoothnessBlock
-        self.smoothBlock = myBlur()
+        # self.smoothBlock = myBlur()
+        self.smoothBlock = myErode()
+
 
         self.trainerG = torch.optim.Adam(self.transBlock.parameters(), lr=0.0002, betas=(0.5, 0.999))
         self.trainerD = torch.optim.Adam(self.D_B.parameters(), lr=0.0002, betas=(0.5, 0.999))
@@ -443,7 +471,7 @@ class SketchModule(nn.Module):
         self.transBlock.apply(weights_init)
         self.D_B.apply(weights_init)
 
-    # WGAN-GP: calculate gradient penalty
+    # WGAN-GP: calculate gradient penalty 
     def calc_gradient_penalty(self, netD, real_data, fake_data):
         alpha = torch.rand(real_data.shape[0], 1, 1, 1)
         alpha = alpha.cuda() if self.gpu else alpha
@@ -600,7 +628,7 @@ class ShapeMatchingGAN(nn.Module):
         self.G_T.apply(weights_init)
         self.D_T.apply(weights_init)
 
-    # WGAN-GP: calculate gradient penalty
+    # WGAN-GP: calculate gradient penalty 
     def calc_gradient_penalty(self, netD, real_data, fake_data):
         alpha = torch.rand(real_data.shape[0], 1, 1, 1)
         alpha = alpha.cuda() if self.gpu else alpha
@@ -639,7 +667,7 @@ class ShapeMatchingGAN(nn.Module):
         LSrec = self.loss(fake_x, x) * self.lambda_l1
         LS = LSadv + LSrec
         if t is not None:
-            # weight map based on the distance field
+            # weight map based on the distance field 
             # whose pixel value increases with its distance to the nearest text contour point of t
             Mt = (t[:, 1:2] + t[:, 2:3]) * 0.5 + 1.0
             t_noise = t.clone()

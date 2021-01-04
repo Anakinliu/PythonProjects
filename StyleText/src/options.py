@@ -131,7 +131,7 @@ class TrainShapeMatchingOptions:
                                  help='how many training images in each epoch for texture transfer')
         self.parser.add_argument('--glyph_preserve', action='store_true', default=False,
                                  help='Whether using glyph loss to preserve the text legibility')
-        self.parser.add_argument('--style_loss', action='store_true', default=False, help='Whether using style loss')
+        self.parser.add_argument('--style_loss', action='store_true', default=True, help='Whether using style loss')
         self.parser.add_argument('--gpu', action='store_true', default=False, help='Whether using gpu')
 
         ## Sketch Module

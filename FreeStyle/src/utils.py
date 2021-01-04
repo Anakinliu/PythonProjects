@@ -78,7 +78,7 @@ def gaussian(ins, mean=0, stddev=0.2):
 # 没有在utils内用到此方法
 def weights_init(m):
     classname = m.__class__.__name__
-    print(f'weights_init:classname:{classname}')
+    # print(f'weights_init:classname:{classname}')
     if classname.find('Conv') != -1 and classname.find('my') == -1:
         # std = 1/sqrt(n), where n is the number of inputs to NN
         m.weight.data.normal_(0.0, 0.02)  # mean=0.0. std=0.02
@@ -172,7 +172,7 @@ def rotate_tensor(x, angle):
         return x
 
 
-# crop subimages for training 
+# crop subimages for training
 # for structure transfer:  [Input,Output]=[Xl, X]
 # for texture transfer:  [Input,Output]=[X, Y]
 def cropping_training_batches(Input, Output, Noise, batchsize=16, anglejitter=False, wd=256, ht=256):

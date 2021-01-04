@@ -1,9 +1,9 @@
 from __future__ import print_function
 import torch
 from models import SketchModule
-from utils import   to_var,  weights_init
-from utils import load_train_batchfnames, prepare_text_batch
+from utils import load_image, to_data, to_var, visualize, save_image, gaussian, weights_init, load_train_batchfnames, prepare_text_batch
 from options import TrainSketchOptions
+import os
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
@@ -26,7 +26,7 @@ def main():
         netSketch.cuda()
     netSketch.init_networks(weights_init)
     netSketch.train()
-    print(netSketch)
+    # print(netSketch)
     print('--- training ---')
     for epoch in range(opts.epochs):
         itr = 0
