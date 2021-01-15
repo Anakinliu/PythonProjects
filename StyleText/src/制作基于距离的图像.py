@@ -57,5 +57,5 @@ def text_image_preprocessing(filename, t):
 # 0,单文字图片，原size；1，句子图片，2，风格图片，宽度2倍拼接，左dis后的风格图片，右原风格图片
 # text_image_preprocessing('firework.jpg', 0)
 # text_image_preprocessing('sand2.jpg', 2)
-text_image_preprocessing('snowflakes3.jpg', 2)
+text_image_preprocessing('kaiti_S.png', 0)
 

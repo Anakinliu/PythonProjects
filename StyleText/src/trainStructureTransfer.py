@@ -53,7 +53,7 @@ def main():
     # 使用已训练的 netSketch！！！
     Xl, X, _, Noise = load_style_image_pair(opts.style_name, scales, netSketch, opts.gpu)
     """
-    Xl: 不同模糊程度的 4 个（scale_num默认值 4）距离图像 X
+    Xl: 经过SketchModule的不同模糊程度的 4 个（scale_num默认值 4）距离图像 X
     Xl[0] -- scales[0] -- -1.0
     Xl[3] -- scales[3] -- 1.0
     X：风格图像的距离图像  shape [1, 3, 740图像高度, 1000图像宽度]
@@ -100,7 +100,7 @@ def main():
                                                            opts.Straining_num // opts.batchsize), end=': ')
             print('LDadv: %+.3f, LGadv: %+.3f, Lrec: %+.3f, Lgly: %+.3f' % (losses[0], losses[1], losses[2], losses[3]))
 
-    # glyph_preserve 默认False
+    # glyph_preserve 默认False,如果是True那么复杂结构字的论文效果会比不加更好吗？
     if opts.glyph_preserve:
         fnames = load_train_batchfnames(opts.text_path, opts.batchsize,
                                         opts.text_datasize, opts.Straining_num)

@@ -13,6 +13,8 @@ from torch.autograd import Variable
 import os
 import cv2 as cv
 from PIL import Image
+from skimage import morphology
+import scipy.ndimage as pyimg
 
 id = 0  # for saving network output to file during training
 
@@ -228,23 +230,68 @@ class myBlur(nn.Module):
         # self.gaussian_filter 的权重直接设为 gaussian_kernel，根据sigma(l)来的
         self.gaussian_filter.weight.data = gaussian_kernel
         return self.gaussian_filter(F.pad(x, (self.mean, self.mean, self.mean, self.mean), "replicate"))
+    # def forward(self, x, sigma, gpu):
+    #     sigma = sigma * 8. + 16.
+    #     variance = sigma ** 2.
+    #     gaussian_kernel = (1. / (2. * math.pi * variance)) * torch.exp(self.diff / (2 * variance))
+    #     gaussian_kernel = gaussian_kernel / torch.sum(gaussian_kernel)
+    #     gaussian_kernel = gaussian_kernel.view(1, 1, self.kernel_size, self.kernel_size)
+    #     gaussian_kernel = gaussian_kernel.repeat(self.channels, 1, 1, 1)
+    #     if gpu:
+    #         gaussian_kernel = gaussian_kernel.cuda()
+    #     # self.gaussian_filter 的权重直接设为 gaussian_kernel，根据sigma(l)来的
+    #     self.gaussian_filter.weight.data = gaussian_kernel
+    #
+    #     # //开始操作
+    #     # print(f'myErode:forward:{x.shape}')
+    #     skel_lst = []
+    #     i = 0
+    #     for e in x:
+    #         x_pil = tensor2pil(e.cpu() * 0.5 + 0.5)
+    #         # x_pil.show(f'{i}')
+    #         x_pil_np = np.array(x_pil)
+    #         R = x_pil_np[:, :, 0] > 200
+    #         skel = morphology.skeletonize(R)
+    #         skel_np = np.array(Image.fromarray(skel).convert('RGB'))
+    #
+    #         BW = skel_np[:, :, 0] > 127
+    #         G_channel = pyimg.distance_transform_edt(BW)
+    #         G_channel[G_channel > 32] = 32
+    #         B_channel = pyimg.distance_transform_edt(1 - BW)
+    #         B_channel[B_channel > 200] = 200
+    #         skel_np[:, :, 1] = G_channel.astype('uint8')
+    #         skel_np[:, :, 2] = B_channel.astype('uint8')
+    #
+    #         Image.fromarray(skel_np).show(f'{i}')
+    #
+    #         skel_tensor = pil2tensor(
+    #             Image.fromarray(skel_np))
+    #         skel_lst.append(skel_tensor.unsqueeze(dim=0))
+    #         i += 1
+    #     x = torch.cat(skel_lst, dim=0)
+    #     if gpu:
+    #         x = x.to('cuda')
+    #     # 操作结束//
+    #     x = self.gaussian_filter(F.pad(x, (self.mean, self.mean, self.mean, self.mean), "replicate"))
+    #
+    #     return x
 
 
 # erode?
 class myErode(nn.Module):
-    def __init__(self, kernel_size=5):
+    def __init__(self, kernel_size=2):
         super(myErode, self).__init__()
         self.erode_kernel = kernel_size
 
     def forward(self, x, l, gpu):
         iterations_times = int(4 * (l + 2 - 1))
-        kernel = np.ones((self.erode_kernel + 2 * iterations_times, self.erode_kernel + 2 * iterations_times), np.uint8)
+        kernel = np.ones((self.erode_kernel, iterations_times), np.uint8)
         # print(l)
         # OpenCV是BGR的！！！
         eroded_lst = []
         for e in x:
             x_pil = tensor2pil(e.cpu() * 0.5 + 0.5)
-            eroded_tensor = pil2tensor(Image.fromarray(cv.erode(np.asarray(x_pil), kernel, iterations=1)))
+            eroded_tensor = pil2tensor(Image.fromarray(cv.erode(np.asarray(x_pil), kernel, iterations=iterations_times)))
             eroded_lst.append(eroded_tensor.unsqueeze(dim=0))
 
         x = torch.cat(eroded_lst, dim=0)
@@ -252,6 +299,30 @@ class myErode(nn.Module):
         if gpu:
             x = x.to('cuda')
         return x
+
+
+# class mySkel(nn.Module):
+#     def __init__(self, kernel_size=2):
+#         super(myErode, self).__init__()
+#         self.erode_kernel = kernel_size
+#
+#     def forward(self, x, l, gpu):
+#         iterations_times = int(4 * (l + 2 - 1))
+#         kernel = np.ones((self.erode_kernel, iterations_times), np.uint8)
+#         # print(l)
+#         # OpenCV是BGR的！！！
+#         eroded_lst = []
+#         for e in x:
+#             x_pil = tensor2pil(e.cpu() * 0.5 + 0.5)
+#             eroded_np = cv.erode(np.asarray(x_pil), kernel, iterations=iterations_times)
+#
+#             eroded_lst.append(eroded_tensor.unsqueeze(dim=0))
+#
+#         x = torch.cat(eroded_lst, dim=0)
+#         # print(f'-myErode forward:{x.shape}')
+#         if gpu:
+#             x = x.to('cuda')
+#         return x
 
 
 class mySConv(nn.Module):
@@ -444,15 +515,16 @@ class SketchModule(nn.Module):
 
         # transformationBlock
         self.transBlock = SketchGenerator(4, self.ngf, self.G_layers)
+        # self.deTransBlock = SketchGenerator(4, self.ngf, self.G_layers)
 
         # D_B 学习去确定输入图像的真实性以及它是否与给定的平滑图像 (t_l ) ̅ 和参数 l 相匹配
         # 7， 32， 5，True，True
         self.D_B = Discriminator(7, self.ndf, self.D_layers, True, True)
 
         # smoothnessBlock
-        # self.smoothBlock = myBlur()
-        self.smoothBlock = myErode()
-
+        # self.smoothBlock = myErode()
+        self.smoothBlock = myBlur()
+        # self.smoothBlock = mySkeletonize()
 
         self.trainerG = torch.optim.Adam(self.transBlock.parameters(), lr=0.0002, betas=(0.5, 0.999))
         self.trainerD = torch.optim.Adam(self.D_B.parameters(), lr=0.0002, betas=(0.5, 0.999))
@@ -529,14 +601,19 @@ class SketchModule(nn.Module):
 
         tl = self.smoothBlock(t, l, self.gpu)
 
+        # fake_text = self.transBlock(tl, label)
         fake_text = self.transBlock(tl, label)
+        # ori_text = self.deTransBlock(fake_text, label)  # 同一个transBlock应该不行。。。试试直接加一个。。。
+        # ori = self.deSmoothBlock(ori_text, l, self.gpu)
+        # fake_text = self.deSmoothBlock(hidden_text, l, self.gpu)
 
         fake_concat = torch.cat((tl, real_label, fake_text), dim=1)
         # fake_concat: [16, 7, 256, 256]
         fake_output = self.D_B(fake_concat)  # 一个3536维度的向量
 
         LBadv = -fake_output.mean() * self.lambda_adv
-        LBrec = self.loss(fake_text, t) * self.lambda_l1
+        LBrec = self.loss(fake_text, t) * self.lambda_l1  # LBrec改了。。。
+        # LBrec = self.loss(ori, t) * self.lambda_l1
         LB = LBadv + LBrec
 
         self.trainerG.zero_grad()

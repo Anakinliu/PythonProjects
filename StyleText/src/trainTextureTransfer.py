@@ -41,20 +41,22 @@ def main():
     # load image pair
     _, X, Y, Noise = load_style_image_pair(opts.style_name, gpu=opts.gpu)
 
+    # X Y 显然大小相同，为 [1, 3, H ,W]
     Y = to_var(Y) if opts.gpu else Y  # 风格图
     X = to_var(X) if opts.gpu else X  # 风格距离图
-    Noise = to_var(Noise) if opts.gpu else Noise
+    Noise = to_var(Noise) if opts.gpu else Noise  # 与X，Y形状相同
 
     for epoch in range(opts.texture_step1_epochs):  # 40
         for i in range(opts.Ttraining_num // opts.batchsize):  # 800 // 32 = 25
-            # x 风格距离图，y 风格图
+            # x 风格距离图加上了红色Noise，y 风格图,
+            # shape为 [batchsize,6,256,256]
             x, y = cropping_training_batches(X, Y, Noise, opts.batchsize,
                                              opts.Tanglejitter, opts.subimg_size, opts.subimg_size)
             losses = netShapeM.texture_one_pass(x, y)
             print('Step1, Epoch [%02d/%02d][%03d/%03d]' % (epoch + 1, opts.texture_step1_epochs, i + 1,
                                                            opts.Ttraining_num // opts.batchsize), end=': ')
             print('LDadv: %+.3f, LGadv: %+.3f, Lrec: %+.3f, Lsty: %+.3f' % (losses[0], losses[1], losses[2], losses[3]))
-
+    # 默认值是 False
     if opts.style_loss:
         fnames = load_train_batchfnames(opts.text_path, opts.batchsize,
                                         opts.text_datasize, trainnum=opts.Ttraining_num)

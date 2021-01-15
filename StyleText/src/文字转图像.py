@@ -15,7 +15,7 @@ else:
 
 print(f'你输入了：{user_input}')
 user_len = len(user_input)
-left_padding = 30
+left_padding = 50
 right_padding = 10
 up_padding = 40
 bottom_padding = 0

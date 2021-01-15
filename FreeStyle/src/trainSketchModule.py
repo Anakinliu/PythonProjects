@@ -25,6 +25,7 @@ def main():
     if opts.gpu:
         netSketch.cuda()
     netSketch.init_networks(weights_init)
+
     netSketch.train()
     # print(netSketch)
     print('--- training ---')

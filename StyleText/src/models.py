@@ -11,7 +11,8 @@ import math
 import torch.autograd as autograd
 from torch.autograd import Variable
 import os
-
+import cv2 as cv
+from PIL import Image
 id = 0  # for saving network output to file during training
 
 
@@ -228,6 +229,30 @@ class myBlur(nn.Module):
         return self.gaussian_filter(F.pad(x, (self.mean, self.mean, self.mean, self.mean), "replicate"))
 
 
+class myErode(nn.Module):
+    def __init__(self, kernel_size=2):
+        super(myErode, self).__init__()
+        self.erode_kernel = kernel_size
+
+    def forward(self, x, l, gpu):
+        iterations_times = int(4 * (l + 2 - 1))
+        kernel = np.ones((self.erode_kernel, self.erode_kernel), np.uint8)
+        # print(l)
+        # OpenCV是BGR的！！！
+        eroded_lst = []
+        for e in x:
+            x_pil = tensor2pil(e.cpu() * 0.5 + 0.5)
+            eroded_tensor = pil2tensor(Image.fromarray(cv.erode(np.asarray(x_pil), kernel, iterations=iterations_times)))
+            eroded_lst.append(eroded_tensor.unsqueeze(dim=0))
+
+        x = torch.cat(eroded_lst, dim=0)
+        # print(f'-myErode forward:{x.shape}')
+        if gpu:
+            x = x.to('cuda')
+        return x
+
+
+
 class mySConv(nn.Module):
     def __init__(self, num_filter=128, stride=1, in_channels=128):
         super(mySConv, self).__init__()
@@ -336,7 +361,7 @@ class SketchGenerator(nn.Module):
 ################ Discriminators
 # Glyph and Texture Networks: BN
 # Sketch Module: IN, multilayer
-class Discriminator(nn.Module):
+class Discriminator(nn.Module):  # 使用的是Pix2Pix中提出的判别器--PatchGAN
     def __init__(self, in_channels, ndf=32, n_layers=3, multilayer=False, IN=False):
         """
         Sketch Module时:
@@ -425,6 +450,7 @@ class SketchModule(nn.Module):
 
         # smoothnessBlock
         self.smoothBlock = myBlur()
+        # self.smoothBlock = myErode()
 
         self.trainerG = torch.optim.Adam(self.transBlock.parameters(), lr=0.0002, betas=(0.5, 0.999))
         self.trainerD = torch.optim.Adam(self.D_B.parameters(), lr=0.0002, betas=(0.5, 0.999))
@@ -619,6 +645,9 @@ class ShapeMatchingGAN(nn.Module):
         return gradient_penalty
 
     def update_structure_discriminator(self, x, xl, l):
+        # xl与x裁剪的坐标是相同的。
+        # xl是加入了一些噪声的自Xl[idx]随机裁剪出的 32 个 大小为 256x256 的xl图像 [32, 3, 256, 256]
+        # x就是输入的Output的随机裁剪/选择后的结果，也就是原距离图像随机裁剪/选择后的，与 xl shape 相同 [32, 3, 256, 256]
         with torch.no_grad():
             fake_x = self.G_S(xl, l)  # shape同 x，是[32,3,256,256]
         fake_output = self.D_S(fake_x)  # 11552长度向量
@@ -667,7 +696,7 @@ class ShapeMatchingGAN(nn.Module):
         # texture transfer: x 风格距离图  [bs, 3, 256, 256]
         # texture transfer: y 风格图  [bs, 3, 256, 256]
         with torch.no_grad():
-            fake_y = self.G_T(x)
+            fake_y = self.G_T(x)  # 从风格距离图中生成风格图，就像pix2pix那样！！！
             fake_concat = torch.cat((x, fake_y), dim=1)
         fake_output = self.D_T(fake_concat)
         real_concat = torch.cat((x, y), dim=1)

@@ -78,7 +78,7 @@ def gaussian(ins, mean=0, stddev=0.2):
 # 没有在utils内用到此方法
 def weights_init(m):
     classname = m.__class__.__name__
-    print(f'weights_init:classname:{classname}')
+    # print(f'weights_init:classname:{classname}')
     if classname.find('Conv') != -1 and classname.find('my') == -1:
         # std = 1/sqrt(n), where n is the number of inputs to NN
         m.weight.data.normal_(0.0, 0.02)  # mean=0.0. std=0.02
@@ -142,16 +142,19 @@ def prepare_text_batch(batchfnames, wd=256, ht=256, anglejitter=False):
 # 没有在utils内用到此方法
 def load_style_image_pair(filename, scales=[-1.0, -1. / 3, 1. / 3, 1.0], sketchmodule=None, gpu=True):
     img = Image.open(filename)
+    # W, H, 3
     ori_wd, ori_ht = img.size
     ori_wd = ori_wd // 2
     X = pil2tensor(img.crop((0, 0, ori_wd, ori_ht))).unsqueeze(dim=0)  # 风格距离图
-    Y = pil2tensor(img.crop((ori_wd, 0, ori_wd * 2, ori_ht))).unsqueeze(dim=0)  # 原始风格图
+    Y = pil2tensor(img.crop((ori_wd, 0, ori_wd * 2, ori_ht))).unsqueeze(dim=0)  # 风格图
+    # 此时 X 与 Y 的shape为 3, H ,W 与PIL读取得到的numpy刚好相反
     Xls = []
-    Noise = torch.tensor(0).float().repeat(1, 1, 1).expand(3, ori_ht, ori_wd)
+    Noise = torch.tensor(0).float().repeat(1, 1, 1).expand(3, ori_ht, ori_wd)  # 值全为0
+    # 均值约为0，方差约为0.2
     Noise = Noise.data.new(Noise.size()).normal_(0, 0.2)  # 这个要和初始化网络权重时的normal_一致？？？
     Noise = Noise.unsqueeze(dim=0)
     # Noise = tensor2pil((Noise+1)/2)
-    if sketchmodule is not None:
+    if sketchmodule is not None:  # 训练纹理时是None
         X_ = to_var(X) if gpu else X
         for l in scales:
             with torch.no_grad():
@@ -177,22 +180,32 @@ def rotate_tensor(x, angle):
 # for texture transfer:  [Input,Output]=[X, Y]
 def cropping_training_batches(Input, Output, Noise, batchsize=16, anglejitter=False, wd=256, ht=256):
     img_list = []
-    ori_wd = Input.size(2)
-    ori_ht = Input.size(3)
+    ori_wd = Input.size(3)
+    ori_ht = Input.size(2)
     for i in range(batchsize):
         w = random.randint(0, ori_wd - wd)
         h = random.randint(0, ori_ht - ht)
-        input = Input[:, :, w:w + wd, h:h + ht].clone()
-        output = Output[:, :, w:w + wd, h:h + ht]
-        noise = Noise[:, :, w:w + wd, h:h + ht]
+        input = Input[:, :, h:h + ht, w:w + wd].clone()
+        output = Output[:, :, h:h + ht, w:w + wd]
+        noise = Noise[:, :, h:h + ht, w:w + wd]
+        # input,output,noise都裁剪同一个坐标的块
         if anglejitter:
             random_angle = random.randint(0, 3)
-            input =rotate_tensor(input, random_angle)
+            input = rotate_tensor(input, random_angle)
             output = rotate_tensor(output, random_angle)
             noise = rotate_tensor(noise, random_angle)
-        input[:, 0] = torch.clamp(input[:, 0] + noise[:, 0], -1, 1)
-        img_list.append(torch.cat((input, output), dim=1))
-    data = torch.cat(img_list, dim=0)
-    ins = data[:, 0:3, :, :]  # texture transfer: 风格距离图
-    outs = data[:, 3:, :, :]  # texture transfer: 风格图
+
+        # TODO 只对红色通道加Noise？？？
+        input[:, 0] = torch.clamp(input[:, 0] + noise[:, 0], -1, 1)  # 截断为[-1,1]之间
+        # print(f'cropping_training_batches:input:{input.shape}')  # [1, 3, 256, 256]
+        # print(f'cropping_training_batches:output:{output.shape}')  # [1, 3, 256, 256]
+        img_list.append(torch.cat((input, output), dim=1))  # cat后为[1,6,256,256]
+
+    data = torch.cat(img_list, dim=0)  # 按照batchsize叠加
+    # print(f'cropping_training_batches:data:{data.shape}')  # [batchsize,6,256,256]
+    ins = data[:, 0:3, :, :]
+    outs = data[:, 3:, :, :]
+    # print(f'cropping_training_batches:ins:{ins.shape}')
+    # print(f'cropping_training_batches:outs:{outs.shape}')
+
     return ins, outs

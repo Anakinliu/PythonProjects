@@ -2,7 +2,7 @@ import imageio
 import os
 import re
 
-SOURCE_DIR = '../output/sand_sand-sha2/'
+SOURCE_DIR = '../output/对比/sakura/sakura-GB-erode-kaiti_sakura-GB-erode-kaiti-lu/'
 # print(os.listdir(SOURCE_DIR))
 
 

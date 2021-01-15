@@ -33,7 +33,7 @@ def load_image(img_path, max_size=800, shape=None, is_path=True, target_size=Non
     if shape is not None:
         size = shape
 
-    size=(512, 512)
+    size = (512, 512)
 
     # transforms的size是 h, w
     in_transform = transforms.Compose([
@@ -72,12 +72,12 @@ def get_features(image, model, layers=None):
     ## Need the layers for the content and style representations of an image
     # 以 320x320图片为例
     # if layers is None:
-        # layers = {'0': 'conv1_1',  # torch.Size([1, 64, 320, 320])
-        #           '5': 'conv2_1',  # torch.Size([1, 128, 160, 160])
-        #           '10': 'conv3_1',  # torch.Size([1, 256, 80, 80]
-        #           '19': 'conv4_1',  # torch.Size([1, 512，40， 40])
-        #           '21': 'conv4_2',  # torch.Size([1, 512, 40, 40]
-        #           '28': 'conv5_1'}  # torch.Size([1, 512, 20, 20]
+    # layers = {'0': 'conv1_1',  # torch.Size([1, 64, 320, 320])
+    #           '5': 'conv2_1',  # torch.Size([1, 128, 160, 160])
+    #           '10': 'conv3_1',  # torch.Size([1, 256, 80, 80]
+    #           '19': 'conv4_1',  # torch.Size([1, 512，40， 40])
+    #           '21': 'conv4_2',  # torch.Size([1, 512, 40, 40]
+    #           '28': 'conv5_1'}  # torch.Size([1, 512, 20, 20]
 
     if layers is None:
         layers = {'3': 'relu1_2',  # torch.Size([1, 64, 320, 320])
