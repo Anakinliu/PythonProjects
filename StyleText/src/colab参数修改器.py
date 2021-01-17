@@ -14,10 +14,10 @@ drive.mount('/content/drive/')
 # G_B = "GB_kaiti.ckpt"
 
 # G_B = "GB-erode-yaheiB.ckpt"
-# G_B = "GB.ckpt"
+G_B = "GB-iccv.ckpt"
 # G_B = "GB-erode-kaiti.ckpt"
 # G_B = "GB-skelPLUSblur-kaiti.ckpt"
-G_B = "GB-raw-yaheiB.ckpt"
+# G_B = "GB-raw-yaheiB.ckpt"
 # G_B = "GB_kaiti.ckpt"
 # G_B = "GB-no-blur-yaheiB.ckpt"
 
@@ -28,7 +28,7 @@ test_file_name = "0730.png"  # 测试模型时所用文字图像的文件名，�
 # style_file_name = "maple.png"  # 风格图像的文件名
 # style_file_name = "snowflakes3_style.jpg"  # 风格图像的文件名
 # style_file_name = "corn4_style.jpg"  # 风格图像的文件名
-style_file_name = "sakura_raw.jpg"  # 风格图像的文件名
+style_file_name = "728.png"  # 风格图像的文件名
 
 s_angle_jitter = False  # 训练结构时是否抖动角度
 t_angle_jitter = False  # 训练纹理时是否抖动角度
@@ -36,10 +36,10 @@ use_text_path = False
 
 # s_style_name = "fire-erode-yaheiB"  # 训练结构
 # s_style_name = "fire-erode-kaiti"  # 训练结构
-s_style_name = "sakura-raw-yaheiB-GB-kaiti"  # 训练结构
+s_style_name = "silver-heiA"  # 训练结构
 # t_style_name = "fire-erode-yaheiB"  # 训练纹理
 # t_style_name = "fire-erode-kaiti"  # 训练纹理
-t_style_name = "sakura-raw-yaheiB-GB-kaiti"  # 训练纹理
+t_style_name = "silver-heiA"  # 训练纹理
 
 
 if s_angle_jitter:  # 是否抖动角度
