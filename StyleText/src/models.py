@@ -210,6 +210,7 @@ class myBlur(nn.Module):
 
         self.diff = -torch.sum((self.xy_grid - self.mean) ** 2., dim=-1)
 
+
         self.gaussian_filter = nn.Conv2d(in_channels=self.channels, out_channels=self.channels,
                                          kernel_size=self.kernel_size, groups=self.channels, bias=False)
         # 权重无需学习，见下面的forward
@@ -219,12 +220,17 @@ class myBlur(nn.Module):
         sigma = sigma * 8. + 16.
         variance = sigma ** 2.
         gaussian_kernel = (1. / (2. * math.pi * variance)) * torch.exp(self.diff / (2 * variance))
+        # print(f'myBlur forward diff: {self.diff}')
         gaussian_kernel = gaussian_kernel / torch.sum(gaussian_kernel)
+        # print(f'myBlur forward gaussian_kernel.shape {gaussian_kernel.shape}')  # [121, 121]
         gaussian_kernel = gaussian_kernel.view(1, 1, self.kernel_size, self.kernel_size)
         gaussian_kernel = gaussian_kernel.repeat(self.channels, 1, 1, 1)
         if gpu:
             gaussian_kernel = gaussian_kernel.cuda()
         # self.gaussian_filter 的权重直接设为 gaussian_kernel，根据sigma(l)来的
+        # print(f'myBlur forward {gaussian_kernel}')
+        # print(f'myBlur forward {gaussian_kernel.shape}')
+        # print(f'myBlur forward {self.gaussian_filter}')
         self.gaussian_filter.weight.data = gaussian_kernel
         return self.gaussian_filter(F.pad(x, (self.mean, self.mean, self.mean, self.mean), "replicate"))
 
@@ -236,13 +242,13 @@ class myErode(nn.Module):
 
     def forward(self, x, l, gpu):
         iterations_times = int(4 * (l + 2 - 1))
-        kernel = np.ones((self.erode_kernel, self.erode_kernel), np.uint8)
+        kernel = np.ones((self.erode_kernel + 2 * iterations_times, self.erode_kernel + 2 * iterations_times), np.uint8)
         # print(l)
         # OpenCV是BGR的！！！
         eroded_lst = []
         for e in x:
             x_pil = tensor2pil(e.cpu() * 0.5 + 0.5)
-            eroded_tensor = pil2tensor(Image.fromarray(cv.erode(np.asarray(x_pil), kernel, iterations=iterations_times)))
+            eroded_tensor = pil2tensor(Image.fromarray(cv.erode(np.asarray(x_pil), kernel, iterations=1)))
             eroded_lst.append(eroded_tensor.unsqueeze(dim=0))
 
         x = torch.cat(eroded_lst, dim=0)
@@ -533,8 +539,12 @@ class SketchModule(nn.Module):
         # fake_concat: [16, 7, 256, 256]
         fake_output = self.D_B(fake_concat)  # 一个3536维度的向量
 
-        LBadv = -fake_output.mean() * self.lambda_adv
-        LBrec = self.loss(fake_text, t) * self.lambda_l1
+        LBadv = -fake_output.mean() * self.lambda_adv  # 对抗损失
+        """
+        https://zhuanlan.zhihu.com/p/263692012
+        用于图像转换问题时，输入换成了一张图像，并引入了像素级别的L1或L2损失。像素级损失是逐像素地测量输出和真实图像之间的不一致性（颜色空间层面），而对抗损失测量的是输出和真实样本集间的似然度。
+        """
+        LBrec = self.loss(fake_text, t) * self.lambda_l1  # L1 Loss直接比较转换后的文本与原文本，没有经过判别器的！！！
         LB = LBadv + LBrec
 
         self.trainerG.zero_grad()
@@ -698,6 +708,7 @@ class ShapeMatchingGAN(nn.Module):
         with torch.no_grad():
             fake_y = self.G_T(x)  # 从风格距离图中生成风格图，就像pix2pix那样！！！
             fake_concat = torch.cat((x, fake_y), dim=1)
+
         fake_output = self.D_T(fake_concat)
         real_concat = torch.cat((x, y), dim=1)
         real_output = self.D_T(real_concat)
@@ -705,6 +716,7 @@ class ShapeMatchingGAN(nn.Module):
         gp = self.calc_gradient_penalty(self.D_T, real_concat.data, fake_concat.data)
 
         LTadv = self.lambda_tadv * (fake_output.mean() - real_output.mean() + self.lambda_gp * gp)
+
         self.trainerD_T.zero_grad()
         LTadv.backward()
         self.trainerD_T.step()
@@ -712,11 +724,24 @@ class ShapeMatchingGAN(nn.Module):
 
     def update_texture_generator(self, x, y, t=None, l=None, VGGfeatures=None, style_targets=None):
         fake_y = self.G_T(x)
+
+        # 计算L_distance
+        # 风格距离图变为黑白图
+        BW = x[:, 0, :, :].clone().detach().unsqueeze(dim=1)
+        # print(BW.shape)
+        BW = BW.expand(BW.shape[0], 3, BW.shape[2], BW.shape[3])
+        C = BW
+        D = x
+        X = fake_y
+        C.require_grad_ = False
+        D.require_grad_ = False
+        Ldistance = 1e-6 * torch.sum((C * D - X * D))
+
         fake_concat = torch.cat((x, fake_y), dim=1)
         fake_output = self.D_T(fake_concat)
         LTadv = -fake_output.mean() * self.lambda_tadv
         Lrec = self.loss(fake_y, y) * self.lambda_l1
-        LT = LTadv + Lrec
+        LT = LTadv + Lrec + Ldistance
         if t is not None:
             with torch.no_grad():
                 t[:, 0:1] = gaussian(t[:, 0:1], stddev=0.2)
@@ -741,12 +766,12 @@ class ShapeMatchingGAN(nn.Module):
         self.trainerG_T.zero_grad()
         LT.backward()
         self.trainerG_T.step()
-        return LTadv.data.mean(), Lrec.data.mean(), Lsty.data.mean() if t is not None else 0
+        return Ldistance.data.mean(), LTadv.data.mean(), Lrec.data.mean(), Lsty.data.mean() if t is not None else 0
 
     def texture_one_pass(self, x, y, t=None, l=None, VGGfeatures=None, style_targets=None):
         LDadv = self.update_texture_discriminator(x, y)
-        LGadv, Lrec, Lsty = self.update_texture_generator(x, y, t, l, VGGfeatures, style_targets)
-        return [LDadv, LGadv, Lrec, Lsty]
+        Ldiatance, LGadv, Lrec, Lsty = self.update_texture_generator(x, y, t, l, VGGfeatures, style_targets)
+        return [Ldiatance, LDadv, LGadv, Lrec, Lsty]
 
     def save_structure_model(self, filepath, filename):
         torch.save(self.G_S.state_dict(), os.path.join(filepath, filename + '-GS.ckpt'))

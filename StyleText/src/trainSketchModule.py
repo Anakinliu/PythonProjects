@@ -26,7 +26,7 @@ def main():
         netSketch.cuda()
     netSketch.init_networks(weights_init)
     netSketch.train()
-    print(netSketch)
+    # print(netSketch)
     print('--- training ---')
     for epoch in range(opts.epochs):
         itr = 0

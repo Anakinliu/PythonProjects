@@ -55,7 +55,7 @@ def main():
             losses = netShapeM.texture_one_pass(x, y)
             print('Step1, Epoch [%02d/%02d][%03d/%03d]' % (epoch + 1, opts.texture_step1_epochs, i + 1,
                                                            opts.Ttraining_num // opts.batchsize), end=': ')
-            print('LDadv: %+.3f, LGadv: %+.3f, Lrec: %+.3f, Lsty: %+.3f' % (losses[0], losses[1], losses[2], losses[3]))
+            print('LDistance: %+.3f, LDadv: %+.3f, LGadv: %+.3f, Lrec: %+.3f, Lsty: %+.3f' % (losses[0], losses[1], losses[2], losses[3], losses[4]))
     # 默认值是 False
     if opts.style_loss:
         fnames = load_train_batchfnames(opts.text_path, opts.batchsize,

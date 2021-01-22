@@ -14,8 +14,8 @@ drive.mount('/content/drive/')
 # G_B = "GB_kaiti.ckpt"
 
 # G_B = "GB-erode-yaheiB.ckpt"
-G_B = "GB-iccv.ckpt"
-# G_B = "GB-erode-kaiti.ckpt"
+# G_B = "GB-iccv.ckpt"
+G_B = "GB-erode-kaiti.ckpt"
 # G_B = "GB-skelPLUSblur-kaiti.ckpt"
 # G_B = "GB-raw-yaheiB.ckpt"
 # G_B = "GB_kaiti.ckpt"
@@ -36,10 +36,10 @@ use_text_path = False
 
 # s_style_name = "fire-erode-yaheiB"  # 训练结构
 # s_style_name = "fire-erode-kaiti"  # 训练结构
-s_style_name = "silver-heiA"  # 训练结构
+s_style_name = "flame-hei-erode-kaiti"  # 训练结构
 # t_style_name = "fire-erode-yaheiB"  # 训练纹理
 # t_style_name = "fire-erode-kaiti"  # 训练纹理
-t_style_name = "silver-heiA"  # 训练纹理
+t_style_name = "flame-hei-erode-kaiti"  # 训练纹理
 
 
 if s_angle_jitter:  # 是否抖动角度

@@ -34,7 +34,7 @@ def main():
 
     print('--- testing ---')
     text[:, 0:1] = gaussian(text[:, 0:1], stddev=0.2)
-    if label == -1:
+    if label == -1:  # 默认值 -1
         scale = -1.0
         noise = text.data.new(text[:, 0:1].size()).normal_(0, 0.2)
         result = []
