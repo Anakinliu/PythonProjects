@@ -12,9 +12,9 @@ from skimage import morphology
 # else:
 #     target_dir = '../data/oth/sentence/raw/'
 #     user_input = input("输入若干文字\n")
-RAW_DIR = '../data/oth/glyph/yaheiB_raw/'
-DIS_DIR = '../data/oth/glyph/yaheiB_dis/'
-SKEL_DIR = '../data/oth/glyph/yaheiB_skel/'
+RAW_DIR = '../data/oth/glyph/song_raw/'
+DIS_DIR = '../data/oth/glyph/my_dis/'
+SKEL_DIR = '../data/oth/glyph/my_skel/'
 
 with open('../data/常用1000个文字.txt', 'r', encoding='utf-8') as f:
     user_input = f.readline()
@@ -23,14 +23,14 @@ with open('../data/常用1000个文字.txt', 'r', encoding='utf-8') as f:
 
 user_len = len(user_input)
 
-left_padding = 60
-up_padding = 20
+left_padding = 40
+up_padding = 40
 single_text_w = 320
 single_text_h = 320
 # 注意这里一定要是彩色图片
 # image = cv2.imread('pil_text.png')
 # 定义宋体路径
-fontpath = r'G:\字体\yaheiB.TTF'
+fontpath = r'G:\字体\H063-01中文字体\华康宋体W7(P).TTF'
 
 def raw_text():
     for i in range(user_len):

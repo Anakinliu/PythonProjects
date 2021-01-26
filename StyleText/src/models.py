@@ -598,6 +598,7 @@ class ShapeMatchingGAN(nn.Module):
         self.gpu = gpu
         self.lambda_l1 = 100
         self.lambda_gp = 10
+        self.lambda_distance = 0.01
         self.lambda_sadv = 0.1
         self.lambda_gly = 1.0
         self.lambda_tadv = 1.0
@@ -735,7 +736,8 @@ class ShapeMatchingGAN(nn.Module):
         X = fake_y
         C.require_grad_ = False
         D.require_grad_ = False
-        Ldistance = 1e-6 * torch.sum((C * D - X * D))
+        # Ldistance = 1e-6 * torch.sum((C * D - X * D))
+        Ldistance = torch.norm(C * D - X * D, 'fro') * 0.5 * self.lambda_distance
 
         fake_concat = torch.cat((x, fake_y), dim=1)
         fake_output = self.D_T(fake_concat)
